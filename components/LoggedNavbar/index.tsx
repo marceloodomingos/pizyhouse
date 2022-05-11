@@ -98,17 +98,17 @@ export default function LoggedNavbar({
             ) : (
               <>
                 <li>
-                  <Link href="/dashboard/help">
+                  <Link href="/dashboard/help" passHref>
                     <Question />
                   </Link>
                 </li>
                 <li>
-                  <Link href="/dashboard/configurations">
+                  <Link href="/dashboard/configurations" passHref>
                     <Gear />
                   </Link>
                 </li>
                 <li>
-                  <Link href="/dashboard/notifications">
+                  <Link href="/dashboard/notifications" passHref>
                     <Bell />
                   </Link>
                 </li>

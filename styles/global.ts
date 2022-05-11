@@ -9,7 +9,7 @@ const loadingUp = keyframes`
   }
   to {
     opacity: 1;
-    transform: translateY(0% + 120px)
+    transform: translateY(0%)
   }
 `;
 
@@ -59,7 +59,7 @@ export const GlobalStyles = createGlobalStyle`
       top: 0;
       height: 100vh;
     }
-    animation: ${loadingUp} 1s ease;
+    /* animation: ${loadingUp} 1s ease; */
   }
   button {
     border: unset;

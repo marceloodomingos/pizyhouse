@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import type { NextPage } from "next";
+import type { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import axios from "axios";
@@ -19,16 +19,15 @@ import Modal from "../components/Modal";
 import useGetDay from "../hooks/useGetDay";
 import { SkeletonWrapperElement, SkeletonCoin } from "../skeletons/coinTopDay";
 
-const TopDay: NextPage = ({
+export default function TopDay({
+  topcoins,
   actualState,
   loggedStatus,
   handleLoggedChange,
-}: any) => {
+}: any) {
   const [modalVisible, setModalVisible] = useState(false);
-  const [coins, setCoins] = useState<[] | null>([]);
   const [actualCoinModal, setActualCoinModal] = useState<any>(null);
   const [actualCoinModalInfo, setActualCoinModalInfo] = useState<any>([]);
-  const [loadedCoins, setLoadedCoins] = useState<any>(10);
 
   const formatSparkline = (numbers: any) => {
     const sevenDaysAgo = moment().subtract(7, "days").unix();
@@ -43,37 +42,37 @@ const TopDay: NextPage = ({
     return formatSparkline;
   };
 
-  useEffect(() => {
-    setCoins(null);
-    setTimeout(() => {
-      axios
-        .get(
-          "https://api.coingecko.com/api/v3/coins/markets?vs_currency=brl&order=market_cap_desc&per_page=" +
-            `${loadedCoins}` +
-            "&page=1&sparkline=true"
-        )
-        .then((res) => {
-          setCoins(res.data);
-        })
-        .catch((error) => alert("404 API: Crypto Market"));
-    }, 1000);
-  }, [loadedCoins]);
+  // useEffect(() => {
+  //   setCoins(null);
+  //   setTimeout(() => {
+  //     axios
+  //       .get(
+  //         "https://api.coingecko.com/api/v3/coins/markets?vs_currency=brl&order=market_cap_desc&per_page=" +
+  //           `${loadedCoins}` +
+  //           "&page=1&sparkline=true"
+  //       )
+  //       .then((res) => {
+  //         setCoins(res.data);
+  //       })
+  //       .catch((error) => alert("404 API: Crypto Market"));
+  //   }, 1000);
+  // }, []);
 
-  function handleNextPage() {
-    if (loadedCoins < 100) {
-      setLoadedCoins(loadedCoins + 10);
-    }
-  }
+  // function handleNextPage() {
+  //   if (loadedCoins < 100) {
+  //     setLoadedCoins(loadedCoins + 10);
+  //   }
+  // }
 
-  function handleAllPage() {
-    if (loadedCoins < 100) {
-      setLoadedCoins(100);
-    }
-  }
+  // function handleAllPage() {
+  //   if (loadedCoins < 100) {
+  //     setLoadedCoins(100);
+  //   }
+  // }
 
-  function handleResetPage() {
-    setLoadedCoins(10);
-  }
+  // function handleResetPage() {
+  //   setLoadedCoins(10);
+  // }
 
   const day = useGetDay();
 
@@ -122,18 +121,19 @@ const TopDay: NextPage = ({
       <main className={modalVisible ? "modelOpenned" : ""}>
         <h1>Melhores Criptomoedas do Mercado</h1>
         <p style={{ textAlign: "center" }}>{day.dmy}</p>
-        {coins ? (
+        {topcoins ? (
           <Coin>
-            {coins.map((coin: any, index: any) => {
+            {topcoins.map((coin: any, index: any) => {
               return (
                 <>
                   <button
                     key={index}
                     className={"coin " + coin.symbol}
                     onClick={(e) => {
-                      setModalVisible(!modalVisible);
-                      setActualCoinModal(coin.symbol);
-                      setActualCoinModalInfo(coins);
+                      // setModalVisible(!modalVisible);
+                      // setActualCoinModal(coin.symbol);
+                      // setActualCoinModalInfo(topcoins);
+                      window.location.href = `/coin/${coin.id}`;
                     }}
                   >
                     <div className="about">
@@ -271,7 +271,7 @@ const TopDay: NextPage = ({
             })}
           </Modal>
         )}
-        <CryptoCoinsActions>
+        {/* <CryptoCoinsActions>
           {loadedCoins < 100 ? (
             <>
               <button onClick={handleNextPage}>Carregar mais</button>
@@ -281,11 +281,23 @@ const TopDay: NextPage = ({
           {loadedCoins > 10 ? (
             <button onClick={handleResetPage}>Reiniciar</button>
           ) : null}
-        </CryptoCoinsActions>
+        </CryptoCoinsActions> */}
       </main>
       {!modalVisible && <Footer />}
     </>
   );
-};
+}
 
-export default TopDay;
+export const getStaticProps: GetStaticProps = async () => {
+  const response = await fetch(
+    "https://api.coingecko.com/api/v3/coins/markets?vs_currency=brl&order=market_cap_desc&per_page=10&page=1&sparkline=true"
+  );
+  const data = await response.json();
+
+  return {
+    props: {
+      topcoins: data,
+    },
+    revalidate: 10,
+  };
+};

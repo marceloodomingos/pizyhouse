@@ -60,7 +60,7 @@ export default function Navbar({
                 <Link href="/topday">Melhores do dia</Link>
               </li>
               <li>
-                <Link href="/nfts">NFTs</Link>
+                <Link href="/nfts/">NFTs</Link>
               </li>
               <li className="options">
                 <a>

@@ -121,6 +121,7 @@ export const Coin = styled.div`
         justify-content: center;
         align-items: center;
         cursor: pointer;
+        transition: var(--transition);
         i {
           border: solid var(--white);
           border-width: 0 6px 6px 0;
@@ -153,6 +154,10 @@ export const Coin = styled.div`
         rgba(130, 87, 229, 0.1),
         transparent
       );
+      box-shadow: 0 0 0 2px var(--primary);
+      button {
+        background: var(--secondary);
+      }
     }
     @media (max-width: 750px) {
       flex-direction: column;

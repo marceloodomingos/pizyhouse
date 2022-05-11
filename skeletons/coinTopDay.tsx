@@ -11,12 +11,23 @@ export const SkeletonCoin = () => {
   return (
     <>
       <SkeletonCoinElement>
-        <Skeleton type="position" />
-        <Skeleton type="img" />
-        <div>
-          <Skeleton type="coin-name" />
-          <Skeleton type="coin-symbol" />
+        <div className="coin-skeleton">
+          <div>
+            <div className="info">
+              <Skeleton type="coin-position" />
+              <Skeleton type="coin-img" />
+            </div>
+            <div className="stats">
+              <Skeleton type="coin-name" />
+              <Skeleton type="coin-symbol" />
+            </div>
+          </div>
+          <div>
+            <Skeleton type="coin-price" />
+            <Skeleton type="coin-variation" />
+          </div>
         </div>
+        <Skeleton type="coin-button" />
         <Shimmer />
       </SkeletonCoinElement>
     </>
