@@ -8,11 +8,13 @@ import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 
 export default function SignIn({
-  coindata,
+  nftdata,
   actualState,
   loggedStatus,
   handleLoggedChange,
 }: any) {
+  console.log(nftdata);
+
   return (
     <>
       <Head>
@@ -34,20 +36,7 @@ export default function SignIn({
         handleLoggedChange={handleLoggedChange}
       />
       <main>
-        <h1>{coindata.name}</h1>
-        <div
-          style={{
-            width: "350px",
-            margin: "0 auto",
-            textAlign: "center",
-          }}
-        >
-          <p>
-            {coindata.id} | {coindata.symbol}
-          </p>
-          <img src={coindata.image.large} alt={coindata.id} />
-          {/* <p>{coindata.market_data.sparkline_7d.price}</p> */}
-        </div>
+        <h1>{JSON.stringify(nftdata)}</h1>
       </main>
       <Footer />
     </>
@@ -55,31 +44,33 @@ export default function SignIn({
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const response = await fetch(`https://api.coingecko.com/api/v3/coins/`);
+  const response = await fetch(
+    `https://api.opensea.io/api/v1/bundles?limit=500&offset=0`
+  );
   const data = await response.json();
 
-  const paths = data.map((coin: any) => {
-    return { params: { id: coin.id } };
-  });
+  // const paths = data.map((nft: any) => {
+  //   return { params: { address: nft.address } };
+  // });
 
   return {
-    paths,
+    paths: [],
     fallback: true,
   };
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const { id }: any = context.params;
+  const { address }: any = context.params;
 
   const response = await fetch(
-    `https://api.coingecko.com/api/v3/coins/${id}?sparkline=true`
+    `https://api.opensea.io/api/v1/bundles?asset_contract_address=${address}&limit=20&offset=0`
   );
   const data = await response.json();
 
   return {
     props: {
-      coindata: data,
-      revalidate: 5,
+      nftdata: data,
     },
+    revalidate: 5,
   };
 };

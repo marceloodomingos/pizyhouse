@@ -26,38 +26,63 @@ export const NFTs = styled.section`
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  width: 100%;
   max-width: 1120px;
   margin: 0 auto;
   padding: 20px;
   gap: 16px;
+  /* @media (max-width: 660px) {
+    flex-direction: column;
+  } */
 `;
 
 export const NFTCard = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   width: 100%;
-  flex-basis: 500px;
+  flex-basis: 340px;
   flex-grow: 1;
-  height: 400px;
+  min-height: 30rem;
+  height: 100%;
   background: var(--shape);
   border-radius: 4px;
   transition: var(--transition);
   overflow: hidden;
-  .notloaded-picture {
+  .picture {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 350px;
+    /* max-width: 350px; */
     width: 100%;
-    max-width: 40%;
+    min-height: 500px;
+    max-height: 500px;
     height: 100%;
-    transition: var(--transition);
-    background: linear-gradient(to bottom, var(--primary), rgba(0, 0, 0, 0.25));
-    position: relative;
-    &:after {
-      content: "Imagem não encontrada.";
-      position: absolute;
-      top: 45%;
-      left: 3.5%;
-      line-height: 100%;
-      text-align: center;
+    line-height: 100%;
+    text-transform: capitalize;
+    overflow: hidden;
+    transition: var(--transition-turtle);
+    img {
+      min-width: 350px;
+      /* max-width: 350px; */
+      width: 100%;
+      min-height: 500px;
+      max-height: 500px;
+      height: 100%;
+      border-radius: 4px 4px 0 0;
+      object-fit: cover;
+      pointer-events: none;
+      transition: var(--transition-turtle);
+    }
+    &.notloaded {
+      background: linear-gradient(
+        to bottom,
+        var(--primary),
+        rgba(0, 0, 0, 0.25)
+      );
     }
   }
   .info {
@@ -65,20 +90,25 @@ export const NFTCard = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 400px;
+    min-height: 350px;
+    height: max-content;
     width: 100%;
     gap: 8px;
-    > span {
+    span {
       font-weight: bold;
-      font-size: 24px;
+      font-size: 16px;
       text-transform: capitalize;
       line-height: 100%;
-      height: 100%;
+      /* height: 100%;
       max-height: 48px;
       width: 250px;
       white-space: nowrap;
       overflow: hidden;
-      text-overflow: ellipsis;
+      text-overflow: ellipsis; */
+    }
+    .notfound {
+      font-style: italic;
+      color: var(--text);
     }
   }
   .about-nft {
@@ -102,13 +132,16 @@ export const NFTCard = styled.div`
         height: max-content;
         width: 100%;
         line-height: 100%;
-        text-align: justify;
+        text-align: left;
       }
       & + div {
         margin-top: 8px;
       }
     }
     > dt {
+      display: flex;
+      align-items: center;
+      gap: 4px;
       color: var(--primary);
       font-weight: bold;
       font-size: 16px;
@@ -118,6 +151,11 @@ export const NFTCard = styled.div`
       border-bottom: 1px solid;
       padding-bottom: 4px;
       margin: 8px 0;
+      transition: var(--transition);
+      svg {
+        width: 20px;
+        height: 20px;
+      }
     }
   }
   .about-creator,
@@ -134,6 +172,9 @@ export const NFTCard = styled.div`
       max-height: 24px;
     }
     > dt {
+      display: flex;
+      align-items: center;
+      gap: 4px;
       color: var(--primary);
       font-weight: bold;
       font-size: 16px;
@@ -143,6 +184,11 @@ export const NFTCard = styled.div`
       border-bottom: 1px solid;
       padding-bottom: 4px;
       margin: 8px 0;
+      transition: var(--transition);
+      svg {
+        width: 20px;
+        height: 20px;
+      }
     }
     > div {
       display: flex;
@@ -152,17 +198,22 @@ export const NFTCard = styled.div`
       color: var(--text);
     }
   }
-  > img {
+  /* > img {
+    min-width: 350px;
+    max-width: 350px;
     width: 100%;
-    max-width: 40%;
+    min-height: 350px;
+    max-height: 350px;
     height: 100%;
-    border-radius: 0 4px 4px 0;
+    border-radius: 4px 4px 0 0;
     pointer-events: none;
     object-fit: cover;
+    overflow: hidden;
     transition: var(--transition);
-    /* mask-image: linear-gradient(to left, transparent 0%, var(--black) 100%); */
-  }
-  a {
+    mask-image: linear-gradient(to top, transparent 0%, var(--primary) 100%);
+  } */
+  a,
+  button {
     padding: 8px 16px;
     width: 100%;
     border-radius: 4px;
@@ -186,15 +237,41 @@ export const NFTCard = styled.div`
     color: var(--white);
     min-width: 150px;
   }
-  @media (max-width: 600px) {
-    flex-direction: column;
-    height: max-content;
+  @media (max-width: 972px) {
     > img {
       width: 100%;
       max-width: unset;
     }
   }
+  @media (max-width: 660px) {
+    flex-direction: column;
+    height: max-content;
+    .picture,
+    .picture > img {
+      min-width: 350px;
+      max-width: unset;
+      width: 100%;
+      min-height: 350px;
+      max-height: unset;
+      height: 100%;
+    }
+  }
   &:hover {
-    box-shadow: 0 0 0 2px var(--primary);
+    /* box-shadow: 0 0 0 2px var(--white); */
+    background: linear-gradient(to top, var(--primary), var(--black));
+    .picture img {
+      transform: scale(1.025);
+      transform-origin: center;
+    }
+    dt {
+      color: var(--white);
+      border-image: linear-gradient(to right, var(--white), transparent) 1;
+    }
+    p {
+      color: var(--white);
+    }
+    button {
+      filter: contrast(1) grayscale(1);
+    }
   }
 `;
