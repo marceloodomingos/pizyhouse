@@ -46,6 +46,16 @@ export default function NFTS({
     loadMoreNft();
   }, []);
 
+  interface NftsProps {
+    id: number;
+    collection: { is_nsfw: boolean; slug: string; name: string };
+    asset_contract: { address: string };
+    owner: { profile_img_url: string; user: { username: string } };
+    creator: { profile_img_url: string; user: { username: string } };
+    image_url: string;
+    name: string;
+  }
+
   return (
     <>
       <Head>
@@ -82,162 +92,156 @@ export default function NFTS({
           </Slogan>
         </NFTsPresentation>
         <NFTs>
-          {nfts.map((nft: any, index: number) => {
-            return (
-              <React.Fragment key={index}>
-                {(() => {
-                  if (nft.collection.is_nsfw == false) {
-                    return (
-                      <NFTCard>
-                        {nft.image_url ? (
-                          <div className="picture">
-                            <img src={nft.image_url} alt={nft.name} />
-                          </div>
-                        ) : (
-                          <div className="picture notloaded">
-                            <b>Imagem não encontrada.</b>
-                            <p>Por favor, tente novamente.</p>
-                          </div>
-                        )}
-                        <div className="info">
-                          <>
-                            {(() => {
-                              if (nft.name != null) {
-                                return <span>{nft.name}</span>;
-                              } else {
-                                return (
-                                  <span className="notfound">
-                                    Nome não encontrado.
-                                  </span>
-                                );
-                              }
-                            })()}
-                            {/* <div className="about-nft">
-                              <dt>Informações</dt>
-                              <div>
-                                <span>Coleção: </span>
-                                <p>{nft.collection.name}</p>
-                              </div>
-                              <div>
-                                <span>ID: </span>
-                                <p>{nft.collection.slug}</p>
-                              </div>
-                            </div> */}
-                            <div className="about-nft">
-                              <dt>
-                                <Cards />
-                                Coleção
-                              </dt>
-                              <div>
-                                <p>{nft.collection.name}</p>
-                              </div>
+          {nfts.map(
+            ({
+              id,
+              collection,
+              image_url,
+              name,
+              owner,
+              creator,
+              asset_contract,
+            }: NftsProps) => {
+              return (
+                <React.Fragment key={id}>
+                  {(() => {
+                    if (collection.is_nsfw == false) {
+                      return (
+                        <NFTCard>
+                          {image_url ? (
+                            <div className="picture">
+                              <img src={image_url} alt={name} />
                             </div>
-                            {(() => {
-                              if (nft.owner != undefined || nft.owner != null) {
-                                if (
-                                  nft.owner.user != undefined ||
-                                  nft.owner.user != null
-                                ) {
+                          ) : (
+                            <div className="picture notloaded">
+                              <b>Imagem não encontrada.</b>
+                              <p>Por favor, tente novamente.</p>
+                            </div>
+                          )}
+                          <div className="info">
+                            <>
+                              {(() => {
+                                if (name != null) {
+                                  return <span>{name}</span>;
+                                } else {
                                   return (
-                                    <>
-                                      <div className="about-owner">
-                                        <dt>
-                                          <UserSwitch />
-                                          Atual dono
-                                        </dt>
-                                        <div>
-                                          <img
-                                            src={nft.owner.profile_img_url}
-                                            alt={nft.owner.user.username}
-                                          />
-                                          {(() => {
-                                            if (
-                                              nft.owner.user.username != null
-                                            ) {
-                                              return (
-                                                <p>{nft.owner.user.username}</p>
-                                              );
-                                            } else {
-                                              return (
-                                                <p className="notfound">
-                                                  Nome não encontrado.
-                                                </p>
-                                              );
-                                            }
-                                          })()}
-                                        </div>
-                                      </div>
-                                    </>
+                                    <span className="notfound">
+                                      Nome não encontrado.
+                                    </span>
                                   );
                                 }
-                              }
-                            })()}
-                            {(() => {
-                              if (
-                                nft.creator != undefined ||
-                                nft.creator != null
-                              ) {
-                                if (
-                                  nft.creator.user != undefined ||
-                                  nft.creator.user != null
-                                ) {
-                                  return (
-                                    <>
-                                      <div className="about-creator">
-                                        <dt>
-                                          <PencilCircle />
-                                          Criador
-                                        </dt>
-                                        <div>
-                                          <img
-                                            src={nft.creator.profile_img_url}
-                                            alt={nft.creator.user.username}
-                                          />
-                                          {(() => {
-                                            if (
-                                              nft.creator.user.username != null
-                                            ) {
-                                              return (
-                                                <p>
-                                                  {nft.creator.user.username}
-                                                </p>
-                                              );
-                                            } else {
-                                              return (
-                                                <p className="notfound">
-                                                  Nome não encontrado.
-                                                </p>
-                                              );
-                                            }
-                                          })()}
+                              })()}
+                              <div className="about-nft">
+                                <dt>Informações</dt>
+                                <div>
+                                  <span>Coleção: </span>
+                                  <p>{collection.name}</p>
+                                </div>
+                                <div>
+                                  <span>ID: </span>
+                                  <p>{collection.slug}</p>
+                                </div>
+                              </div>
+                              {(() => {
+                                if (owner != undefined || owner != null) {
+                                  if (
+                                    owner.user != undefined ||
+                                    owner.user != null
+                                  ) {
+                                    return (
+                                      <>
+                                        <div className="about-owner">
+                                          <dt>
+                                            <UserSwitch />
+                                            Atual dono
+                                          </dt>
+                                          <div>
+                                            <img
+                                              src={owner.profile_img_url}
+                                              alt={owner.user.username}
+                                            />
+                                            {(() => {
+                                              if (owner.user.username != null) {
+                                                return (
+                                                  <p>{owner.user.username}</p>
+                                                );
+                                              } else {
+                                                return (
+                                                  <p className="notfound">
+                                                    Nome não encontrado.
+                                                  </p>
+                                                );
+                                              }
+                                            })()}
+                                          </div>
                                         </div>
-                                      </div>
-                                    </>
-                                  );
+                                      </>
+                                    );
+                                  }
                                 }
-                              }
-                            })()}
-                          </>
-                          {/* <Link href={nft.permalink} passHref>
+                              })()}
+                              {(() => {
+                                if (creator != undefined || creator != null) {
+                                  if (
+                                    creator.user != undefined ||
+                                    creator.user != null
+                                  ) {
+                                    return (
+                                      <>
+                                        <div className="about-creator">
+                                          <dt>
+                                            <PencilCircle />
+                                            Criador
+                                          </dt>
+                                          <div>
+                                            <img
+                                              src={creator.profile_img_url}
+                                              alt={creator.user.username}
+                                            />
+                                            {(() => {
+                                              if (
+                                                creator.user.username != null
+                                              ) {
+                                                return (
+                                                  <p>{creator.user.username}</p>
+                                                );
+                                              } else {
+                                                return (
+                                                  <p className="notfound">
+                                                    Nome não encontrado.
+                                                  </p>
+                                                );
+                                              }
+                                            })()}
+                                          </div>
+                                        </div>
+                                      </>
+                                    );
+                                  }
+                                }
+                              })()}
+                            </>
+                            {/* <Link href={nft.permalink} passHref>
                             Adquirir
                           </Link> */}
-                          <button
-                            onClick={() => {
-                              window.location.href = `/nfts/${nft.asset_contract.address}`;
-                            }}
-                          >
-                            Ver Mais
-                          </button>
-                        </div>
-                      </NFTCard>
-                    );
-                  } else {
-                    null;
-                  }
-                })()}
-              </React.Fragment>
-            );
-          })}
+                            <button
+                              onClick={() => {
+                                window.location.href = `/nfts/${asset_contract.address}`;
+                              }}
+                            >
+                              Ver Mais
+                            </button>
+                          </div>
+                        </NFTCard>
+                      );
+                    } else {
+                      null;
+                    }
+                  })()}
+                </React.Fragment>
+              );
+            }
+          )}
         </NFTs>
         {nfts && (
           <InfiniteScroll
