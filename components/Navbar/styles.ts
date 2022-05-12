@@ -40,12 +40,12 @@ export const NavbarContainer = styled.nav`
       img {
         pointer-events: none;
       }
-      a {
+      div {
         display: flex;
         justify-content: center;
         align-items: center;
         height: 80px;
-        & + a {
+        & + div {
           margin-left: 16px;
         }
       }

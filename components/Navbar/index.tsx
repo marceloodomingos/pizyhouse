@@ -33,22 +33,22 @@ export default function Navbar({
         <div className={actualState ? "header app" : "header"}>
           {!loggedStatus && (
             <a id="logo" href="/">
-              <a>
+              <div>
                 <Image
                   src={PHLemon}
                   alt="PIZY House Logo"
                   width={64}
                   height={46}
                 />
-              </a>
-              <a>
+              </div>
+              <div>
                 <Image
                   src={PHLogo}
                   alt="PIZY House Logo"
                   width={80}
                   height={64}
                 />
-              </a>
+              </div>
             </a>
           )}
           {!loggedStatus && (

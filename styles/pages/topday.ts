@@ -113,7 +113,7 @@ export const Coin = styled.div`
           }
         }
       }
-      > button {
+      > a {
         background: var(--shape-light);
         height: 100%;
         width: 80px;
@@ -155,7 +155,7 @@ export const Coin = styled.div`
         transparent
       );
       box-shadow: 0 0 0 2px var(--primary);
-      button {
+      a {
         background: var(--secondary);
       }
     }

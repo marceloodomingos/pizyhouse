@@ -73,7 +73,6 @@ export default function TopDay({
   // function handleResetPage() {
   //   setLoadedCoins(10);
   // }
-
   const day = useGetDay();
 
   function abbreviate(num: any) {
@@ -98,6 +97,16 @@ export default function TopDay({
       : "0";
   }
 
+  interface CoinProps {
+    id: string;
+    name: string;
+    image: string;
+    symbol: string;
+    market_cap_rank: string;
+    current_price: string;
+    price_change_percentage_24h: number;
+  }
+
   return (
     <>
       <Head>
@@ -118,42 +127,52 @@ export default function TopDay({
         loggedStatus={loggedStatus}
         handleLoggedChange={handleLoggedChange}
       />
-      <main className={modalVisible ? "modelOpenned" : ""}>
+      {/* <main className={modalVisible ? "modelOpenned" : ""}> */}
+      <main>
         <h1>Melhores Criptomoedas do Mercado</h1>
         <p style={{ textAlign: "center" }}>{day.dmy}</p>
         {topcoins ? (
           <Coin>
-            {topcoins.map((coin: any, index: any) => {
-              return (
-                <>
-                  <button
-                    key={index}
-                    className={"coin " + coin.symbol}
-                    onClick={(e) => {
+            {topcoins.map(
+              ({
+                id,
+                name,
+                image,
+                symbol,
+                market_cap_rank,
+                current_price,
+                price_change_percentage_24h,
+              }: CoinProps) => {
+                return (
+                  <div
+                    key={id}
+                    className={"coin " + symbol}
+                    onClick={() => {
                       // setModalVisible(!modalVisible);
                       // setActualCoinModal(coin.symbol);
                       // setActualCoinModalInfo(topcoins);
-                      window.location.href = `/coin/${coin.id}`;
+                      window.location.href = `/coin/${id}`;
                     }}
                   >
                     <div className="about">
-                      <p id="position">{coin.market_cap_rank}</p>
-                      <img src={coin.image} alt={coin.name} />
+                      <p id="position">{market_cap_rank}</p>
+                      <img src={image} alt={name} />
                       <div>
-                        <span>{coin.name}</span>
-                        <p>{coin.symbol}</p>
+                        <span>{name}</span>
+                        <p>{symbol}</p>
                       </div>
                     </div>
                     <div className="info">
                       <div className="prices">
                         <p>
-                          {coin.current_price.toLocaleString("pt-br", {
-                            style: "currency",
-                            currency: "BRL",
-                          })}
+                          {/* {current_price.toLocaleString("pt-br", {
+                              style: "currency",
+                              currency: "BRL",
+                            })} */}
+                          {current_price}
                         </p>
                         {(() => {
-                          if (coin.price_change_percentage_24h < 0) {
+                          if (price_change_percentage_24h < 0) {
                             return (
                               <>
                                 <span className="down">
@@ -163,11 +182,11 @@ export default function TopDay({
                                     width={24}
                                     height={24}
                                   />{" "}
-                                  {coin.price_change_percentage_24h.toFixed(2)}%
+                                  {price_change_percentage_24h.toFixed(2)}%
                                 </span>
                               </>
                             );
-                          } else if (coin.price_change_percentage_24h === 0) {
+                          } else if (price_change_percentage_24h === 0) {
                             return null;
                           } else {
                             return (
@@ -179,21 +198,21 @@ export default function TopDay({
                                     width={24}
                                     height={24}
                                   />{" "}
-                                  {coin.price_change_percentage_24h.toFixed(2)}%
+                                  {price_change_percentage_24h.toFixed(2)}%
                                 </span>
                               </>
                             );
                           }
                         })()}
                       </div>
-                      <button>
+                      <a>
                         <i />
-                      </button>
+                      </a>
                     </div>
-                  </button>
-                </>
-              );
-            })}
+                  </div>
+                );
+              }
+            )}
           </Coin>
         ) : (
           <SkeletonWrapperElement>
@@ -202,7 +221,7 @@ export default function TopDay({
             ))}
           </SkeletonWrapperElement>
         )}
-        {modalVisible && (
+        {/* {modalVisible && (
           <Modal onClose={() => setModalVisible(false)}>
             {actualCoinModalInfo.map((coin: any) => {
               if (actualCoinModal === coin.symbol) {
@@ -271,7 +290,7 @@ export default function TopDay({
             })}
           </Modal>
         )}
-        {/* <CryptoCoinsActions>
+        <CryptoCoinsActions>
           {loadedCoins < 100 ? (
             <>
               <button onClick={handleNextPage}>Carregar mais</button>
@@ -290,7 +309,7 @@ export default function TopDay({
 
 export const getStaticProps: GetStaticProps = async () => {
   const response = await fetch(
-    "https://api.coingecko.com/api/v3/coins/markets?vs_currency=brl&order=market_cap_desc&per_page=10&page=1&sparkline=true"
+    "https://api.coingecko.com/api/v3/coins/markets?vs_currency=brl&order=market_cap_desc&per_page=20&page=1&sparkline=true"
   );
   const data = await response.json();
 

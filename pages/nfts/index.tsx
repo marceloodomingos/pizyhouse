@@ -93,17 +93,20 @@ export default function NFTS({
         </NFTsPresentation>
         <NFTs>
           {nfts.map(
-            ({
-              id,
-              collection,
-              image_url,
-              name,
-              owner,
-              creator,
-              asset_contract,
-            }: NftsProps) => {
+            (
+              {
+                id,
+                collection,
+                image_url,
+                name,
+                owner,
+                creator,
+                asset_contract,
+              }: NftsProps,
+              index: number
+            ) => {
               return (
-                <React.Fragment key={id}>
+                <React.Fragment key={index}>
                   {(() => {
                     if (collection.is_nsfw == false) {
                       return (
@@ -132,14 +135,12 @@ export default function NFTS({
                                 }
                               })()}
                               <div className="about-nft">
-                                <dt>Informações</dt>
+                                <dt>
+                                  <Cards />
+                                  Coleção
+                                </dt>
                                 <div>
-                                  <span>Coleção: </span>
                                   <p>{collection.name}</p>
-                                </div>
-                                <div>
-                                  <span>ID: </span>
-                                  <p>{collection.slug}</p>
                                 </div>
                               </div>
                               {(() => {
