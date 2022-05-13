@@ -924,6 +924,11 @@ eslint-module-utils@^2.7.0:
     debug "^3.2.7"
     find-up "^2.1.0"
 
+eslint-plugin-import-helpers@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-import-helpers/-/eslint-plugin-import-helpers-1.2.1.tgz#22c7ac66c964e8257b2a6fb4aff8a51b35cbdc6d"
+  integrity sha512-BSqLlCnyX4tWGlvPUTpBgUoaFiWxXSztpk9SozZVW4TZU1ygZuF0Lrfn9CO5xx1XT+PVAR9yroP9JPRyB4rAjQ==
+
 eslint-plugin-import@2.25.2:
   version "2.25.2"
   resolved "https://registry.yarnpkg.com/eslint-plugin-import/-/eslint-plugin-import-2.25.2.tgz#b3b9160efddb702fc1636659e71ba1d10adbe9e9"
@@ -1986,6 +1991,18 @@ react-google-charts@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/react-google-charts/-/react-google-charts-4.0.0.tgz#f648e4fe8ac8a1f47542c2cac040df6afb21e2d6"
   integrity sha512-9OG0EkBb9JerKEPQYdhmAXnhGLzOdOHOPS9j7l+P1a3z1kcmq9mGDa7PUoX/VQUY4IjZl2/81nsO4o+1cuYsuw==
+
+react-infinite-scroll-hook@^4.0.3:
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/react-infinite-scroll-hook/-/react-infinite-scroll-hook-4.0.3.tgz#48eba01ef3e7f70528e92d15f031ff0ec7845493"
+  integrity sha512-5B3YuWODFq9j2m1J+Shk24QR2WDV0U9oQAaxR8ddFge8oC8Ls54EmkQxwelOjyv1jub4bP0jjSK7v+fM5QwWmg==
+  dependencies:
+    react-intersection-observer-hook "^2.0.4"
+
+react-intersection-observer-hook@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/react-intersection-observer-hook/-/react-intersection-observer-hook-2.0.4.tgz#1ea00ab07f7bb859a5cc924f612862a63faf3b24"
+  integrity sha512-bBZSuv5+CNAH3eA5U52McmkR/Obn23igBL3/MuYzlRvALrweSxqvT35cwWnaFkqUh6SjvYRfJncDpaqejAr9oA==
 
 react-is@^16.13.1, react-is@^16.7.0:
   version "16.13.1"

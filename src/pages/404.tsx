@@ -4,7 +4,7 @@ import Image from "next/image";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
-import Icon404 from "/assets/images/404.svg";
+import Icon404 from "../assets/images/404.svg";
 
 // import Header from "../components/Header";
 import Navbar from "../components/Navbar";

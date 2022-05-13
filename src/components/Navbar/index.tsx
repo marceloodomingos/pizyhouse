@@ -4,8 +4,8 @@ import Image from "next/image";
 
 import { NavbarContainer } from "./styles";
 
-import PHLogo from "/assets/images/pizy.svg";
-import PHLemon from "/assets/pizy/logo.svg";
+import PHLogo from "../../assets/images/pizy.svg";
+import PHLemon from "../../assets/pizy/logo.svg";
 import Link from "next/link";
 import {
   Bell,

@@ -9,8 +9,8 @@ import moment from "moment";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
-import ArrowUp from "/assets/images/arrow-up.svg";
-import ArrowDown from "/assets/images/arrow-down.svg";
+import ArrowUp from "../assets/images/arrow-up.svg";
+import ArrowDown from "../assets/images/arrow-down.svg";
 
 import { Coin } from "../styles/pages/topday";
 import useGetDay from "../hooks/useGetDay";

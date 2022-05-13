@@ -4,8 +4,8 @@ import Image from "next/image";
 
 import { AsideNavbar } from "./styles";
 
-import PHLogo from "/assets/images/pizy.svg";
-import PHLemon from "/assets/pizy/logo.svg";
+import PHLogo from "../../assets/images/pizy.svg";
+import PHLemon from "../../assets/pizy/logo.svg";
 
 import {
   ArrowsClockwise,
@@ -22,7 +22,7 @@ export default function Aside() {
   return (
     <>
       <AsideNavbar>
-        <a id="logo" href="/">
+        <a id="logo" href="/dashboard">
           <Image src={PHLemon} alt="PIZY House Logo" width={64} height={46} />
         </a>
         <div>

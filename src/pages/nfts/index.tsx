@@ -1,10 +1,7 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable jsx-a11y/alt-text */
-/* eslint-disable @next/next/no-img-element */
 import type { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
-import axios from "axios";
 import React, { useEffect, useState } from "react";
+import useInfiniteScroll from "react-infinite-scroll-hook";
 
 // import Header from "../components/Header";
 import Navbar from "../../components/Navbar";
