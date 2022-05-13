@@ -17,123 +17,52 @@ import {
 } from "phosphor-react";
 
 interface NavbarProps {
-  actualState: boolean;
-  loggedStatus: boolean;
   handleLoggedChange: (logged: boolean) => void;
 }
 
-export default function LoggedNavbar({
-  actualState,
-  loggedStatus,
-  handleLoggedChange,
-}: NavbarProps) {
+export default function LoggedNavbar({ handleLoggedChange }: NavbarProps) {
   return (
     <>
-      <NavbarContainer className={actualState ? "active" : ""}>
-        <div className={actualState ? "header app" : "header"}>
-          {!loggedStatus && (
-            <a id="logo" href="/">
-              <a>
-                <Image
-                  src={PHLemon}
-                  alt="PIZY House Logo"
-                  width={64}
-                  height={46}
-                />
-              </a>
-              <a>
-                <Image
-                  src={PHLogo}
-                  alt="PIZY House Logo"
-                  width={80}
-                  height={64}
-                />
-              </a>
-            </a>
-          )}
-          {!loggedStatus && (
-            <ul>
+      <NavbarContainer className="active">
+        <div className="header">
+          <div className="account-actions">
+            <>
               <li>
-                <Link href="/">Início</Link>
+                <Link href="/dashboard/help" passHref>
+                  <Question />
+                </Link>
               </li>
               <li>
-                <Link href="/topday">Melhores do dia</Link>
+                <Link href="/dashboard/configurations" passHref>
+                  <Gear />
+                </Link>
               </li>
               <li>
-                <Link href="/nfts">NFTs</Link>
+                <Link href="/dashboard/notifications" passHref>
+                  <Bell />
+                </Link>
               </li>
-              <li className="options">
-                <a>
-                  Sobre
-                  <i />
-                </a>
+              <li>
+                <User id="user" />
                 <ul className="dropdown">
-                  <Link href="/about-us">Sobre a PIZY</Link>
-                  <Link href="/about-market">Sobre o Mercado</Link>
+                  <li>
+                    <PencilSimple weight="bold" />
+                    <Link href="/dashboard/profile">Perfil</Link>
+                  </li>
+                  <li>
+                    <SignOut weight="bold" />
+                    <button
+                      onClick={() => {
+                        handleLoggedChange(false);
+                        window.location.href = "/";
+                      }}
+                    >
+                      Sair
+                    </button>
+                  </li>
                 </ul>
               </li>
-            </ul>
-          )}
-          <div className="account-actions">
-            {!loggedStatus ? (
-              <>
-                <button
-                  onClick={() => {
-                    window.location.href = "/dashboard";
-                    handleLoggedChange(true);
-                  }}
-                  className="signin"
-                >
-                  Entrar
-                </button>
-                <button
-                  onClick={() => {
-                    window.location.href = "/signup";
-                  }}
-                  className="signup"
-                >
-                  Criar conta
-                </button>
-              </>
-            ) : (
-              <>
-                <li>
-                  <Link href="/dashboard/help" passHref>
-                    <Question />
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/dashboard/configurations" passHref>
-                    <Gear />
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/dashboard/notifications" passHref>
-                    <Bell />
-                  </Link>
-                </li>
-                <li>
-                  <User id="user" />
-                  <ul className="dropdown">
-                    <li>
-                      <PencilSimple weight="bold" />
-                      <Link href="/dashboard/profile">Perfil</Link>
-                    </li>
-                    <li>
-                      <SignOut weight="bold" />
-                      <button
-                        onClick={() => {
-                          handleLoggedChange(false);
-                          window.location.href = "/";
-                        }}
-                      >
-                        Sair
-                      </button>
-                    </li>
-                  </ul>
-                </li>
-              </>
-            )}
+            </>
           </div>
         </div>
       </NavbarContainer>

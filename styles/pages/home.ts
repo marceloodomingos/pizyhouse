@@ -6,6 +6,29 @@ const worldShining = keyframes`
   100% { filter: drop-shadow(0 0 50px rgba(var(--primary), 0.8));}
 `;
 
+const textShining = keyframes`
+  0% {
+    width: 0;
+    left: 0;
+  }
+  10% {
+    width: 0;
+    left: 0;
+  }
+  35% {
+    width: 100%;
+  }
+  65% {
+    width: 100%;
+  }
+  90% {
+    width: 0;
+  }
+  100% {
+    width: 0;
+  }
+`;
+
 export const Banner = styled.section`
   display: flex;
   justify-content: space-between;
@@ -20,7 +43,7 @@ export const Banner = styled.section`
     display: flex;
     justify-content: flex-end;
     flex: 0.5;
-    animation: ${worldShining} 5s ease-in-out infinite;
+    /* animation: ${worldShining} 5s ease-in-out infinite; */
     img {
       pointer-events: none;
     }
@@ -75,6 +98,21 @@ export const Features = styled.section`
         font-size: 32px;
         line-height: 100%;
         font-weight: bold;
+        b {
+          position: relative;
+          &:before {
+            /* animation: ${textShining} 10s ease-in-out infinite; */
+            content: "";
+            display: block;
+            position: absolute;
+            background-color: var(--primary);
+            width: 100%;
+            height: 10%;
+            bottom: 10%;
+            right: 0;
+            z-index: -1;
+          }
+        }
       }
       p {
         color: var(--text);
@@ -85,12 +123,18 @@ export const Features = styled.section`
       margin: 16px 0;
       &:nth-child(2n) .title {
         text-align: right;
+        b:before {
+          animation: ${textShining} 15s ease-in-out infinite;
+        }
         @media (max-width: 900px) {
           text-align: center;
         }
       }
       &:nth-child(2n + 1) .title {
         text-align: left;
+        b:before {
+          animation: ${textShining} 10s ease-in-out infinite;
+        }
         @media (max-width: 900px) {
           text-align: center;
         }

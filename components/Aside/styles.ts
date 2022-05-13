@@ -5,7 +5,7 @@ export const AsideNavbar = styled.aside`
   position: fixed;
   top: 0;
   left: 0;
-  width: 240px;
+  width: 80px;
   transform: translateX(0);
   transition: all 0.3s ease-out;
   height: 100%;
@@ -27,12 +27,15 @@ export const AsideNavbar = styled.aside`
     height: calc(100% - 240px);
     li {
       width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
     a {
       width: 100%;
       height: 80px;
       display: flex;
-      justify-content: flex-start;
+      justify-content: center;
       align-items: center;
       gap: 16px;
       font-weight: 700;
@@ -43,10 +46,21 @@ export const AsideNavbar = styled.aside`
       letter-spacing: 0.01em;
       padding: 0 16px;
       transition: var(--transition);
+      overflow: hidden;
+      position: relative;
+      p {
+        transition: var(--transition);
+        transform: translateX(80px);
+        position: absolute;
+        width: 100%;
+        max-width: 100px;
+      }
       svg {
         width: 100%;
+        min-width: 32px;
         max-width: 32px;
         height: 100%;
+        min-height: 32px;
         max-height: 32px;
       }
       &:hover {
@@ -64,4 +78,14 @@ export const AsideNavbar = styled.aside`
     cursor: pointer;
     gap: 16px;
   }
+  /* &:hover {
+    width: 240px;
+    > div a {
+      width: 100%;
+      p {
+        transform: translateX(0);
+        position: relative;
+      }
+    }
+  } */
 `;

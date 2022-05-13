@@ -2,7 +2,6 @@
 import type { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import moment from "moment";
 
@@ -12,23 +11,20 @@ import Footer from "../components/Footer";
 
 import ArrowUp from "/assets/images/arrow-up.svg";
 import ArrowDown from "/assets/images/arrow-down.svg";
-import ChartExample from "/assets/images/candlestick-basic.svg";
 
-import { Coin, CryptoCoinsActions } from "../styles/pages/topday";
-import Modal from "../components/Modal";
+import { Coin } from "../styles/pages/topday";
 import useGetDay from "../hooks/useGetDay";
 import { SkeletonWrapperElement, SkeletonCoin } from "../skeletons/coinTopDay";
 
+interface TopDayPageProps {
+  topcoins: any;
+  handleLoggedChange: () => void;
+}
+
 export default function TopDay({
   topcoins,
-  actualState,
-  loggedStatus,
   handleLoggedChange,
-}: any) {
-  const [modalVisible, setModalVisible] = useState(false);
-  const [actualCoinModal, setActualCoinModal] = useState<any>(null);
-  const [actualCoinModalInfo, setActualCoinModalInfo] = useState<any>([]);
-
+}: TopDayPageProps) {
   const formatSparkline = (numbers: any) => {
     const sevenDaysAgo = moment().subtract(7, "days").unix();
 
@@ -41,61 +37,12 @@ export default function TopDay({
 
     return formatSparkline;
   };
-
-  // useEffect(() => {
-  //   setCoins(null);
-  //   setTimeout(() => {
-  //     axios
-  //       .get(
-  //         "https://api.coingecko.com/api/v3/coins/markets?vs_currency=brl&order=market_cap_desc&per_page=" +
-  //           `${loadedCoins}` +
-  //           "&page=1&sparkline=true"
-  //       )
-  //       .then((res) => {
-  //         setCoins(res.data);
-  //       })
-  //       .catch((error) => alert("404 API: Crypto Market"));
-  //   }, 1000);
-  // }, []);
-
-  // function handleNextPage() {
-  //   if (loadedCoins < 100) {
-  //     setLoadedCoins(loadedCoins + 10);
-  //   }
-  // }
-
-  // function handleAllPage() {
-  //   if (loadedCoins < 100) {
-  //     setLoadedCoins(100);
-  //   }
-  // }
-
-  // function handleResetPage() {
-  //   setLoadedCoins(10);
-  // }
   const day = useGetDay();
 
-  function abbreviate(num: any) {
-    const lookup = [
-      { value: 1, symbol: "" },
-      { value: 1e3, symbol: "k" },
-      { value: 1e6, symbol: "M" },
-      { value: 1e9, symbol: "G" },
-      { value: 1e12, symbol: "T" },
-      { value: 1e15, symbol: "P" },
-      { value: 1e18, symbol: "E" },
-    ];
-    const rx = /\.0+$|(\.[0-9]*[1-9])0+$/;
-    var item = lookup
-      .slice()
-      .reverse()
-      .find(function (item) {
-        return num >= item.value;
-      });
-    return item
-      ? (num / item.value).toFixed(1).replace(rx, "$1") + item.symbol
-      : "0";
-  }
+  const formatterToMoney = new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  });
 
   interface CoinProps {
     id: string;
@@ -103,7 +50,7 @@ export default function TopDay({
     image: string;
     symbol: string;
     market_cap_rank: string;
-    current_price: string;
+    current_price: number;
     price_change_percentage_24h: number;
   }
 
@@ -122,12 +69,7 @@ export default function TopDay({
         ></meta>
       </Head>
 
-      <Navbar
-        actualState={actualState}
-        loggedStatus={loggedStatus}
-        handleLoggedChange={handleLoggedChange}
-      />
-      {/* <main className={modalVisible ? "modelOpenned" : ""}> */}
+      <Navbar handleLoggedChange={handleLoggedChange} />
       <main>
         <h1>Melhores Criptomoedas do Mercado</h1>
         <p style={{ textAlign: "center" }}>{day.dmy}</p>
@@ -148,9 +90,6 @@ export default function TopDay({
                     key={id}
                     className={"coin " + symbol}
                     onClick={() => {
-                      // setModalVisible(!modalVisible);
-                      // setActualCoinModal(coin.symbol);
-                      // setActualCoinModalInfo(topcoins);
                       window.location.href = `/coin/${id}`;
                     }}
                   >
@@ -164,13 +103,7 @@ export default function TopDay({
                     </div>
                     <div className="info">
                       <div className="prices">
-                        <p>
-                          {/* {current_price.toLocaleString("pt-br", {
-                              style: "currency",
-                              currency: "BRL",
-                            })} */}
-                          {current_price}
-                        </p>
+                        <p>{formatterToMoney.format(current_price)}</p>
                         {(() => {
                           if (price_change_percentage_24h < 0) {
                             return (
@@ -221,95 +154,15 @@ export default function TopDay({
             ))}
           </SkeletonWrapperElement>
         )}
-        {/* {modalVisible && (
-          <Modal onClose={() => setModalVisible(false)}>
-            {actualCoinModalInfo.map((coin: any) => {
-              if (actualCoinModal === coin.symbol) {
-                return (
-                  <>
-                    <div className="crypto-infos">
-                      <div className="info-coin">
-                        <div className="coin">
-                          <img src={coin.image} alt="" />
-                          <span>{coin.name}</span>
-                          <p>{coin.symbol}</p>
-                        </div>
-                        <div className="stats">
-                          <dt>Geral</dt>
-                          <li>
-                            <span>Market cap rank</span>
-                            <p className="market_cap_rank">
-                              {coin.market_cap_rank}
-                            </p>
-                          </li>
-                          <li>
-                            <span>Market cap change</span>
-                            <p className="market_cap_change">
-                              {coin.market_cap_change_percentage_24h.toFixed(2)}
-                            </p>
-                          </li>
-                          <dt>Nas últimas 24 horas</dt>
-                          <li>
-                            <span>Valor mais alto</span>
-                            <p>
-                              {coin.high_24h.toLocaleString("pt-br", {
-                                style: "currency",
-                                currency: "BRL",
-                              })}
-                            </p>
-                          </li>
-                          <li>
-                            <span>Valor mais baixo</span>
-                            <p>
-                              {coin.low_24h.toLocaleString("pt-br", {
-                                style: "currency",
-                                currency: "BRL",
-                              })}
-                            </p>
-                          </li>
-                          <dt>Outras informações</dt>
-                          <li>
-                            <span>Volume total</span>
-                            <p>{abbreviate(coin.total_volume)}</p>
-                          </li>
-                        </div>
-                      </div>
-                      <div className="graph">
-                        <Image
-                          src={ChartExample}
-                          alt="Chart Example"
-                          objectFit="fill"
-                        />
-                      </div>
-                    </div>
-                  </>
-                );
-              } else {
-                null;
-              }
-            })}
-          </Modal>
-        )}
-        <CryptoCoinsActions>
-          {loadedCoins < 100 ? (
-            <>
-              <button onClick={handleNextPage}>Carregar mais</button>
-              <button onClick={handleAllPage}>Carregar tudo</button>
-            </>
-          ) : null}
-          {loadedCoins > 10 ? (
-            <button onClick={handleResetPage}>Reiniciar</button>
-          ) : null}
-        </CryptoCoinsActions> */}
       </main>
-      {!modalVisible && <Footer />}
+      <Footer />
     </>
   );
 }
 
 export const getStaticProps: GetStaticProps = async () => {
   const response = await fetch(
-    "https://api.coingecko.com/api/v3/coins/markets?vs_currency=brl&order=market_cap_desc&per_page=20&page=1&sparkline=true"
+    "https://api.coingecko.com/api/v3/coins/markets?vs_currency=brl&order=market_cap_desc&per_page=9&page=1&sparkline=true"
   );
   const data = await response.json();
 
@@ -317,6 +170,5 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       topcoins: data,
     },
-    revalidate: 10,
   };
 };

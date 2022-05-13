@@ -6,17 +6,11 @@ import FooterApp from "../../components/FooterApp";
 import LoggedNavbar from "../../components/LoggedNavbar";
 import { MainApp } from "../../styles/pages/dashboard";
 
-const Dashboard: NextPage = ({
-  actualState,
-  loggedStatus,
-  handleLoggedChange,
-}: any) => {
-  useEffect(() => {
-    // if (!loggedStatus || loggedStatus === false) {
-    //   window.location.href = "/signin";
-    // }
-  }, [loggedStatus]);
+interface DashboardPageProps {
+  handleLoggedChange: () => void;
+}
 
+export default function Dashboard({ handleLoggedChange }: DashboardPageProps) {
   return (
     <>
       <Head>
@@ -32,11 +26,7 @@ const Dashboard: NextPage = ({
         ></meta>
       </Head>
 
-      <LoggedNavbar
-        actualState={actualState}
-        loggedStatus={true}
-        handleLoggedChange={handleLoggedChange}
-      />
+      <LoggedNavbar handleLoggedChange={handleLoggedChange} />
       <Aside />
       <MainApp>
         <div className="container">
@@ -46,6 +36,4 @@ const Dashboard: NextPage = ({
       <FooterApp />
     </>
   );
-};
-
-export default Dashboard;
+}

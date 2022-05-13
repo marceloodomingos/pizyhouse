@@ -5,8 +5,8 @@ export const MainApp = styled.main`
   display: flex;
   flex-direction: column;
   flex: 1 1 0%;
-  padding-left: 240px;
+  padding-left: 80px;
   .container {
-    padding: 95px 30px 60px 30px;
+    padding: 60px 30px 60px 30px;
   }
 `;

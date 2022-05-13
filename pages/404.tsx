@@ -12,11 +12,11 @@ import Footer from "../components/Footer";
 import { Container404 } from "../styles/pages/404";
 import Link from "next/link";
 
-const Error404: NextPage = ({
-  actualState,
-  loggedStatus,
-  handleLoggedChange,
-}: any) => {
+interface Error404Props {
+  handleLoggedChange: () => void;
+}
+
+export default function Error404({ handleLoggedChange }: Error404Props) {
   return (
     <>
       <Head>
@@ -32,11 +32,7 @@ const Error404: NextPage = ({
         ></meta>
       </Head>
 
-      <Navbar
-        actualState={actualState}
-        loggedStatus={loggedStatus}
-        handleLoggedChange={handleLoggedChange}
-      />
+      <Navbar handleLoggedChange={handleLoggedChange} />
       <Container404>
         <div className="info">
           <span>O que você está fazendo aqui?!</span>
@@ -60,6 +56,4 @@ const Error404: NextPage = ({
       </Container404>
     </>
   );
-};
-
-export default Error404;
+}

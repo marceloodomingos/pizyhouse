@@ -20,11 +20,7 @@ import InfiniteScroll from "../../components/InfiniteScroll";
 
 type NFTs = Record<string, {}>;
 
-export default function NFTS({
-  actualState,
-  loggedStatus,
-  handleLoggedChange,
-}: any) {
+export default function NFTS({ handleLoggedChange }: any) {
   const [nfts, setNfts] = useState<[] | any>([]);
   const [nftAmount, setNftAmount] = useState(9);
 
@@ -71,11 +67,7 @@ export default function NFTS({
         ></meta>
       </Head>
 
-      <Navbar
-        actualState={actualState}
-        loggedStatus={loggedStatus}
-        handleLoggedChange={handleLoggedChange}
-      />
+      <Navbar handleLoggedChange={handleLoggedChange} />
       <main>
         <NFTsPresentation>
           <h1>NFTs</h1>

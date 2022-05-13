@@ -8,11 +8,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
-const SignIn: NextPage = ({
-  actualState,
-  loggedStatus,
-  handleLoggedChange,
-}: any) => {
+const SignIn: NextPage = ({ handleLoggedChange }: any) => {
   return (
     <>
       <Head>
@@ -28,11 +24,7 @@ const SignIn: NextPage = ({
         ></meta>
       </Head>
 
-      <Navbar
-        actualState={actualState}
-        loggedStatus={loggedStatus}
-        handleLoggedChange={handleLoggedChange}
-      />
+      <Navbar handleLoggedChange={handleLoggedChange} />
       <main>
         <h1>Entrar na sua conta</h1>
       </main>

@@ -11,11 +11,11 @@ import PHLemon from "/assets/pizy/logo.svg";
 import { AboutUS } from "../styles/pages/about-us";
 import Link from "next/link";
 
-const AboutUs: NextPage = ({
-  actualState,
-  loggedStatus,
-  handleLoggedChange,
-}: any) => {
+interface AboutUsProps {
+  handleLoggedChange: () => void;
+}
+
+export default function AboutUs({ handleLoggedChange }: AboutUsProps) {
   return (
     <>
       <Head>
@@ -31,11 +31,7 @@ const AboutUs: NextPage = ({
         ></meta>
       </Head>
 
-      <Navbar
-        actualState={actualState}
-        loggedStatus={loggedStatus}
-        handleLoggedChange={handleLoggedChange}
-      />
+      <Navbar handleLoggedChange={handleLoggedChange} />
       <main>
         <h1>Sobre a PIZY</h1>
         <AboutUS>
@@ -100,6 +96,4 @@ const AboutUs: NextPage = ({
       <Footer />
     </>
   );
-};
-
-export default AboutUs;
+}

@@ -281,11 +281,4 @@ export const NavbarContainer = styled.nav`
       }
     }
   }
-  &.active {
-    height: 80px;
-    box-shadow: inset 0 -1px 0 var(--shape-hover);
-    /* background: var(--background-navbar);
-    backdrop-filter: blur(4px); */
-    background: var(--shape);
-  }
 `;

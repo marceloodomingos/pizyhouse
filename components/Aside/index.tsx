@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 
 import { AsideNavbar } from "./styles";
@@ -17,63 +17,52 @@ import {
 } from "phosphor-react";
 
 export default function Aside() {
+  const [toggleAside, setToggleAside] = useState(false);
+
   return (
     <>
       <AsideNavbar>
         <a id="logo" href="/">
-          <a>
-            <Image src={PHLemon} alt="PIZY House Logo" width={64} height={46} />
-          </a>
-          <a>
-            <Image src={PHLogo} alt="PIZY House Logo" width={80} height={64} />
-          </a>
+          <Image src={PHLemon} alt="PIZY House Logo" width={64} height={46} />
         </a>
         <div>
           <li>
             <a href="/dashboard">
               <Gauge />
-              Painel de controle
+              <p>Dashboard</p>
             </a>
           </li>
           <li>
             <a href="/dashboard/trade">
               <ArrowsClockwise />
-              Trocar
+              <p>Trocar</p>
             </a>
           </li>
           <li>
             <a href="/dashboard/wallet">
               <Wallet />
-              Carteira
+              <p>Carteira</p>
             </a>
           </li>
           <li>
             <a href="/dashboard/analyze">
               <TrendUp />
-              Analizar
+              <p>Analizar</p>
             </a>
           </li>
           <li>
             <a href="/dashboard/collections">
               <Stack />
-              Coleções
+              <p>Coleções</p>
             </a>
           </li>
           <li>
             <a href="/dashboard/report">
               <Warning />
-              Reportar
+              <p>Reportar</p>
             </a>
           </li>
-        </div>{" "}
-        <a id="logo" href="/">
-          <a>
-            <Image src={PHLemon} alt="PIZY House Logo" width={64} height={46} />
-          </a>
-          <a>
-            <Image src={PHLogo} alt="PIZY House Logo" width={80} height={64} />
-          </a>
-        </a>
+        </div>
       </AsideNavbar>
     </>
   );

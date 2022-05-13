@@ -25,11 +25,11 @@ import {
   Shield,
 } from "phosphor-react";
 
-const Home: NextPage = ({
-  actualState,
-  loggedStatus,
-  handleLoggedChange,
-}: any) => {
+interface HomePageProps {
+  handleLoggedChange: () => void;
+}
+
+export default function Home({ handleLoggedChange }: HomePageProps) {
   return (
     <>
       <Head>
@@ -45,11 +45,7 @@ const Home: NextPage = ({
         ></meta>
       </Head>
 
-      <Navbar
-        actualState={actualState}
-        loggedStatus={loggedStatus}
-        handleLoggedChange={handleLoggedChange}
-      />
+      <Navbar handleLoggedChange={handleLoggedChange} />
       <main>
         <Banner>
           <Slogan>
@@ -71,7 +67,9 @@ const Home: NextPage = ({
           <div className="content">
             <div className="about">
               <div className="title">
-                <span>Na PIZY o investimento é simples.</span>
+                <span>
+                  Na PIZY o investimento é <b>simples</b>.
+                </span>
                 <p>Tão simples quanto espremer um limão</p>
               </div>
               <div className="features">
@@ -112,7 +110,9 @@ const Home: NextPage = ({
             </div>
             <div className="about">
               <div className="title">
-                <span>Temos uma segurança fora da curva.</span>
+                <span>
+                  Temos uma <b>segurança</b> fora da curva.
+                </span>
                 <p>Suas informações estão totalmente protegidas</p>
               </div>
               <div className="features">
@@ -164,7 +164,9 @@ const Home: NextPage = ({
             </div>
             <div className="about">
               <div className="title">
-                <span>Por que investir com a PIZY?</span>
+                <span>
+                  Por que <b>investir</b> com a PIZY?
+                </span>
                 <p>Saiba vantagens sobre esse mundo tecnológico</p>
               </div>
               <div className="features">
@@ -225,6 +227,4 @@ const Home: NextPage = ({
       <Footer />
     </>
   );
-};
-
-export default Home;
+}

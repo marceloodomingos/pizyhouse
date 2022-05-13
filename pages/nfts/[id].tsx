@@ -7,14 +7,7 @@ import React from "react";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 
-export default function SignIn({
-  nftdata,
-  actualState,
-  loggedStatus,
-  handleLoggedChange,
-}: any) {
-  console.log(nftdata);
-
+export default function SignIn({ nftdata, handleLoggedChange }: any) {
   return (
     <>
       <Head>
@@ -30,11 +23,7 @@ export default function SignIn({
         ></meta>
       </Head>
 
-      <Navbar
-        actualState={actualState}
-        loggedStatus={loggedStatus}
-        handleLoggedChange={handleLoggedChange}
-      />
+      <Navbar handleLoggedChange={handleLoggedChange} />
       <main>
         <h1>{JSON.stringify(nftdata)}</h1>
       </main>

@@ -10,17 +10,17 @@ const bgInfinite = keyframes`
 `;
 
 export const NavbarContainer = styled.nav`
-  position: sticky;
-  top: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: unset;
-  backdrop-filter: blur(0);
+  height: 80px;
+  box-shadow: inset 0 -1px 0 var(--shape-hover);
+  /* background: var(--background-navbar); */
+  /* backdrop-filter: blur(4px); */
   color: var(--white);
   width: 100%;
-  height: 120px;
   z-index: 100;
+  margin-bottom: 16px;
   transition: var(--transition-turtle);
   .header {
     display: flex;
@@ -267,7 +267,7 @@ export const NavbarContainer = styled.nav`
       cursor: pointer;
       transition: var(--transition);
       &:hover {
-        color: var(--gray);
+        color: var(--white);
         border-bottom: 2px solid var(--primary);
       }
     }
@@ -276,12 +276,5 @@ export const NavbarContainer = styled.nav`
         cursor: default;
       }
     }
-  }
-  &.active {
-    height: 80px;
-    box-shadow: inset 0 -1px 0 var(--shape-hover);
-    /* background: var(--background-navbar);
-    backdrop-filter: blur(4px); */
-    background: var(--shape);
   }
 `;

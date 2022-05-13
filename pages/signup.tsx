@@ -14,11 +14,11 @@ import Bitcoin from "/assets/images/bitcoin.png";
 import PizyHouse from "/assets/images/pizy-house.svg";
 import { Coin } from "../styles/pages/topday";
 
-const SignUp: NextPage = ({
-  actualState,
-  loggedStatus,
-  handleLoggedChange,
-}: any) => {
+interface SignUpProps {
+  handleLoggedChange: () => void;
+}
+
+export default function SignUp({ handleLoggedChange }: SignUpProps) {
   return (
     <>
       <Head>
@@ -34,17 +34,11 @@ const SignUp: NextPage = ({
         ></meta>
       </Head>
 
-      <Navbar
-        actualState={actualState}
-        loggedStatus={loggedStatus}
-        handleLoggedChange={handleLoggedChange}
-      />
+      <Navbar handleLoggedChange={handleLoggedChange} />
       <main>
         <h1>Registrar uma conta</h1>
       </main>
       <Footer />
     </>
   );
-};
-
-export default SignUp;
+}

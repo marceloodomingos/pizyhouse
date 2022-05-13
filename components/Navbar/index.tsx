@@ -17,63 +17,53 @@ import {
 } from "phosphor-react";
 
 interface NavbarProps {
-  actualState: boolean;
-  loggedStatus: boolean;
   handleLoggedChange: (logged: boolean) => void;
 }
 
-export default function Navbar({
-  actualState,
-  loggedStatus,
-  handleLoggedChange,
-}: NavbarProps) {
+export default function Navbar({ handleLoggedChange }: NavbarProps) {
   return (
     <>
-      <NavbarContainer className={actualState ? "active" : ""}>
-        <div className={actualState ? "header app" : "header"}>
-          {!loggedStatus && (
-            <a id="logo" href="/">
-              <div>
-                <Image
-                  src={PHLemon}
-                  alt="PIZY House Logo"
-                  width={64}
-                  height={46}
-                />
-              </div>
-              <div>
-                <Image
-                  src={PHLogo}
-                  alt="PIZY House Logo"
-                  width={80}
-                  height={64}
-                />
-              </div>
-            </a>
-          )}
-          {!loggedStatus && (
-            <ul>
-              <li>
-                <Link href="/">Início</Link>
-              </li>
-              <li>
-                <Link href="/topday">Melhores do dia</Link>
-              </li>
-              <li>
-                <Link href="/nfts/">NFTs</Link>
-              </li>
-              <li className="options">
-                <a>
-                  Sobre
-                  <i />
-                </a>
-                <ul className="dropdown">
-                  <Link href="/about-us">Sobre a PIZY</Link>
-                  <Link href="/about-market">Sobre o Mercado</Link>
-                </ul>
-              </li>
-            </ul>
-          )}
+      <NavbarContainer>
+        <div className="header">
+          <a id="logo" href="/">
+            <div>
+              <Image
+                src={PHLemon}
+                alt="PIZY House Logo"
+                width={64}
+                height={46}
+              />
+            </div>
+            <div>
+              <Image
+                src={PHLogo}
+                alt="PIZY House Logo"
+                width={80}
+                height={64}
+              />
+            </div>
+          </a>
+          <ul>
+            <li>
+              <Link href="/">Início</Link>
+            </li>
+            <li>
+              <Link href="/topday">Melhores do dia</Link>
+            </li>
+            <li>
+              <Link href="/nfts/">NFTs</Link>
+            </li>
+            <li className="options">
+              <a>
+                Sobre
+                <i />
+              </a>
+              <ul className="dropdown">
+                <Link href="/about-us">Sobre a PIZY</Link>
+                <Link href="/about-market">Sobre o Mercado</Link>
+              </ul>
+            </li>
+          </ul>
           <div className="account-actions">
             {/* {!loggedStatus ? (
               <>
@@ -128,27 +118,25 @@ export default function Navbar({
                 </li>
               </>
             )} */}
-            {!loggedStatus && (
-              <>
-                <button
-                  onClick={() => {
-                    window.location.href = "/dashboard";
-                    handleLoggedChange(true);
-                  }}
-                  className="signin"
-                >
-                  Entrar
-                </button>
-                <button
-                  onClick={() => {
-                    window.location.href = "/signup";
-                  }}
-                  className="signup"
-                >
-                  Criar conta
-                </button>
-              </>
-            )}
+            <>
+              <button
+                onClick={() => {
+                  window.location.href = "/dashboard";
+                  handleLoggedChange(true);
+                }}
+                className="signin"
+              >
+                Entrar
+              </button>
+              <button
+                onClick={() => {
+                  window.location.href = "/signup";
+                }}
+                className="signup"
+              >
+                Criar conta
+              </button>
+            </>
           </div>
         </div>
       </NavbarContainer>

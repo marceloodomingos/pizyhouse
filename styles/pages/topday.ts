@@ -178,7 +178,7 @@ export const Coin = styled.div`
           flex-direction: column;
           padding: 16px 0;
         }
-        button {
+        a {
           width: 100%;
           min-height: 60px;
           i {
