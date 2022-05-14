@@ -124,7 +124,7 @@ export default function Footer() {
           Uma realização &lsquo;&lsquo;
           <a
             target="_blank"
-            href="https://github.com/gelzinn/PIZY-House#equipe-family_man_man_boy_boy"
+            href="https://github.com/gelzinn/PIZYHouse#equipe-family_man_man_boy_boy"
             rel="noreferrer"
           >
             PIZY House

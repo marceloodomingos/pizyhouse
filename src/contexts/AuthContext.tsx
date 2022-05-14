@@ -6,6 +6,10 @@ type User = {
   name: string;
   avatar: string;
   email: string;
+  metadata: {
+    creationTime: string;
+    lastSignInTime: string;
+  };
 };
 
 type AuthContextType = {
@@ -26,17 +30,26 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
-        const { displayName, photoURL, uid, email } = user;
+        const {
+          displayName,
+          photoURL,
+          uid,
+          email,
+          metadata: { creationTime, lastSignInTime },
+        } = user;
 
         // if (!displayName || !photoURL) {
         //   throw new Error("Missing information from Google Account.");
         // }
+
+        console.log(user);
 
         setUser({
           id: uid,
           name: displayName,
           avatar: photoURL,
           email,
+          metadata: { creationTime, lastSignInTime },
         });
       } else {
         console.log("sem usuario");
@@ -54,7 +67,13 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
     const result = await auth.signInWithPopup(provider);
 
     if (result.user) {
-      const { displayName, photoURL, uid, email } = result.user;
+      const {
+        displayName,
+        photoURL,
+        uid,
+        email,
+        metadata: { creationTime, lastSignInTime },
+      } = result.user;
 
       // if (!displayName || !photoURL) {
       //   throw new Error("Missing information from Google Account.");
@@ -65,6 +84,7 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
         name: displayName,
         avatar: photoURL,
         email,
+        metadata: { creationTime, lastSignInTime },
       });
     }
   }

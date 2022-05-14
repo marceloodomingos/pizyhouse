@@ -107,6 +107,21 @@ export default function Navbar({ handleLoggedChange }: NavbarProps) {
                 </>
               ) : (
                 <>
+                  <li>
+                    <Link href="/dashboard/help" passHref>
+                      <Question />
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/dashboard/configurations" passHref>
+                      <Gear />
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/dashboard/notifications" passHref>
+                      <Bell />
+                    </Link>
+                  </li>
                   <li id="user">
                     {user.avatar ? (
                       <img src={user.avatar} alt={user.name} />

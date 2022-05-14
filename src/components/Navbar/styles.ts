@@ -51,6 +51,11 @@ export const NavbarContainer = styled.nav`
           margin-left: 16px;
         }
       }
+      @media (max-width: 500px) {
+        div:last-child {
+          display: none;
+        }
+      }
     }
     #user {
       display: flex;

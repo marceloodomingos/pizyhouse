@@ -34,7 +34,9 @@ export const Variables = css`
     --borders: #323238;
 
     --success: #1a8e28;
+    --success-lowopacity: #1a8e2820;
     --error: #b63535;
+    --error-lowopacity: #b6353520;
 
     --primary: #8257e5;
     --primary-hover: #8257e570;

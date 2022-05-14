@@ -7,8 +7,7 @@ export const FooterContainer = styled.footer`
   z-index: 0;
   width: calc(100% - 80px);
   right: 0;
-  bottom: 0;
-  height: 300px;
+  height: max-content;
   .content {
     width: 100%;
     max-width: 1120px;

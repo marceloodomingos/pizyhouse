@@ -49,16 +49,6 @@ export default function NFTS({ handleLoggedChange }: any) {
 
   window.addEventListener("scroll", handleScroll);
 
-  // window.onscroll = function () {
-  //   if (
-  //     document.documentElement.clientHeight +
-  //       document.documentElement.scrollTop ===
-  //     document.documentElement.offsetHeight
-  //   ) {
-  //     setPage((prev) => prev + 1);
-  //   }
-  // };
-
   interface NftsProps {
     id: number;
     collection: { is_nsfw: boolean; slug: string; name: string };

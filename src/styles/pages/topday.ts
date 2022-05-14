@@ -1,5 +1,16 @@
 import styled, { keyframes } from "styled-components";
 
+export const Today = styled.div`
+  color: var(--white);
+  background: var(--primary);
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 150px;
+  margin: 0 auto;
+  border-radius: 4px;
+`;
+
 export const Coin = styled.div`
   display: flex;
   flex-direction: row;

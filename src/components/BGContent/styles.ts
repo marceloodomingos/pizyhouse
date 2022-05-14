@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const BGContent = styled.div`
-  /* display: none; */
+  display: none;
   width: 150vw;
   height: 100vw;
   position: absolute;
