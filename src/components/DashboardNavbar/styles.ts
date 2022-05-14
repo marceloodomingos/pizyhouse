@@ -10,73 +10,48 @@ const bgInfinite = keyframes`
 `;
 
 export const NavbarContainer = styled.nav`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 80px;
-  box-shadow: inset 0 -1px 0 var(--shape-hover);
-  /* background: var(--background-navbar); */
-  /* backdrop-filter: blur(4px); */
-  color: var(--white);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1049;
   width: 100%;
-  z-index: 100;
-  margin-bottom: 16px;
+  padding: 0;
+  height: 80px;
   transition: var(--transition-turtle);
   .header {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     gap: 16px;
     width: 100%;
-    max-width: 1120px;
     height: 100%;
     padding: 0 20px;
-    position: relative;
     #logo {
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100%;
       cursor: pointer;
-      z-index: 2;
       img {
         pointer-events: none;
       }
-      div {
+      a {
         display: flex;
         justify-content: center;
         align-items: center;
         height: 80px;
-        & + div {
+        & + a {
           margin-left: 16px;
         }
       }
     }
-    #user {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: var(--primary);
-      border: 2.5px solid var(--secondary);
-      border-radius: 50%;
-      width: 48px;
-      height: 48px;
-      img {
-        width: 48px;
-        height: 48px;
-        border-radius: 50%;
-        padding: 2px;
-      }
-    }
     > ul {
-      position: absolute;
-      top: 0px;
-      left: 0px;
-      width: 100%;
-      height: 100%;
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
+      width: max-content;
+      height: 100%;
+      position: relative;
       i {
         border: solid var(--text);
         border-width: 0 2px 2px 0;
@@ -139,7 +114,6 @@ export const NavbarContainer = styled.nav`
       justify-content: center;
       align-items: center;
       gap: 12px;
-      z-index: 2;
       > a,
       button {
         padding: 8px 16px;
@@ -186,12 +160,20 @@ export const NavbarContainer = styled.nav`
         }
       }
       #user {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         background: var(--primary);
         border: 2.5px solid var(--secondary);
         border-radius: 50%;
         width: 48px;
         height: 48px;
-        padding: 8px;
+        img {
+          width: 48px;
+          height: 48px;
+          border-radius: 50%;
+          padding: 2px;
+        }
       }
       > li {
         display: flex;
@@ -200,13 +182,20 @@ export const NavbarContainer = styled.nav`
         padding: 4px;
         position: relative;
         cursor: pointer;
+        > button {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background: unset;
+          padding: 0;
+        }
         > .dropdown {
           display: none;
           position: absolute;
           top: 55px;
           right: 0;
           width: 100%;
-          min-width: 200px;
+          min-width: 150px;
           line-height: 100%;
           background: var(--primary);
           justify-content: center;
@@ -281,7 +270,7 @@ export const NavbarContainer = styled.nav`
   li {
     list-style-type: none;
     transition: var(--transition);
-    a {
+    > a {
       text-decoration: none;
       text-transform: capitalize;
       color: var(--support);
@@ -289,7 +278,7 @@ export const NavbarContainer = styled.nav`
       cursor: pointer;
       transition: var(--transition);
       &:hover {
-        color: var(--white);
+        color: var(--gray);
         border-bottom: 2px solid var(--primary);
       }
     }

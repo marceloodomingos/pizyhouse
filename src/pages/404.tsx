@@ -11,6 +11,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { Container404 } from "../styles/pages/404";
 import Link from "next/link";
+import { BGContent } from "~/components/BGContent/styles";
 
 interface Error404Props {
   handleLoggedChange: () => void;
@@ -54,6 +55,7 @@ export default function Error404({ handleLoggedChange }: Error404Props) {
           />
         </div>
       </Container404>
+      <BGContent />
     </>
   );
 }

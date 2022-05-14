@@ -24,6 +24,7 @@ import {
   Medal,
   Shield,
 } from "phosphor-react";
+import { BGContent } from "~/components/BGContent/styles";
 
 interface HomePageProps {
   handleLoggedChange: () => void;
@@ -54,9 +55,21 @@ export default function Home({ handleLoggedChange }: HomePageProps) {
             </span>
             <p>Invista conosco, invista no nosso futuro.</p>
             <div className="actions">
-              <button>Embarcar nessa jornada</button>
+              <button
+                onClick={() => {
+                  window.location.href = "/signup";
+                }}
+              >
+                Embarcar nessa jornada
+              </button>
               <div className="divider">ou</div>
-              <button>Entrar na sua conta</button>
+              <button
+                onClick={() => {
+                  window.location.href = "/dashboard";
+                }}
+              >
+                Entrar na sua conta
+              </button>
             </div>
           </Slogan>
           <div className="content">
@@ -225,6 +238,7 @@ export default function Home({ handleLoggedChange }: HomePageProps) {
         </Partners>
       </main>
       <Footer />
+      <BGContent />
     </>
   );
 }

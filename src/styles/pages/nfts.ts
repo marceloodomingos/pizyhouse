@@ -58,8 +58,8 @@ export const NFTCard = styled.div`
     min-width: 350px;
     /* max-width: 350px; */
     width: 100%;
-    min-height: 500px;
-    max-height: 500px;
+    min-height: 350px;
+    max-height: 350px;
     height: 100%;
     line-height: 100%;
     text-transform: capitalize;

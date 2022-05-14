@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Image from "next/image";
 
 import { NavbarContainer } from "./styles";
@@ -9,18 +9,38 @@ import PHLemon from "../../assets/pizy/logo.svg";
 import Link from "next/link";
 import {
   Bell,
+  Gauge,
   Gear,
   PencilSimple,
   Question,
   SignOut,
   User,
 } from "phosphor-react";
+import { firebase, auth } from "~/services/firebase";
+import AuthContext from "~/contexts/AuthContext";
+import { useRouter } from "next/router";
 
 interface NavbarProps {
   handleLoggedChange: (logged: boolean) => void;
 }
 
 export default function Navbar({ handleLoggedChange }: NavbarProps) {
+  const { user } = useContext(AuthContext);
+  const router = useRouter();
+
+  function logOutFirebase() {
+    firebase
+      .auth()
+      .signOut()
+      .then(function () {
+        confirm("Deslogado com sucesso");
+        window.location.reload();
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
   return (
     <>
       <NavbarContainer>
@@ -65,77 +85,57 @@ export default function Navbar({ handleLoggedChange }: NavbarProps) {
             </li>
           </ul>
           <div className="account-actions">
-            {/* {!loggedStatus ? (
-              <>
-                <button
-                  onClick={() => {
-                    window.location.href = "/dashboard";
-                    handleLoggedChange(true);
-                  }}
-                  className="signin"
-                >
-                  Entrar
-                </button>
-                <button
-                  onClick={() => {
-                    window.location.href = "/signup";
-                  }}
-                  className="signup"
-                >
-                  Criar conta
-                </button>
-              </>
-            ) : (
-              <>
-                <li>
-                  <Question />
-                </li>
-                <li>
-                  <Gear />
-                </li>
-                <li>
-                  <Bell />
-                </li>
-                <li>
-                  <User id="user" />
-                  <ul className="dropdown">
-                    <li>
-                      <PencilSimple weight="bold" />
-                      <Link href="/dashboard/profile">Perfil</Link>
-                    </li>
-                    <li>
-                      <SignOut weight="bold" />
-                      <button
-                        onClick={() => {
-                          handleLoggedChange(false);
-                          window.location.href = "/";
-                        }}
-                      >
-                        Sair
-                      </button>
-                    </li>
-                  </ul>
-                </li>
-              </>
-            )} */}
             <>
-              <button
-                onClick={() => {
-                  window.location.href = "/dashboard";
-                  handleLoggedChange(true);
-                }}
-                className="signin"
-              >
-                Entrar
-              </button>
-              <button
-                onClick={() => {
-                  window.location.href = "/signup";
-                }}
-                className="signup"
-              >
-                Criar conta
-              </button>
+              {!user ? (
+                <>
+                  <button
+                    onClick={() => {
+                      window.location.href = "/signin";
+                    }}
+                    className="signin"
+                  >
+                    Entrar
+                  </button>
+                  <button
+                    onClick={() => {
+                      window.location.href = "/signup";
+                    }}
+                    className="signup"
+                  >
+                    Criar Conta
+                  </button>
+                </>
+              ) : (
+                <>
+                  <li id="user">
+                    {user.avatar ? (
+                      <img src={user.avatar} alt={user.name} />
+                    ) : (
+                      <User />
+                    )}
+                    <ul className="dropdown">
+                      <li>
+                        <Gauge weight="bold" />
+                        <Link href="/dashboard">Dashboard</Link>
+                      </li>
+                      <li>
+                        <PencilSimple weight="bold" />
+                        <Link href="/dashboard/profile">Perfil</Link>
+                      </li>
+                      <li>
+                        <SignOut weight="bold" />
+                        <button
+                          onClick={() => {
+                            logOutFirebase();
+                          }}
+                        >
+                          Sair
+                        </button>
+                      </li>
+                    </ul>
+                  </li>
+                </>
+              )}
             </>
           </div>
         </div>

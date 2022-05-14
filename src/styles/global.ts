@@ -44,7 +44,8 @@ export const GlobalStyles = createGlobalStyle`
   }
   main {
     width: 100%;
-    min-height: 100vh;
+    /* min-height: 100vh; */
+    height: max-content;
     position: relative;
     z-index: 1;
     > h1 {

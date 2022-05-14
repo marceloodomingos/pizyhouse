@@ -8,5 +8,9 @@ export const MainApp = styled.main`
   padding-left: 80px;
   .container {
     padding: 60px 30px 60px 30px;
+    > h1 {
+      text-align: center;
+      margin-bottom: 16px;
+    }
   }
 `;

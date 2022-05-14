@@ -1,43 +1,63 @@
 import type { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import useInfiniteScroll from "react-infinite-scroll-hook";
 
 // import Header from "../components/Header";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 
-import Monkey from "/assets/heroes/monkey-ellipse.svg";
+import Monkey from "../../assets/heroes/monkey-ellipse.svg";
 import { NFTCard, NFTs, NFTsPresentation } from "../../styles/pages/nfts";
 import Slogan from "../../components/Slogan";
 import { BGContent } from "../../components/BGContent/styles";
-import Link from "next/link";
 import { Cards, PencilCircle, UserSwitch } from "phosphor-react";
 import InfiniteScroll from "../../components/InfiniteScroll";
+import { getNfts } from "~/api/getNfts";
+import LoadingCircle from "~/components/Loading";
 
-type NFTs = Record<string, {}>;
+// type NFTs = Record<string, {}>;
 
 export default function NFTS({ handleLoggedChange }: any) {
-  const [nfts, setNfts] = useState<[] | any>([]);
-  const [nftAmount, setNftAmount] = useState(9);
+  const [page, setPage] = useState(1);
+  const [nfts, setNfts] = useState([]);
+  const [nftsPageLoading, setNftsPageLoading] = useState(false);
 
-  const loadMoreNft = async () => {
-    const response = await fetch(
-      `https://api.opensea.io/api/v1/assets?format=json&limit=${nftAmount}&order_direction=desc`
-    );
-    const data = await response.json();
-    const notFungibleTokens: any[] = [];
-    data.assets.forEach((nftItem: any) => notFungibleTokens.push(nftItem));
-    setNfts((oldNotFungibleTokens: any) => [
-      ...oldNotFungibleTokens,
-      ...notFungibleTokens,
-    ]);
-    setNftAmount(nftAmount + 3);
-  };
+  const nftRef = useRef(null);
 
   useEffect(() => {
-    loadMoreNft();
-  }, []);
+    const loadNfts = async () => {
+      setNftsPageLoading(true);
+      const newNfts = await getNfts(page);
+      setNfts((oldNfts) => [...oldNfts, ...newNfts]);
+      setNftsPageLoading(false);
+    };
+    loadNfts();
+  }, [page]);
+
+  const handleScroll = (e: any) => {
+    if (!nftRef.current) {
+      return null;
+    } else if (endReached(nftRef.current)) {
+      setPage(page + 1);
+    }
+  };
+
+  function endReached(props?: any) {
+    return props.getBoundingClientRect().bottom < window.innerHeight;
+  }
+
+  window.addEventListener("scroll", handleScroll);
+
+  // window.onscroll = function () {
+  //   if (
+  //     document.documentElement.clientHeight +
+  //       document.documentElement.scrollTop ===
+  //     document.documentElement.offsetHeight
+  //   ) {
+  //     setPage((prev) => prev + 1);
+  //   }
+  // };
 
   interface NftsProps {
     id: number;
@@ -74,177 +94,186 @@ export default function NFTS({ handleLoggedChange }: any) {
             </span>
             <p>Invista conosco, invista no nosso futuro.</p>
             <div className="actions">
-              <button>Embarcar nessa jornada</button>
+              <button
+                onClick={() => {
+                  window.location.href = "/signup";
+                }}
+              >
+                Embarcar nessa jornada
+              </button>
               <div className="divider">ou</div>
-              <button>Entrar na sua conta</button>
+              <button
+                onClick={() => {
+                  window.location.href = "/dashboard";
+                }}
+              >
+                Entrar na sua conta
+              </button>
             </div>
           </Slogan>
         </NFTsPresentation>
-        <NFTs>
-          {nfts.map(
-            (
-              {
-                id,
-                collection,
-                image_url,
-                name,
-                owner,
-                creator,
-                asset_contract,
-              }: NftsProps,
-              index: number
-            ) => {
-              return (
-                <React.Fragment key={index}>
-                  {(() => {
-                    if (collection.is_nsfw == false) {
-                      return (
-                        <NFTCard>
-                          {image_url ? (
-                            <div className="picture">
-                              <img src={image_url} alt={name} />
-                            </div>
-                          ) : (
-                            <div className="picture notloaded">
-                              <b>Imagem não encontrada.</b>
-                              <p>Por favor, tente novamente.</p>
-                            </div>
-                          )}
-                          <div className="info">
-                            <>
-                              {(() => {
-                                if (name != null) {
-                                  return <span>{name}</span>;
-                                } else {
-                                  return (
-                                    <span className="notfound">
-                                      Nome não encontrado.
-                                    </span>
-                                  );
-                                }
-                              })()}
-                              <div className="about-nft">
-                                <dt>
-                                  <Cards />
-                                  Coleção
-                                </dt>
-                                <div>
-                                  <p>{collection.name}</p>
-                                </div>
+        <NFTs ref={nftRef}>
+          {nfts &&
+            nfts.map(
+              (
+                {
+                  id,
+                  collection,
+                  image_url,
+                  name,
+                  owner,
+                  creator,
+                  asset_contract,
+                }: NftsProps,
+                index: number
+              ) => {
+                return (
+                  <React.Fragment key={index}>
+                    {(() => {
+                      if (collection.is_nsfw == false) {
+                        return (
+                          <NFTCard>
+                            {image_url ? (
+                              <div className="picture">
+                                <img src={image_url} alt={name} />
                               </div>
-                              {(() => {
-                                if (owner != undefined || owner != null) {
-                                  if (
-                                    owner.user != undefined ||
-                                    owner.user != null
-                                  ) {
+                            ) : (
+                              <div className="picture notloaded">
+                                <b>Imagem não encontrada.</b>
+                                <p>Por favor, tente novamente.</p>
+                              </div>
+                            )}
+                            <div className="info">
+                              <>
+                                {(() => {
+                                  if (name != null) {
+                                    return <span>{name}</span>;
+                                  } else {
                                     return (
-                                      <>
-                                        <div className="about-owner">
-                                          <dt>
-                                            <UserSwitch />
-                                            Atual dono
-                                          </dt>
-                                          <div>
-                                            <img
-                                              src={owner.profile_img_url}
-                                              alt={owner.user.username}
-                                            />
-                                            {(() => {
-                                              if (owner.user.username != null) {
-                                                return (
-                                                  <p>{owner.user.username}</p>
-                                                );
-                                              } else {
-                                                return (
-                                                  <p className="notfound">
-                                                    Nome não encontrado.
-                                                  </p>
-                                                );
-                                              }
-                                            })()}
-                                          </div>
-                                        </div>
-                                      </>
+                                      <span className="notfound">
+                                        Nome não encontrado.
+                                      </span>
                                     );
                                   }
-                                }
-                              })()}
-                              {(() => {
-                                if (creator != undefined || creator != null) {
-                                  if (
-                                    creator.user != undefined ||
-                                    creator.user != null
-                                  ) {
-                                    return (
-                                      <>
-                                        <div className="about-creator">
-                                          <dt>
-                                            <PencilCircle />
-                                            Criador
-                                          </dt>
-                                          <div>
-                                            <img
-                                              src={creator.profile_img_url}
-                                              alt={creator.user.username}
-                                            />
-                                            {(() => {
-                                              if (
-                                                creator.user.username != null
-                                              ) {
-                                                return (
-                                                  <p>{creator.user.username}</p>
-                                                );
-                                              } else {
-                                                return (
-                                                  <p className="notfound">
-                                                    Nome não encontrado.
-                                                  </p>
-                                                );
-                                              }
-                                            })()}
+                                })()}
+                                <div className="about-nft">
+                                  <dt>
+                                    <Cards />
+                                    Coleção
+                                  </dt>
+                                  <div>
+                                    <p>{collection.name}</p>
+                                  </div>
+                                </div>
+                                {(() => {
+                                  if (owner != undefined || owner != null) {
+                                    if (
+                                      owner.user != undefined ||
+                                      owner.user != null
+                                    ) {
+                                      return (
+                                        <>
+                                          <div className="about-owner">
+                                            <dt>
+                                              <UserSwitch />
+                                              Atual dono
+                                            </dt>
+                                            <div>
+                                              <img
+                                                src={owner.profile_img_url}
+                                                alt={owner.user.username}
+                                              />
+                                              {(() => {
+                                                if (
+                                                  owner.user.username != null
+                                                ) {
+                                                  return (
+                                                    <p>{owner.user.username}</p>
+                                                  );
+                                                } else {
+                                                  return (
+                                                    <p className="notfound">
+                                                      Nome não encontrado.
+                                                    </p>
+                                                  );
+                                                }
+                                              })()}
+                                            </div>
                                           </div>
-                                        </div>
-                                      </>
-                                    );
+                                        </>
+                                      );
+                                    }
                                   }
-                                }
-                              })()}
-                            </>
-                            {/* <Link href={nft.permalink} passHref>
+                                })()}
+                                {(() => {
+                                  if (creator != undefined || creator != null) {
+                                    if (
+                                      creator.user != undefined ||
+                                      creator.user != null
+                                    ) {
+                                      return (
+                                        <>
+                                          <div className="about-creator">
+                                            <dt>
+                                              <PencilCircle />
+                                              Criador
+                                            </dt>
+                                            <div>
+                                              <img
+                                                src={creator.profile_img_url}
+                                                alt={creator.user.username}
+                                              />
+                                              {(() => {
+                                                if (
+                                                  creator.user.username != null
+                                                ) {
+                                                  return (
+                                                    <p>
+                                                      {creator.user.username}
+                                                    </p>
+                                                  );
+                                                } else {
+                                                  return (
+                                                    <p className="notfound">
+                                                      Nome não encontrado.
+                                                    </p>
+                                                  );
+                                                }
+                                              })()}
+                                            </div>
+                                          </div>
+                                        </>
+                                      );
+                                    }
+                                  }
+                                })()}
+                              </>
+                              {/* <Link href={nft.permalink} passHref>
                             Adquirir
                           </Link> */}
-                            <button
-                              onClick={() => {
-                                window.location.href = `/nfts/${asset_contract.address}`;
-                              }}
-                            >
-                              Ver Mais
-                            </button>
-                          </div>
-                        </NFTCard>
-                      );
-                    } else {
-                      null;
-                    }
-                  })()}
-                </React.Fragment>
-              );
-            }
-          )}
+                              <button
+                                onClick={() => {
+                                  window.location.href = `/nfts/${asset_contract.address}`;
+                                }}
+                              >
+                                Ver Mais
+                              </button>
+                            </div>
+                          </NFTCard>
+                        );
+                      } else {
+                        null;
+                      }
+                    })()}
+                  </React.Fragment>
+                );
+              }
+            )}
+          {nftsPageLoading && <LoadingCircle />}
         </NFTs>
-        {nfts && (
-          <InfiniteScroll
-            fetchMore={() => {
-              loadMoreNft();
-            }}
-          />
-        )}
       </main>
       <Footer />
-      {/* <BGContent>
-        <Image src={Monkey} priority width="750" height="750" />
-      </BGContent> */}
+      <BGContent />
     </>
   );
 }

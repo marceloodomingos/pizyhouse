@@ -9,6 +9,7 @@ import { Chart } from "react-google-charts";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import { CryptoInfos } from "../../styles/pages/coin";
+import { BGContent } from "~/components/BGContent/styles";
 
 function abbreviate(num: any) {
   const lookup = [
@@ -189,6 +190,7 @@ export default function Coin({ coindata, handleLoggedChange }: CoinPageProps) {
         </CryptoInfos>
       </main>
       <Footer />
+      <BGContent />
     </>
   );
 }

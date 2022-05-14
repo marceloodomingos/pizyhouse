@@ -7,9 +7,10 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
-import PHLemon from "/assets/pizy/logo.svg";
+import PHLemon from "../assets/pizy/logo.svg";
 import { AboutUS } from "../styles/pages/about-us";
 import Link from "next/link";
+import { BGContent } from "~/components/BGContent/styles";
 
 interface AboutUsProps {
   handleLoggedChange: () => void;
@@ -94,6 +95,7 @@ export default function AboutUs({ handleLoggedChange }: AboutUsProps) {
         </AboutUS>
       </main>
       <Footer />
+      <BGContent />
     </>
   );
 }

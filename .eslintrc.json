@@ -1,4 +1,16 @@
 {
+  "import-helpers/order-imports": [
+    "warn",
+    {
+        "newlinesBetween": "always",
+        "groups": [
+          "/^react/",
+          "module",
+          ["parent", "sibling", "index"]
+        ],
+        "alphabetize": { "order": "asc", "ignoreCase": true }
+    }
+  ],
   "env": {
     "browser": true,
     "es6": true
@@ -22,17 +34,5 @@
   "plugins": [
     "react",
     "import-helpers"
-  ],
-  "import-helpers/order-imports": [
-    "warn",
-    {
-        "newlinesBetween": "always",
-        "groups": [
-          "/^react/",
-          "module",
-          ["parent", "sibling", "index"]
-        ],
-        "alphabetize": { "order": "asc", "ignoreCase": true }
-    }
   ]
 }
