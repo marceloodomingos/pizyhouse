@@ -48,6 +48,7 @@ export const GlobalStyles = createGlobalStyle`
     height: max-content;
     position: relative;
     z-index: 1;
+    overflow-x: hidden;
     > h1 {
       text-align: center;
       text-transform: capitalize;
