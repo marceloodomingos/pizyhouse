@@ -16,7 +16,7 @@ import { Coin, Today } from "../styles/pages/topday";
 import useGetDay from "../hooks/useGetDay";
 import { SkeletonWrapperElement, SkeletonCoin } from "../skeletons/coinTopDay";
 import { BGContent } from "~/components/BGContent/styles";
-import { getCryptocoins } from "~/api/getCryptocoins";
+import { getCryptoCoins } from "~/api/getCryptocoins";
 import LoadingCircle from "~/components/Loading";
 
 interface TopDayPageProps {
@@ -38,7 +38,7 @@ export default function TopDay({
   useEffect(() => {
     const loadNfts = async () => {
       setCoinsPageLoading(true);
-      const newCoins = await getCryptocoins(page);
+      const newCoins = await getCryptoCoins(page);
       setCoins((oldCoins) => [...oldCoins, ...newCoins]);
       setCoinsPageLoading(false);
     };

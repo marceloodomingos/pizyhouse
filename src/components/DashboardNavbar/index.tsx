@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { firebase, auth } from "~/services/firebase";
 
 import { NavbarContainer } from "./styles";

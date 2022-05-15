@@ -124,6 +124,9 @@ export const NavbarContainer = styled.nav`
         &:hover {
           display: flex;
         }
+        &.dropdown-open {
+          display: flex;
+        }
       }
       @media (max-width: 900px) {
         display: none;
@@ -301,6 +304,14 @@ export const NavbarContainer = styled.nav`
     &.options {
       a {
         cursor: default;
+      }
+      button {
+        border: unset;
+        background: unset;
+        height: 100%;
+        padding: 26px 12px;
+        font-size: 16px;
+        color: var(--support);
       }
     }
   }

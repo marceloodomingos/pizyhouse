@@ -42,10 +42,12 @@ export const SloganContainer = styled.div<SloganAlignProps>`
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: center;
-      text-align: center;
+      text-align: left;
       width: 100%;
       font-size: 3rem;
+    }
+    @media (max-width: 500px) {
+      font-size: 10vw;
     }
   }
   p {
@@ -119,5 +121,8 @@ export const SloganContainer = styled.div<SloganAlignProps>`
         margin-left: 8px;
       }
     }
+  }
+  @media (max-width: 500px) {
+    margin: 16px 0;
   }
 `;

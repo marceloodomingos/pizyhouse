@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
 import { NavbarContainer } from "./styles";
@@ -25,6 +25,7 @@ interface NavbarProps {
 }
 
 export default function Navbar({ handleLoggedChange }: NavbarProps) {
+  const dropdownUL = useRef(null);
   const { user } = useContext(AuthContext);
   const router = useRouter();
 
@@ -74,11 +75,17 @@ export default function Navbar({ handleLoggedChange }: NavbarProps) {
               <Link href="/nfts/">NFTs</Link>
             </li>
             <li className="options">
-              <a>
+              <button
+                onClick={() => {
+                  dropdownUL.current.classList.toggle("dropdown-open");
+                }}
+                aria-haspopup="listbox"
+                aria-labelledby="exp_elem exp_button"
+              >
                 Sobre
                 <i />
-              </a>
-              <ul className="dropdown">
+              </button>
+              <ul ref={dropdownUL} className="dropdown">
                 <Link href="/about-us">Sobre a PIZY</Link>
                 <Link href="/about-market">Sobre o Mercado</Link>
               </ul>

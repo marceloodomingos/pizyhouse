@@ -18,6 +18,7 @@ import {
   UserCircle,
   UserFocus,
 } from "phosphor-react";
+import LoadingCircle from "~/components/Loading";
 
 interface ProfilePageProps {
   handleLoggedChange: () => void;
@@ -63,7 +64,7 @@ export default function Profile({ handleLoggedChange }: ProfilePageProps) {
 
   return (
     <>
-      {user && (
+      {user ? (
         <>
           <Head>
             <title>PIZY House · Seu perfil</title>
@@ -99,11 +100,15 @@ export default function Profile({ handleLoggedChange }: ProfilePageProps) {
                       </div>
                       <div className="info">
                         <div>
-                          <dt>
-                            <PencilCircle />
-                            Nome do usuário
-                          </dt>
-                          <p>{user.name}</p>
+                          {user.name && (
+                            <>
+                              <dt>
+                                <PencilCircle />
+                                Nome do usuário
+                              </dt>
+                              <p>{user.name}</p>
+                            </>
+                          )}
                           <dt>
                             <Envelope />
                             E-mail
@@ -171,6 +176,10 @@ export default function Profile({ handleLoggedChange }: ProfilePageProps) {
           </MainApp>
           <FooterApp />
         </>
+      ) : (
+        <main className="loadingApp">
+          <LoadingCircle />
+        </main>
       )}
     </>
   );

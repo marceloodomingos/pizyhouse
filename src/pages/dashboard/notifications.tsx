@@ -8,6 +8,7 @@ import DashboardNavbar from "../../components/DashboardNavbar";
 import { MainApp } from "../../styles/pages/dashboard";
 import { useRouter } from "next/router";
 import { auth } from "~/services/firebase";
+import LoadingCircle from "~/components/Loading";
 
 interface ProfilePageProps {
   handleLoggedChange: () => void;
@@ -33,7 +34,7 @@ export default function Profile({ handleLoggedChange }: ProfilePageProps) {
 
   return (
     <>
-      {user && (
+      {user ? (
         <>
           <Head>
             <title>PIZY House · Notificações</title>
@@ -57,6 +58,10 @@ export default function Profile({ handleLoggedChange }: ProfilePageProps) {
           </MainApp>
           <FooterApp />
         </>
+      ) : (
+        <main className="loadingApp">
+          <LoadingCircle />
+        </main>
       )}
     </>
   );

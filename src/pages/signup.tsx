@@ -43,8 +43,20 @@ export default function SignUp({ handleLoggedChange }: SignUpProps) {
         } else if (error.code == "auth/weak-password") {
           alert("A senha é muito fraca. Preencha novamente.");
         }
+      })
+      .then(async () => {
+        alert("Conta criada com sucesso");
+        await auth
+          .signInWithEmailAndPassword(email, password)
+          .catch(function (error) {
+            if (error.code == "auth/wrong-password") {
+              alert("E-mail ou senha incorretos.");
+            }
+          })
+          .then(() => {
+            window.location.href = "/dashboard";
+          });
       });
-    await alert("Conta criada com sucesso");
   }
 
   async function loginWithGoogle() {
@@ -67,7 +79,6 @@ export default function SignUp({ handleLoggedChange }: SignUpProps) {
       }
       if (password == confirmPassword) {
         createUserFirebase();
-        window.location.href = "/signin";
       } else {
         alert("As senhas não conferem.");
       }

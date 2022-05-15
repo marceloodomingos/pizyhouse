@@ -43,7 +43,7 @@ export const Banner = styled.section`
     display: flex;
     justify-content: flex-end;
     flex: 0.5;
-    /* animation: ${worldShining} 5s ease-in-out infinite; */
+    animation: ${worldShining} 5s ease-in-out infinite;
     img {
       pointer-events: none;
     }
@@ -66,8 +66,14 @@ export const Banner = styled.section`
       }
     }
     .content {
-      /* max-width: 50vw; */
-      display: none;
+      width: 100%;
+      max-width: 100vw;
+      /* display: none; */
+      position: absolute;
+      z-index: -1;
+      opacity: 0.25;
+      top: -0.5%;
+      right: -50%;
     }
   }
   @media (max-width: 450px) {

@@ -19,10 +19,10 @@ interface SignInProps {
 export default function SignIn({ handleLoggedChange }: SignInProps) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const value = useContext(AuthContext);
+  const { user, signInWithGoogle } = useContext(AuthContext);
 
   useEffect(() => {
-    if (value.user) {
+    if (user) {
       window.location.href = "/dashboard";
     }
   }, []);
@@ -39,7 +39,7 @@ export default function SignIn({ handleLoggedChange }: SignInProps) {
   }
 
   async function loginWithGoogle() {
-    await value.signInWithGoogle();
+    await signInWithGoogle();
     window.location.href = "/dashboard";
   }
 

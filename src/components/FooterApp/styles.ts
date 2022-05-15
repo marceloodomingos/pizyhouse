@@ -8,6 +8,7 @@ export const FooterContainer = styled.footer`
   width: calc(100% - 80px);
   right: 0;
   height: max-content;
+  transition: var(--transition);
   .content {
     width: 100%;
     max-width: 1120px;
@@ -92,5 +93,8 @@ export const FooterContainer = styled.footer`
       flex-direction: column;
       align-items: center;
     }
+  }
+  @media (max-width: 500px) {
+    width: 100%;
   }
 `;

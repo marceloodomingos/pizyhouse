@@ -60,6 +60,13 @@ export const GlobalStyles = createGlobalStyle`
       top: 0;
       height: 100vh;
     }
+    &.loadingApp {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex: 1;
+      height: 100vh;
+    }
     /* animation: ${loadingUp} 1s ease; */
   }
   button {
