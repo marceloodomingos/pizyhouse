@@ -20,7 +20,7 @@ export const NavbarContainer = styled.nav`
   color: var(--white);
   width: 100%;
   z-index: 100;
-  margin-bottom: 16px;
+  /* margin-bottom: 16px; */
   transition: var(--transition-turtle);
   .header {
     display: flex;
