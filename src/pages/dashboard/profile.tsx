@@ -147,7 +147,7 @@ export default function Profile({ handleLoggedChange }: ProfilePageProps) {
                         </div>
                       </div>
                     </ProfileContainer>
-                    <ProfileContainer>
+                    <ProfileContainer danger>
                       <div className="info danger-zone">
                         <h2>Responsabilidade</h2>
                         <div className="about">

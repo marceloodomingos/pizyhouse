@@ -1,4 +1,8 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+
+interface ProfileProps {
+  danger?: boolean;
+}
 
 export const AboutUser = styled.div`
   display: flex;
@@ -11,7 +15,7 @@ export const AboutUser = styled.div`
   margin: 0 auto;
 `;
 
-export const ProfileContainer = styled.div`
+export const ProfileContainer = styled.div<ProfileProps>`
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -83,7 +87,7 @@ export const ProfileContainer = styled.div`
     }
     p {
       color: var(--text);
-      line-height: 125%;
+      /* line-height: 125%; */
       &.warn {
         color: var(--white);
         background: var(--attention);
@@ -157,6 +161,11 @@ export const ProfileContainer = styled.div`
       }
     }
   }
+  ${({ danger }) =>
+    danger &&
+    css`
+      border: 1px solid var(--error);
+    `}
   dt {
     display: flex;
     align-items: center;
