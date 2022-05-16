@@ -10,12 +10,11 @@ export const CryptoInfos = styled.div`
   @media (max-width: 1200px) {
     height: max-content;
     overflow: hidden auto;
+    display: flex;
     flex-direction: column;
+    padding: 0 24px;
     > div {
       flex: 1;
-    }
-    .info-coin {
-      max-width: unset;
     }
   }
   &::-webkit-scrollbar {
@@ -31,8 +30,6 @@ export const CryptoInfos = styled.div`
     background: #996dff;
   }
   .info-coin {
-    position: sticky;
-    top: 16px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -129,6 +126,10 @@ export const CryptoInfos = styled.div`
         }
       }
     }
+    @media (max-width: 1200px) {
+      max-width: unset;
+      margin-bottom: 16px;
+    }
   }
   .graph {
     display: flex;
@@ -145,6 +146,12 @@ export const CryptoInfos = styled.div`
     g {
       width: 100%;
       height: 100%;
+    }
+    @media (max-width: 1200px) {
+      max-width: unset;
+    }
+    @media (max-width: 400px) {
+      display: none;
     }
   }
 `;
