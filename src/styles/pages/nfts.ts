@@ -16,9 +16,32 @@ export const NFTsPresentation = styled.section`
   align-items: center;
   width: 100%;
   max-width: 400px;
-  margin: 0 auto;
+  margin: 16px auto 0;
   gap: 48px;
   margin-bottom: 32px;
+  @media (max-width: 900px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 24px;
+    span {
+      font-size: 300%;
+      text-align: center;
+    }
+    .actions {
+      width: 100%;
+      max-width: 400px;
+    }
+  }
+  @media (max-width: 500px) {
+    padding: 0 24px;
+    margin: 16px auto 0;
+    > div {
+      span {
+        font-size: 250%;
+      }
+    }
+  }
 `;
 
 export const NFTs = styled.section`

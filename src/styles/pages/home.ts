@@ -68,7 +68,6 @@ export const Banner = styled.section`
     .content {
       width: 100%;
       max-width: 100vw;
-      /* display: none; */
       position: absolute;
       z-index: -1;
       opacity: 0.25;
