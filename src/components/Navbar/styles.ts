@@ -414,8 +414,16 @@ export const MobileMenu = styled.div`
           height: 100%;
           cursor: pointer;
           border-radius: 4px;
-          a:hover {
-            border: unset;
+          a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            &:hover {
+              border: unset;
+            }
           }
           &:hover {
             background: var(--shape-dark);

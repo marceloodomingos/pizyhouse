@@ -211,6 +211,7 @@ export const TradeContent = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
   gap: 8px;
   width: 100%;
   max-width: 1010px;
@@ -232,7 +233,8 @@ export const TradeActions = styled.div`
   width: 100%;
   gap: 8px;
   button {
-    width: 25%;
+    width: 100%;
+    max-width: 150px;
     padding: 12px 32px;
     color: var(--white);
     border-radius: 4px;
