@@ -16,7 +16,7 @@ export const Container404 = styled.div`
   align-items: center;
   position: relative;
   width: 100%;
-  height: calc(100vh - 120px);
+  height: calc(100vh - 80px);
   overflow: hidden;
   .info {
     display: flex;
@@ -61,6 +61,18 @@ export const Container404 = styled.div`
       text-decoration: none;
       transition: var(--transition);
     }
+    @media (max-width: 500px) {
+      margin-top: 5vh;
+      padding: 0 12px;
+      > span {
+        font-size: 12vw;
+      }
+    }
+    @media (max-width: 300px) {
+      > span {
+        font-size: 12vw;
+      }
+    }
   }
   .galaxy {
     display: flex;
@@ -71,5 +83,10 @@ export const Container404 = styled.div`
     height: 100%;
     max-height: 500px;
     min-height: 350px;
+    @media (max-width: 500px) {
+      height: 100%;
+      max-height: 350px;
+      min-height: 200px;
+    }
   }
 `;

@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-interface ProfileProps {
+interface ContainerProps {
   danger?: boolean;
 }
 
@@ -15,7 +15,7 @@ export const AboutUser = styled.div`
   margin: 0 auto;
 `;
 
-export const ProfileContainer = styled.div<ProfileProps>`
+export const ProfileContainer = styled.div<ContainerProps>`
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -91,7 +91,6 @@ export const ProfileContainer = styled.div<ProfileProps>`
       &.warn {
         color: var(--white);
         background: var(--attention);
-        /* border: 2px solid var(--attention); */
         padding: 12px 16px;
         border-radius: 4px;
         width: 100%;
@@ -103,6 +102,10 @@ export const ProfileContainer = styled.div<ProfileProps>`
           left: -4.5%;
           opacity: 0.35;
           font-size: 8rem;
+          top: -150%;
+          @media (max-width: 624px) {
+            top: -80%;
+          }
         }
       }
       &.error {
@@ -119,6 +122,10 @@ export const ProfileContainer = styled.div<ProfileProps>`
           left: -4.5%;
           opacity: 0.35;
           font-size: 8rem;
+          top: -150%;
+          @media (max-width: 624px) {
+            top: -80%;
+          }
         }
       }
       &.obs {
@@ -135,6 +142,10 @@ export const ProfileContainer = styled.div<ProfileProps>`
           left: -0.5%;
           opacity: 0.35;
           font-size: 8rem;
+          top: -150%;
+          @media (max-width: 624px) {
+            top: -80%;
+          }
         }
       }
     }
@@ -148,7 +159,7 @@ export const ProfileContainer = styled.div<ProfileProps>`
       cursor: pointer;
       transition: var(--transition);
       &:hover {
-        filter: brightness(1.5);
+        filter: brightness(1.25);
       }
     }
     &.danger-zone {
@@ -156,7 +167,7 @@ export const ProfileContainer = styled.div<ProfileProps>`
         border: 1px solid var(--error);
         background: var(--error-lowopacity);
         &:hover {
-          filter: brightness(1.5);
+          filter: brightness(1.25);
         }
       }
     }

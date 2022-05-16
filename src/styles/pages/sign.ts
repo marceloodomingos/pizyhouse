@@ -79,6 +79,9 @@ export const Sign = styled.div`
       filter: brightness(0.75);
     }
   }
+  @media (max-width: 500px) {
+    padding: 0 24px;
+  }
 `;
 
 export const SignForm = styled.form`

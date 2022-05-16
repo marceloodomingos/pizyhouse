@@ -9,6 +9,8 @@ import { MainApp } from "../../styles/pages/dashboard";
 import { auth } from "~/services/firebase";
 import { useRouter } from "next/router";
 import {
+  OfferContainer,
+  TradeActions,
   TradeContainer,
   TradeContent,
   TradeDiv,
@@ -25,6 +27,7 @@ import {
 } from "phosphor-react";
 import LoadingCircle from "~/components/Loading";
 import { getRandomUser } from "~/api/getRandomUser";
+import NothingHere from "~/components/NothingHere";
 
 interface ProfilePageProps {
   handleLoggedChange: () => void;
@@ -35,6 +38,7 @@ export default function Trade({ handleLoggedChange }: ProfilePageProps) {
   const { user } = useContext(AuthContext);
   const [randomUser, setRandomUser] = useState([]);
   const [randomUserLoading, setRandomUserLoading] = useState(false);
+  const [trades, setTrades] = useState(1);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -51,13 +55,15 @@ export default function Trade({ handleLoggedChange }: ProfilePageProps) {
   }, []);
 
   useEffect(() => {
-    const randomUserTrade = async () => {
-      setRandomUserLoading(true);
-      const randomUserTrade = await getRandomUser();
-      setRandomUser(randomUserTrade.results);
-      setRandomUserLoading(false);
-    };
-    randomUserTrade();
+    if (trades >= 1) {
+      const randomUserTrade = async () => {
+        setRandomUserLoading(true);
+        const randomUserTrade = await getRandomUser();
+        setRandomUser(randomUserTrade.results);
+        setRandomUserLoading(false);
+      };
+      randomUserTrade();
+    }
   }, []);
 
   interface RandomUserProps {
@@ -92,60 +98,99 @@ export default function Trade({ handleLoggedChange }: ProfilePageProps) {
           <DashboardNavbar handleLoggedChange={handleLoggedChange} />
           <Aside />
           <MainApp>
-            <div className="container">
-              <h1>Trocas</h1>
-              <TradeContainer>
-                <TradeDiv>
-                  <div className="avatar">
-                    {user.avatar ? (
-                      <div className="user">
-                        <img src={user.avatar} />
-                        <UserFocus />{" "}
-                      </div>
-                    ) : (
-                      <UserCircle />
-                    )}
-                  </div>
-                  <div className="info">
-                    <div>
-                      {user.name ? (
-                        <>
-                          <h4>{user.name}</h4>
-                        </>
+            {trades ? (
+              <div className="container">
+                <h1>Trocas</h1>
+                <OfferContainer>
+                  <TradeDiv itsUser>
+                    <div className="avatar">
+                      {user.avatar ? (
+                        <div className="user">
+                          <img src={user.avatar} />
+                          <UserFocus />{" "}
+                        </div>
                       ) : (
-                        <h4>Você</h4>
+                        <UserCircle />
                       )}
                     </div>
-                  </div>
-                </TradeDiv>
-                <ArrowsLeftRight id="trade-icon" />
-                <TradeDiv>
-                  {randomUser.map(({ picture, name }: RandomUserProps) => {
-                    return (
+                    <div className="info">
+                      <div>
+                        {user.name ? (
+                          <>
+                            <h3>{user.name}</h3>
+                          </>
+                        ) : (
+                          <h3>Você</h3>
+                        )}
+                      </div>
+                    </div>
+                  </TradeDiv>
+                  <ArrowsLeftRight id="trade-icon" />
+                  <TradeDiv>
+                    {!randomUserLoading ? (
                       <>
-                        <div className="avatar">
-                          <div className="user">
-                            <img src={picture.large} />
-                            <UserFocus />
-                          </div>
-                        </div>
-                        <div className="info">
-                          <div>
-                            <h4>
-                              {name.first}&nbsp;
-                              {name.last}
-                            </h4>
-                          </div>
-                        </div>
+                        {randomUser.map(
+                          ({ picture, name }: RandomUserProps) => {
+                            return (
+                              <>
+                                <div className="avatar">
+                                  <div className="user">
+                                    <img src={picture.large} />
+                                    <UserFocus />
+                                  </div>
+                                </div>
+                                <div className="info">
+                                  <div>
+                                    <h3>
+                                      {name.first}&nbsp;
+                                      {name.last}
+                                    </h3>
+                                  </div>
+                                </div>
+                              </>
+                            );
+                          }
+                        )}
                       </>
-                    );
-                  })}
-                </TradeDiv>
-              </TradeContainer>
-              <TradeContent>
-                <h2>Proposta</h2>
-              </TradeContent>
-            </div>
+                    ) : (
+                      <LoadingCircle />
+                    )}
+                  </TradeDiv>
+                </OfferContainer>
+                <>
+                  <TradeContainer>
+                    <TradeContent>
+                      <h3>
+                        Proposta de{" "}
+                        {randomUser.map(
+                          ({ picture, name }: RandomUserProps) => {
+                            return (
+                              <span>
+                                {name.first}&nbsp;
+                                {name.last}
+                              </span>
+                            );
+                          }
+                        )}
+                        :
+                      </h3>
+                    </TradeContent>
+                    <TradeActions>
+                      <button onClick={() => setTrades(0)}>Aceitar</button>
+                      <button onClick={() => setTrades(0)}>Recusar</button>
+                    </TradeActions>
+                  </TradeContainer>
+                </>
+              </div>
+            ) : (
+              <>
+                <h1>Trocas</h1>
+                <NothingHere
+                  text={"Não há nenhuma troca até o momento."}
+                  obs={"Tente voltar mais tarde."}
+                />
+              </>
+            )}
           </MainApp>
           <FooterApp />
         </>

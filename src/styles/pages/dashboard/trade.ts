@@ -1,6 +1,10 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-export const TradeContainer = styled.div`
+interface ContainerProps {
+  itsUser?: boolean;
+}
+
+export const OfferContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,7 +24,7 @@ export const TradeContainer = styled.div`
   }
 `;
 
-export const TradeDiv = styled.div`
+export const TradeDiv = styled.div<ContainerProps>`
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -184,6 +188,22 @@ export const TradeDiv = styled.div`
       height: 20px;
     }
   }
+  ${({ itsUser }) =>
+    itsUser &&
+    css`
+      border: 1px solid var(--primary);
+    `}
+`;
+
+export const TradeContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  max-width: 1010px;
+  margin: 0 auto;
 `;
 
 export const TradeContent = styled.div`
@@ -200,4 +220,35 @@ export const TradeContent = styled.div`
   border-radius: 4px;
   flex-basis: 100%;
   flex-grow: 1;
+  span {
+    color: var(--text);
+  }
+`;
+
+export const TradeActions = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 8px;
+  button {
+    width: 25%;
+    padding: 12px 32px;
+    color: var(--white);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: var(--transition);
+    &:first-child {
+      background: var(--primary);
+      border: unset;
+    }
+    &:last-child {
+      background: unset;
+      border: 1px solid var(--primary);
+      background: var(--primary-lowopacity);
+    }
+    &:hover {
+      filter: brightness(1.25);
+    }
+  }
 `;

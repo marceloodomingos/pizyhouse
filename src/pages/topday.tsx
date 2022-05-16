@@ -16,7 +16,7 @@ import { Coin, Today } from "../styles/pages/topday";
 import useGetDay from "../hooks/useGetDay";
 import { SkeletonWrapperElement, SkeletonCoin } from "../skeletons/coinTopDay";
 import { BGContent } from "~/components/BGContent/styles";
-import { getCryptoCoins } from "~/api/getCryptocoins";
+import { getCryptoCoins } from "~/api/getCryptoCoins";
 import LoadingCircle from "~/components/Loading";
 
 interface TopDayPageProps {

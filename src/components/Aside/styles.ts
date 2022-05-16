@@ -106,8 +106,8 @@ export const AsideNavbar = styled.aside`
     background: unset;
     div {
       background: var(--primary);
-      width: 40px;
-      height: 4px;
+      width: 32px;
+      height: 3px;
       position: relative;
       transition: background 10ms 300ms ease;
       transform: translateY(20px);
@@ -117,15 +117,15 @@ export const AsideNavbar = styled.aside`
         position: absolute;
         background: var(--primary);
         width: 100%;
-        height: 4px;
+        height: 3px;
         content: "";
       }
       &:before {
-        top: 12px;
+        top: 8px;
         left: 0;
       }
       &:after {
-        bottom: 12px;
+        bottom: 8px;
         left: 0;
       }
     }

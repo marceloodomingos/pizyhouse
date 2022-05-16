@@ -14,7 +14,13 @@ import Bitcoin from "/assets/images/bitcoin.png";
 import PizyHouse from "/assets/images/pizy-house.svg";
 import { Coin } from "../styles/pages/topday";
 import { BGContent } from "~/components/BGContent/styles";
-import { EnvelopeSimple, Lock, UserCirclePlus } from "phosphor-react";
+import {
+  EnvelopeSimple,
+  Eye,
+  EyeSlash,
+  Lock,
+  UserCirclePlus,
+} from "phosphor-react";
 import { Sign, SignForm } from "~/styles/pages/sign";
 import { auth } from "~/services/firebase";
 import AuthContext from "~/contexts/AuthContext";
@@ -28,6 +34,7 @@ export default function SignUp({ handleLoggedChange }: SignUpProps) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [viewPassword, setViewPassword] = useState(false);
   const value = useContext(AuthContext);
 
   async function createUserFirebase() {
@@ -121,25 +128,73 @@ export default function SignUp({ handleLoggedChange }: SignUpProps) {
               </div>
               <div>
                 <Lock />
-                <input
-                  type="password"
-                  placeholder="Insira uma senha"
-                  required
-                  autoComplete="on"
-                  onChange={(e) => setPassword(e.target.value)}
-                  value={password}
-                />
+                {!viewPassword ? (
+                  <>
+                    <input
+                      type="password"
+                      placeholder="Senha"
+                      autoComplete="on"
+                      onChange={(e) => setPassword(e.target.value)}
+                      value={password}
+                    />
+                    <Eye
+                      onClick={() => {
+                        setViewPassword(!viewPassword);
+                      }}
+                    />
+                  </>
+                ) : (
+                  <>
+                    <input
+                      type="text"
+                      placeholder="Senha"
+                      autoComplete="on"
+                      onChange={(e) => setPassword(e.target.value)}
+                      value={password}
+                    />
+                    <EyeSlash
+                      onClick={() => {
+                        setViewPassword(!viewPassword);
+                      }}
+                    />
+                  </>
+                )}
               </div>
               <div>
                 <Lock />
-                <input
-                  type="password"
-                  placeholder="Confirme sua senha"
-                  required
-                  autoComplete="on"
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                  value={confirmPassword}
-                />
+                {!viewPassword ? (
+                  <>
+                    <input
+                      type="password"
+                      placeholder="Confirme sua senha"
+                      required
+                      autoComplete="on"
+                      onChange={(e) => setConfirmPassword(e.target.value)}
+                      value={confirmPassword}
+                    />
+                    <Eye
+                      onClick={() => {
+                        setViewPassword(!viewPassword);
+                      }}
+                    />
+                  </>
+                ) : (
+                  <>
+                    <input
+                      type="text"
+                      placeholder="Confirme sua senha"
+                      required
+                      autoComplete="on"
+                      onChange={(e) => setConfirmPassword(e.target.value)}
+                      value={confirmPassword}
+                    />
+                    <EyeSlash
+                      onClick={() => {
+                        setViewPassword(!viewPassword);
+                      }}
+                    />
+                  </>
+                )}
               </div>
               <button type="submit">Criar Conta</button>
             </div>

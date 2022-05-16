@@ -7,7 +7,13 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { BGContent } from "~/components/BGContent/styles";
 import { Sign, SignForm } from "~/styles/pages/sign";
-import { EnvelopeSimple, Lock, UserSwitch } from "phosphor-react";
+import {
+  EnvelopeSimple,
+  Eye,
+  EyeSlash,
+  Lock,
+  UserSwitch,
+} from "phosphor-react";
 import { firebase, auth } from "~/services/firebase";
 import AuthContext from "~/contexts/AuthContext";
 import Link from "next/link";
@@ -19,6 +25,7 @@ interface SignInProps {
 export default function SignIn({ handleLoggedChange }: SignInProps) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [viewPassword, setViewPassword] = useState(false);
   const { user, signInWithGoogle } = useContext(AuthContext);
 
   useEffect(() => {
@@ -76,13 +83,37 @@ export default function SignIn({ handleLoggedChange }: SignInProps) {
               </div>
               <div>
                 <Lock />
-                <input
-                  type="password"
-                  placeholder="Senha"
-                  autoComplete="on"
-                  onChange={(e) => setPassword(e.target.value)}
-                  value={password}
-                />
+                {!viewPassword ? (
+                  <>
+                    <input
+                      type="password"
+                      placeholder="Senha"
+                      autoComplete="on"
+                      onChange={(e) => setPassword(e.target.value)}
+                      value={password}
+                    />
+                    <Eye
+                      onClick={() => {
+                        setViewPassword(!viewPassword);
+                      }}
+                    />
+                  </>
+                ) : (
+                  <>
+                    <input
+                      type="text"
+                      placeholder="Senha"
+                      autoComplete="on"
+                      onChange={(e) => setPassword(e.target.value)}
+                      value={password}
+                    />
+                    <EyeSlash
+                      onClick={() => {
+                        setViewPassword(!viewPassword);
+                      }}
+                    />
+                  </>
+                )}
               </div>
               <button onClick={() => loginWithEmail()}>Entrar</button>
             </div>

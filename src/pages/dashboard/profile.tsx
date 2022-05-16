@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "~/contexts/AuthContext";
 import Aside from "../../components/Aside";
 import FooterApp from "../../components/FooterApp";
@@ -33,7 +33,7 @@ export default function Profile({ handleLoggedChange }: ProfilePageProps) {
       .auth()
       .signOut()
       .then(function () {
-        alert("Deslogado com sucesso");
+        alert("Deslogado com sucesso.");
       })
       .catch(function (error) {
         console.log(error);
@@ -46,6 +46,34 @@ export default function Profile({ handleLoggedChange }: ProfilePageProps) {
       alert("Conta deletada com sucesso.");
       router.push("/");
     }
+  }
+
+  function formatDays(props: any) {
+    const convertedString = props
+      .replace("Mon", "Segunda-feira")
+      .replace("Tue", "Terça-feira")
+      .replace("Wed", "Quarta-feira")
+      .replace("Thu", "Quinta-feira")
+      .replace("Fri", "Sexta-feira")
+      .replace("Sat", "Sábado")
+      .replace("Sun", "Domingo")
+      .replace("Jan", "Janeiro")
+      .replace("Feb", "Fevereiro")
+      .replace("Mar", "Março")
+      .replace("Apr", "Abril")
+      .replace("May", "Maio")
+      .replace("Jun", "Junho")
+      .replace("Jul", "Julho")
+      .replace("Aug", "Agosto")
+      .replace("Sep", "Setembro")
+      .replace("Oct", "Outubro")
+      .replace("Nov", "Novembro")
+      .replace("Dec", "Dez")
+      .replace(/,/g, " -")
+      .split("");
+    console.log(convertedString);
+
+    return convertedString;
   }
 
   useEffect(() => {
@@ -133,12 +161,12 @@ export default function Profile({ handleLoggedChange }: ProfilePageProps) {
                             <Clock />
                             Data de criação da conta
                           </dt>
-                          <p>{user.metadata.creationTime}</p>
+                          <p>{formatDays(user.metadata.creationTime)}</p>
                           <dt>
                             <LockKeyOpen />
                             Último login realizado
                           </dt>
-                          <p>{user.metadata.lastSignInTime}</p>
+                          <p>{formatDays(user.metadata.lastSignInTime)}</p>
                           <dt>
                             <IdentificationCard />
                             Seu ID
