@@ -45,6 +45,9 @@ interface CoinPageProps {
     symbol: string;
     market_cap_rank: number;
     market_data: {
+      current_price: {
+        brl: number;
+      };
       market_cap_change_percentage_24h: number;
       high_24h: {
         brl: number;
@@ -163,6 +166,14 @@ export default function Coin({ coindata, handleLoggedChange }: CoinPageProps) {
                 <span>Valor mais alto</span>
                 <p>
                   {formatterToMoney.format(coindata.market_data.high_24h.brl)}
+                </p>
+              </li>
+              <li>
+                <span>Valor atual</span>
+                <p>
+                  {formatterToMoney.format(
+                    coindata.market_data.current_price.brl
+                  )}
                 </p>
               </li>
               <li>

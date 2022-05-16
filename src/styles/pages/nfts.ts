@@ -24,6 +24,7 @@ export const NFTsPresentation = styled.section`
     justify-content: center;
     align-items: center;
     padding: 0 24px;
+    text-align: center;
     span {
       font-size: 300%;
       text-align: center;
@@ -36,6 +37,7 @@ export const NFTsPresentation = styled.section`
   @media (max-width: 500px) {
     padding: 0 24px;
     margin: 16px auto 0;
+    text-align: center;
     > div {
       span {
         font-size: 250%;
