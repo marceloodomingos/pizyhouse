@@ -281,7 +281,7 @@ export const CardBox = styled.div<CardsProps>`
         justify-content: center;
         align-items: center;
         gap: 16px;
-        /* margin-top: 16px; */
+        margin: 16px 0;
         .avatar {
           display: flex;
           justify-content: center;
