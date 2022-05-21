@@ -50,14 +50,17 @@ export const Variables = css`
     --tertiary-hover: #8e37d770;
     --tertiary-lowopacity: #8e37d720;
 
+    --quartenary: #ea4c89;
+
     --pizy-yellow: #f6f884;
-    --pizy-yellow-lowopacity: #f6f88420;
+    --pizy-yellow-lowopacity: #f6f88450;
 
     // Other Values
     --max-width: 900px;
     --transition: 0.2s ease;
-    --transition-medium: 0.35s ease;
+    --transition-medium: 0.35s ease-in-out;
     --transition-low: 0.5s ease;
     --transition-turtle: 0.75s ease;
+    --transition-slowest: 3s ease-in-out;
   }
 `;

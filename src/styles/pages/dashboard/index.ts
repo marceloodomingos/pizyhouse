@@ -53,13 +53,15 @@ export const Banner = styled.section`
   background-image: linear-gradient(
     to bottom left,
     var(--background) 0%,
-    var(--primary) 35%,
-    var(--primary) 65%,
+    var(--primary) 25%,
+    var(--tertiary) 50%,
+    var(--primary) 75%,
     var(--background) 100%
   );
-  box-shadow: 0 0 0 2px var(--shape);
+  padding: 10px;
   border-radius: 4px;
   margin-bottom: 32px;
+  width: 100%;
   height: 300px;
   position: relative;
   overflow: visible;
@@ -85,6 +87,7 @@ export const Banner = styled.section`
     max-width: 200px;
     bottom: 16px;
     right: 0;
+    pointer-events: none;
     @media (max-width: 750px) {
       right: -16px;
       top: unset;
@@ -161,8 +164,12 @@ interface CardsProps {
 }
 
 export const CardBox = styled.div<CardsProps>`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   background: var(--shape);
   width: 100%;
+  /* height: 100%; */
   flex-basis: 500px;
   flex-shrink: 1;
   flex-grow: 1;
@@ -171,34 +178,98 @@ export const CardBox = styled.div<CardsProps>`
   transition: var(--transition);
   overflow: hidden;
   h3 {
+    padding: 12px 24px;
     text-transform: capitalize;
   }
-  &:hover {
-    cursor: pointer;
-    /* box-shadow: 0 0 0 2px var(--shape-dark); */
-    background: linear-gradient(
-      to bottom,
-      rgba(130, 87, 229, 0.1),
-      transparent
-    );
-    box-shadow: 0 0 0 2px var(--primary);
-    footer {
-      background: var(--primary);
-    }
-  }
   .container {
-    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    /* padding: 12px 24px; */
+    .coins {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      flex: 1;
+    }
+    .card {
+      width: 300px;
+      height: 150px;
+      background: linear-gradient(to right, black, var(--primary));
+      color: white;
+      border-radius: 4px;
+      padding: 8px 16px;
+      border-left: 10px solid var(--primary);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      position: relative;
+      transition: var(--transition);
+      transform: scale(1.1);
+      transform-origin: top;
+      margin: 8px 0 32px;
+      .name {
+        text-transform: uppercase;
+        max-width: 180px;
+        height: 25px;
+        position: absolute;
+        left: 16px;
+        text-overflow: clip;
+        overflow: hidden;
+      }
+      > header {
+        display: flex;
+        justify-content: space-between;
+        .title {
+          gap: 4px;
+          > span {
+            font-weight: bold;
+          }
+        }
+      }
+      > div {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 16px;
+        > img {
+          max-width: 24px;
+          filter: invert(1);
+          &:last-child {
+            max-width: 16px;
+          }
+        }
+      }
+      > footer {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        height: 35px;
+        > svg {
+          fill: var(--white);
+          width: 32px;
+          position: absolute;
+          right: 16px;
+        }
+      }
+    }
   }
   .content {
     width: 100%;
   }
-  footer {
+  > footer {
     width: 100%;
     text-align: center;
     background: var(--shape-dark);
     padding: 12px 24px;
     line-height: 120%;
     /* border-radius: 0 0 4px 4px; */
+    cursor: pointer;
   }
   ${({ user }) =>
     user &&
@@ -210,7 +281,7 @@ export const CardBox = styled.div<CardsProps>`
         justify-content: center;
         align-items: center;
         gap: 16px;
-        margin-top: 16px;
+        /* margin-top: 16px; */
         .avatar {
           display: flex;
           justify-content: center;
@@ -248,5 +319,75 @@ export const CardBox = styled.div<CardsProps>`
           /* width: 100%; */
         }
       }
+      &:hover {
+        cursor: pointer;
+        /* box-shadow: 0 0 0 2px var(--shape-dark); */
+        background: linear-gradient(
+          to bottom,
+          rgba(130, 87, 229, 0.1),
+          transparent
+        );
+        box-shadow: 0 0 0 2px var(--primary);
+        footer {
+          background: var(--primary);
+        }
+      }
     `}
+`;
+
+export const CoinInfo = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 12px 24px;
+  gap: 8px;
+  transition: var(--transition);
+  background: var(--shape-hover);
+  cursor: pointer;
+  &:nth-child(2n + 1) {
+    background: var(--shape-dark);
+  }
+  > div {
+    display: flex;
+    gap: 8px;
+    > span {
+      display: flex;
+      justify-content: flex-start;
+      min-width: 24px;
+      max-width: 24px;
+      &:after {
+        content: "º";
+      }
+    }
+    > p {
+      width: 100%;
+      position: relative;
+      &:after {
+        content: "⇒";
+        position: absolute;
+        visibility: hidden;
+        color: var(--text);
+        opacity: 0;
+        top: 0;
+        right: 0;
+        transform: translateX(50px);
+        transition: var(--transition-medium);
+      }
+    }
+  }
+  img {
+    width: 100%;
+    max-width: 24px;
+    height: 100%;
+    max-height: 24px;
+    pointer-events: none;
+  }
+  &:hover {
+    background: linear-gradient(to right, rgba(130, 87, 229, 0.5), transparent);
+    > div > p:after {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(20px);
+    }
+  }
 `;
