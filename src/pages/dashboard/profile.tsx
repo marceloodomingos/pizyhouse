@@ -69,9 +69,7 @@ export default function Profile({ handleLoggedChange }: ProfilePageProps) {
       .replace("Oct", "Outubro")
       .replace("Nov", "Novembro")
       .replace("Dec", "Dez")
-      .replace(/,/g, " -")
-      .split("");
-    console.log(convertedString);
+      .replace(/,/g, " -");
 
     return convertedString;
   }
@@ -171,7 +169,7 @@ export default function Profile({ handleLoggedChange }: ProfilePageProps) {
                             <IdentificationCard />
                             Seu ID
                           </dt>
-                          <p>{user.id}</p>
+                          <p>{user.id.replace(/\s/g, "")}</p>
                         </div>
                       </div>
                     </ProfileContainer>

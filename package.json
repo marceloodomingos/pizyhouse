@@ -10,15 +10,22 @@
   },
   "dependencies": {
     "axios": "^0.27.0",
+    "d3-dsv": "^3.0.1",
+    "d3-format": "^3.1.0",
+    "d3-scale": "^4.0.2",
+    "d3-time-format": "^4.1.0",
     "firebase": "^9.8.1",
     "moment": "^2.29.3",
     "next": "12.1.5",
     "phosphor-react": "^1.4.1",
+    "prop-types": "^15.8.1",
     "react": "18.0.0",
     "react-dom": "18.0.0",
     "react-google-charts": "^4.0.0",
     "react-infinite-scroll-hook": "^4.0.3",
+    "react-stockcharts": "^0.7.8",
     "sharp": "^0.30.4",
+    "shortid": "^2.2.16",
     "styled-components": "^5.3.5"
   },
   "devDependencies": {

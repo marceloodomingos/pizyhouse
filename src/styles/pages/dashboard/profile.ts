@@ -27,7 +27,7 @@ export const ProfileContainer = styled.div<ContainerProps>`
   height: max-content;
   flex-basis: 400px;
   flex-grow: 1;
-  padding: 24px 12px;
+  padding: 24px;
   border-radius: 4px;
   gap: 32px;
   .avatar {
@@ -78,7 +78,6 @@ export const ProfileContainer = styled.div<ContainerProps>`
     display: flex;
     flex-direction: column;
     width: 100%;
-    padding: 12px 24px;
     gap: 16px;
     .about {
       display: flex;
@@ -88,6 +87,8 @@ export const ProfileContainer = styled.div<ContainerProps>`
     p {
       color: var(--text);
       /* line-height: 125%; */
+      word-wrap: break-word;
+      text-align: justify;
       &.warn {
         color: var(--white);
         background: var(--attention);

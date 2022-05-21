@@ -53,6 +53,7 @@ export const CryptoInfos = styled.div`
       width: 100%;
       height: 100%;
       gap: 8px;
+      padding: 0 8px;
       /* border-bottom: 1px solid;
         border-image: linear-gradient(
             to right,
@@ -73,6 +74,31 @@ export const CryptoInfos = styled.div`
         max-width: 100px;
         border-radius: 4px;
       }
+      .current-price {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        margin: 8px 0;
+        span {
+          font-size: 16px;
+          text-transform: capitalize;
+          font-weight: normal;
+        }
+        p {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: var(--white);
+          background: var(--primary);
+          padding: 8px;
+          border-radius: 4px;
+          text-transform: uppercase;
+          font-weight: normal;
+          gap: 4px;
+          width: 100%;
+        }
+      }
     }
     .stats {
       width: 100%;
@@ -90,21 +116,22 @@ export const CryptoInfos = styled.div`
       }
       li {
         width: 100%;
-        margin: 0 auto;
-        display: flex;
-        justify-content: center;
+        display: grid;
+        grid-template-columns: 60fr 40fr;
         align-items: center;
+        justify-content: right;
         list-style-type: none;
-        span {
-          width: 60%;
+        > span {
+          /* width: 60%; */
           text-transform: capitalize;
           text-align: left;
           color: var(--white);
-          line-height: 100%;
+          line-height: 120%;
+          margin: 4px 0;
         }
-        p {
+        > p {
           position: relative;
-          width: 40%;
+          /* width: 40%; */
           text-align: right;
           color: var(--text);
           &.market_cap_rank {

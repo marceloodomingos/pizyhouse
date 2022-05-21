@@ -4,7 +4,7 @@ export const AboutUS = styled.section`
   max-width: 1120px;
   width: 100%;
   margin: 32px auto;
-  padding: 0 calc(16px + 6px) 0 16px;
+  padding: 0 24px;
   p {
     margin: 8px 0;
     text-align: justify;

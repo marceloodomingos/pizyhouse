@@ -68,7 +68,7 @@ export const NFTCard = styled.div`
   align-items: center;
   width: 100%;
   flex-basis: 340px;
-  flex-grow: 1;
+  /* flex-grow: 1; */
   min-height: 30rem;
   height: 100%;
   background: var(--shape);
@@ -297,6 +297,141 @@ export const NFTCard = styled.div`
     }
     button {
       filter: contrast(1) grayscale(1);
+    }
+  }
+`;
+
+export const NFTsAssets = styled.div`
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 20px;
+  gap: 16px;
+  dt {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 4px;
+    color: var(--primary);
+    font-weight: bold;
+    font-size: 16px;
+    text-transform: capitalize;
+    line-height: 100%;
+    border-image: linear-gradient(to left, var(--primary), transparent) 1;
+    border-bottom: 1px solid;
+    padding-bottom: 4px;
+    margin: 8px 0;
+    transition: var(--transition);
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+  .nft-assets {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+    width: 100%;
+    margin: 64px 0;
+    > img {
+      height: 500px;
+      border-radius: 4px;
+      @media (max-width: 1058px) {
+        height: 100%;
+        max-height: 500px;
+        width: 100%;
+        max-width: 500px;
+      }
+    }
+  }
+  .nft-banner {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    max-height: 350px;
+    width: 100vw;
+    overflow: hidden;
+    top: 0;
+    z-index: -1;
+    mask-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.1),
+      rgba(0, 0, 0, 0)
+    );
+    img {
+      width: 100%;
+      object-fit: cover;
+      filter: invert(41%) sepia(71%) saturate(4076%) hue-rotate(239deg)
+        brightness(94%) contrast(90%);
+    }
+  }
+  .about-nft {
+    display: flex;
+    flex-wrap: wrap;
+    flex-basis: 500px;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: flex-end;
+    @media (max-width: 1058px) {
+      justify-content: center;
+      align-items: center;
+      flex-basis: 100%;
+      .info {
+        text-align: left;
+        p {
+          text-align: justify;
+        }
+      }
+      dt {
+        justify-content: flex-start;
+        border-image: linear-gradient(to right, var(--primary), transparent) 1;
+      }
+      .owner {
+        .avatar {
+          flex-direction: row-reverse;
+        }
+      }
+    }
+    > div {
+      background: var(--shape);
+      padding: 24px;
+      border-radius: 4px;
+      width: 100%;
+      text-align: right;
+    }
+  }
+  .info {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    h1 {
+      line-height: 100%;
+    }
+    p {
+      text-align: right;
+      color: var(--text);
+    }
+  }
+  .avatar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 8px;
+    img {
+      border-radius: 50%;
+      width: 100%;
+      max-width: 32px;
     }
   }
 `;

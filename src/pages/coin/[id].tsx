@@ -10,6 +10,7 @@ import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import { CryptoInfos } from "../../styles/pages/coin";
 import { BGContent } from "~/components/BGContent/styles";
+import LoadingCircle from "~/components/Loading";
 
 function abbreviate(num: any) {
   const lookup = [
@@ -80,41 +81,32 @@ export default function Coin({ coindata, handleLoggedChange }: CoinPageProps) {
     )
       .then((res) => res.json())
       .then((data) => {
-        const cdata = data.map((d: any) => {
-          return {
-            time: d[0],
-            open: parseFloat(d[1]),
-            high: parseFloat(d[2]),
-            low: parseFloat(d[3]),
-            close: parseFloat(d[4]),
-          };
-        });
-        setChartInfo(cdata);
+        setChartInfo(data);
       })
       .catch((err) => console.log(err));
   }, [coindata.name]);
 
-  // const data = () => {
-  //   chartInfo.map(({ time, open, high, low, close }: ChartProps) => {
-  //     return [
-  //       ["Time", "a", "b", "c", "d"],
-  //       [{ time }, { open }, { high }, { low }, { close }],
-  //     ];
-  //   });
-  // };
+  const data = () => {
+    chartInfo.map((item) => {
+      return {
+        item,
+      };
+    });
+  };
+  console.log(data);
 
-  const data = [
-    ["Time", "a", "b", "c", "d"],
-    ["Mon", 20, 28, 38, 45],
-    ["Tue", 31, 38, 55, 66],
-    ["Wed", 50, 55, 77, 80],
-    ["Thu", 50, 77, 66, 77],
-    ["Fri", 15, 66, 22, 68],
-  ];
+  // const data = [
+  //   ["Day", "", "", "", ""],
+  //   ["Mon", 20, 28, 38, 45],
+  //   ["Tue", 31, 38, 55, 66],
+  //   ["Wed", 50, 55, 77, 80],
+  //   ["Thu", 50, 77, 66, 77],
+  //   ["Fri", 15, 66, 22, 68],
+  // ];
 
   const options = {
     legend: "none",
-    bar: { groupWidth: "100%" },
+    // bar: { groupWidth: "100%" },
     backgroundColor: "transparent",
     candlestick: {
       fallingColor: { strokeWidth: 0, fill: "#a52714" },
@@ -146,15 +138,23 @@ export default function Coin({ coindata, handleLoggedChange }: CoinPageProps) {
               <img src={coindata.image.large} alt={coindata.name} />
               <span>{coindata.name}</span>
               <p>{coindata.symbol}</p>
+              <div className="current-price">
+                <span>Valor Atual:</span>
+                <p>
+                  {formatterToMoney.format(
+                    coindata.market_data.current_price.brl
+                  )}
+                </p>
+              </div>
             </div>
             <div className="stats">
               <dt>Geral</dt>
               <li>
-                <span>Market cap rank</span>
+                <span>Classificação de capitalização de mercado</span>
                 <p className="market_cap_rank">{coindata.market_cap_rank}</p>
               </li>
               <li>
-                <span>Market cap change</span>
+                <span>Alteração do valor de mercado</span>
                 <p className="market_cap_change">
                   {coindata.market_data.market_cap_change_percentage_24h.toFixed(
                     2
@@ -166,14 +166,6 @@ export default function Coin({ coindata, handleLoggedChange }: CoinPageProps) {
                 <span>Valor mais alto</span>
                 <p>
                   {formatterToMoney.format(coindata.market_data.high_24h.brl)}
-                </p>
-              </li>
-              <li>
-                <span>Valor atual</span>
-                <p>
-                  {formatterToMoney.format(
-                    coindata.market_data.current_price.brl
-                  )}
                 </p>
               </li>
               <li>
@@ -189,14 +181,15 @@ export default function Coin({ coindata, handleLoggedChange }: CoinPageProps) {
               </li>
             </div>
           </div>
-          <div className="graph">
-            <Chart
+          <div id="candlestick-graph" className="graph">
+            {/* <Chart
               chartType="CandlestickChart"
-              width="100%"
+              width="inherit"
               height="500px"
               data={data}
               options={options}
-            />
+              loader={<LoadingCircle />}
+            /> */}
           </div>
         </CryptoInfos>
       </main>

@@ -57,6 +57,7 @@ export default function NFTS({ handleLoggedChange }: any) {
     creator: { profile_img_url: string; user: { username: string } };
     image_url: string;
     name: string;
+    token_id: string;
   }
 
   return (
@@ -114,6 +115,7 @@ export default function NFTS({ handleLoggedChange }: any) {
                   owner,
                   creator,
                   asset_contract,
+                  token_id,
                 }: NftsProps,
                 index: number
               ) => {
@@ -121,136 +123,137 @@ export default function NFTS({ handleLoggedChange }: any) {
                   <React.Fragment key={index}>
                     {(() => {
                       if (collection.is_nsfw == false) {
-                        return (
-                          <NFTCard>
-                            {image_url ? (
+                        if (image_url) {
+                          return (
+                            <NFTCard>
                               <div className="picture">
                                 <img src={image_url} alt={name} />
                               </div>
-                            ) : (
-                              <div className="picture notloaded">
-                                <b>Imagem não encontrada.</b>
-                                <p>Por favor, tente novamente.</p>
-                              </div>
-                            )}
-                            <div className="info">
-                              <>
-                                {(() => {
-                                  if (name != null) {
-                                    return <span>{name}</span>;
-                                  } else {
-                                    return (
-                                      <span className="notfound">
-                                        Nome não encontrado.
-                                      </span>
-                                    );
-                                  }
-                                })()}
-                                <div className="about-nft">
-                                  <dt>
-                                    <Cards />
-                                    Coleção
-                                  </dt>
-                                  <div>
-                                    <p>{collection.name}</p>
+                              <div className="info">
+                                <>
+                                  {(() => {
+                                    if (name != null) {
+                                      return <span>{name}</span>;
+                                    } else {
+                                      return (
+                                        <span className="notfound">
+                                          Nome não encontrado.
+                                        </span>
+                                      );
+                                    }
+                                  })()}
+                                  <div className="about-nft">
+                                    <dt>
+                                      <Cards />
+                                      Coleção
+                                    </dt>
+                                    <div>
+                                      <p>{collection.name}</p>
+                                    </div>
                                   </div>
-                                </div>
-                                {(() => {
-                                  if (owner != undefined || owner != null) {
-                                    if (
-                                      owner.user != undefined ||
-                                      owner.user != null
-                                    ) {
-                                      return (
-                                        <>
-                                          <div className="about-owner">
-                                            <dt>
-                                              <UserSwitch />
-                                              Atual dono
-                                            </dt>
-                                            <div>
-                                              <img
-                                                src={owner.profile_img_url}
-                                                alt={owner.user.username}
-                                              />
-                                              {(() => {
-                                                if (
-                                                  owner.user.username != null
-                                                ) {
-                                                  return (
-                                                    <p>{owner.user.username}</p>
-                                                  );
-                                                } else {
-                                                  return (
-                                                    <p className="notfound">
-                                                      Nome não encontrado.
-                                                    </p>
-                                                  );
-                                                }
-                                              })()}
+                                  {(() => {
+                                    if (owner != undefined || owner != null) {
+                                      if (
+                                        owner.user != undefined ||
+                                        owner.user != null
+                                      ) {
+                                        return (
+                                          <>
+                                            <div className="about-owner">
+                                              <dt>
+                                                <UserSwitch />
+                                                Atual dono
+                                              </dt>
+                                              <div>
+                                                <img
+                                                  src={owner.profile_img_url}
+                                                  alt={owner.user.username}
+                                                />
+                                                {(() => {
+                                                  if (
+                                                    owner.user.username != null
+                                                  ) {
+                                                    return (
+                                                      <p>
+                                                        {owner.user.username}
+                                                      </p>
+                                                    );
+                                                  } else {
+                                                    return (
+                                                      <p className="notfound">
+                                                        Nome não encontrado.
+                                                      </p>
+                                                    );
+                                                  }
+                                                })()}
+                                              </div>
                                             </div>
-                                          </div>
-                                        </>
-                                      );
+                                          </>
+                                        );
+                                      }
                                     }
-                                  }
-                                })()}
-                                {(() => {
-                                  if (creator != undefined || creator != null) {
+                                  })()}
+                                  {(() => {
                                     if (
-                                      creator.user != undefined ||
-                                      creator.user != null
+                                      creator != undefined ||
+                                      creator != null
                                     ) {
-                                      return (
-                                        <>
-                                          <div className="about-creator">
-                                            <dt>
-                                              <PencilCircle />
-                                              Criador
-                                            </dt>
-                                            <div>
-                                              <img
-                                                src={creator.profile_img_url}
-                                                alt={creator.user.username}
-                                              />
-                                              {(() => {
-                                                if (
-                                                  creator.user.username != null
-                                                ) {
-                                                  return (
-                                                    <p>
-                                                      {creator.user.username}
-                                                    </p>
-                                                  );
-                                                } else {
-                                                  return (
-                                                    <p className="notfound">
-                                                      Nome não encontrado.
-                                                    </p>
-                                                  );
-                                                }
-                                              })()}
+                                      if (
+                                        creator.user != undefined ||
+                                        creator.user != null
+                                      ) {
+                                        return (
+                                          <>
+                                            <div className="about-creator">
+                                              <dt>
+                                                <PencilCircle />
+                                                Criador
+                                              </dt>
+                                              <div>
+                                                <img
+                                                  src={creator.profile_img_url}
+                                                  alt={creator.user.username}
+                                                />
+                                                {(() => {
+                                                  if (
+                                                    creator.user.username !=
+                                                    null
+                                                  ) {
+                                                    return (
+                                                      <p>
+                                                        {creator.user.username}
+                                                      </p>
+                                                    );
+                                                  } else {
+                                                    return (
+                                                      <p className="notfound">
+                                                        Nome não encontrado.
+                                                      </p>
+                                                    );
+                                                  }
+                                                })()}
+                                              </div>
                                             </div>
-                                          </div>
-                                        </>
-                                      );
+                                          </>
+                                        );
+                                      }
                                     }
-                                  }
-                                })()}
-                              </>
-                              {/* <Link href={nft.permalink} passHref>
+                                  })()}
+                                </>
+                                {/* <Link href={nft.permalink} passHref>
                             Adquirir
                           </Link> */}
-                              <button
-                                onClick={() => {
-                                  window.location.href = `/nfts/${asset_contract.address}`;
-                                }}
-                              >
-                                Ver Mais
-                              </button>
-                            </div>
-                          </NFTCard>
-                        );
+                                <button
+                                  onClick={() => {
+                                    window.location.href = `/nfts/${token_id}`;
+                                  }}
+                                >
+                                  Ver Mais
+                                </button>
+                              </div>
+                            </NFTCard>
+                          );
+                        }
                       } else {
                         null;
                       }

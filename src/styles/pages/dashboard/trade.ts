@@ -13,7 +13,7 @@ export const OfferContainer = styled.div`
   max-width: 1010px;
   margin: 0 auto;
   @media (max-width: 900px) {
-    flex-direction: column;
+    flex-direction: column-reverse;
     #trade-icon {
       transform: rotate(90deg);
     }

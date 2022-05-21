@@ -27,7 +27,7 @@ export default function DashboardNavbar({ handleLoggedChange }: NavbarProps) {
       .auth()
       .signOut()
       .then(function () {
-        confirm("Deslogado com sucesso");
+        confirm("Deslogado com sucesso.");
       })
       .catch(function (error) {
         console.log(error);
@@ -61,11 +61,7 @@ export default function DashboardNavbar({ handleLoggedChange }: NavbarProps) {
                 </p>
               )}
               <li id="user">
-                {user.avatar ? (
-                  <img src={user.avatar} alt={user.name} />
-                ) : (
-                  <User />
-                )}
+                {user.avatar ? <img src={user.avatar} /> : <User />}
                 <ul className="dropdown">
                   <li>
                     <House weight="bold" />

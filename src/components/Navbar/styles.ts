@@ -220,6 +220,7 @@ export const NavbarContainer = styled.nav`
           flex-direction: column;
           z-index: 1000;
           transition: var(--transition);
+          /* overflow: hidden auto; */
           li {
             width: 100%;
             height: 100%;
@@ -253,13 +254,17 @@ export const NavbarContainer = styled.nav`
           }
           &:before {
             content: "";
-            width: 12px;
-            height: 12px;
-            background: var(--primary);
+            height: 100%;
+            max-height: 16px;
+            width: 100%;
+            max-width: 16px;
+            border-radius: 4px;
+            border-left: 16px solid transparent;
+            border-right: 16px solid transparent;
+            border-bottom: 16px solid var(--primary);
             position: absolute;
-            top: -4px;
-            right: 18px;
-            transform: rotate(45deg);
+            top: -20px;
+            right: 0;
             &:hover {
               ul {
                 display: flex;
@@ -284,7 +289,7 @@ export const NavbarContainer = styled.nav`
     .mobile-menu {
       width: 80px;
       height: 80px;
-      padding-bottom: 40px;
+      /* padding-bottom: 40px; */
       display: flex;
       justify-content: center;
       align-items: center;
@@ -296,7 +301,7 @@ export const NavbarContainer = styled.nav`
         height: 3px;
         position: relative;
         transition: background 10ms 300ms ease;
-        transform: translateY(20px);
+        /* transform: translateY(20px); */
         &:before,
         &:after {
           transition: top 300ms 350ms ease, transform 300ms 50ms ease;
@@ -405,7 +410,7 @@ export const MobileMenu = styled.div`
         align-items: center;
         flex: 1;
         height: 100%;
-        padding: 24px 12px;
+        padding: 0 12px 8vh;
         li {
           display: flex;
           justify-content: center;
@@ -456,7 +461,36 @@ export const UserLinks = styled.div`
   margin: 16px auto;
   gap: 8px;
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   justify-content: center;
   align-items: center;
+  button {
+    border-radius: 4px;
+    padding: 8px;
+    &.signin {
+      background: transparent;
+      color: var(--white);
+      border: 1px solid var(--primary);
+      width: 100%;
+      max-width: 200px;
+      &:hover {
+        background: var(--primary-lowopacity);
+      }
+    }
+    &.signup {
+      animation: ${bgInfinite} 2s linear infinite;
+      background-size: 300% 100%;
+      background-image: linear-gradient(
+        to right,
+        var(--primary),
+        var(--secondary),
+        var(--tertiary),
+        var(--secondary),
+        var(--primary)
+      );
+      color: var(--white);
+      width: 100%;
+      max-width: 200px;
+    }
+  }
 `;

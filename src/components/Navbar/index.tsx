@@ -36,7 +36,7 @@ export default function Navbar({ handleLoggedChange }: NavbarProps) {
       .auth()
       .signOut()
       .then(function () {
-        confirm("Deslogado com sucesso");
+        confirm("Deslogado com sucesso.");
         window.location.reload();
       })
       .catch(function (error) {
@@ -132,11 +132,7 @@ export default function Navbar({ handleLoggedChange }: NavbarProps) {
                     </Link>
                   </li>
                   <li id="user">
-                    {user.avatar ? (
-                      <img src={user.avatar} alt={user.name} />
-                    ) : (
-                      <User />
-                    )}
+                    {user.avatar ? <img src={user.avatar} /> : <User />}
                     <ul className="dropdown">
                       <li>
                         <Gauge weight="bold" />
@@ -191,7 +187,7 @@ export default function Navbar({ handleLoggedChange }: NavbarProps) {
             </li>
             <div className="divider" />
             <UserLinks>
-              <h3>Usuário</h3>
+              {/* <h3>Usuário</h3> */}
               {!user ? (
                 <>
                   <button
@@ -219,11 +215,7 @@ export default function Navbar({ handleLoggedChange }: NavbarProps) {
                       window.location.href = "/dashboard";
                     }}
                   >
-                    {user.avatar ? (
-                      <img src={user.avatar} alt={user.name} />
-                    ) : (
-                      <User />
-                    )}
+                    {user.avatar ? <img src={user.avatar} /> : <User />}
                     {/* <ul className="dropdown">
                       <li>
                         <Gauge weight="bold" />

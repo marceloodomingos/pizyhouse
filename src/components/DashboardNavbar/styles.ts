@@ -244,13 +244,17 @@ export const NavbarContainer = styled.nav`
           }
           &:before {
             content: "";
-            width: 12px;
-            height: 12px;
-            background: var(--primary);
+            height: 100%;
+            max-height: 16px;
+            width: 100%;
+            max-width: 16px;
+            border-radius: 4px;
+            border-left: 16px solid transparent;
+            border-right: 16px solid transparent;
+            border-bottom: 16px solid var(--primary);
             position: absolute;
-            top: -4px;
-            right: 18px;
-            transform: rotate(45deg);
+            top: -20px;
+            right: 0;
             &:hover {
               ul {
                 display: flex;

@@ -70,9 +70,20 @@ export const AsideNavbar = styled.aside`
           min-height: 32px;
           max-height: 32px;
         }
-        &:hover {
+        &:hover,
+        &.active {
           border-left: 2px solid var(--primary);
           color: var(--white);
+        }
+        &.active {
+          background: var(--shape-dark);
+        }
+      }
+      @media (max-height: 720px) {
+        height: 100%;
+        li,
+        a {
+          height: 100%;
         }
       }
     }
@@ -84,6 +95,9 @@ export const AsideNavbar = styled.aside`
       width: 100%;
       cursor: pointer;
       gap: 16px;
+      @media (max-height: 720px) {
+        display: none;
+      }
     }
     @media (max-width: 500px) {
       transform: translateX(-100%);
@@ -98,7 +112,7 @@ export const AsideNavbar = styled.aside`
     left: 0;
     width: 80px;
     height: 80px;
-    padding-bottom: 40px;
+    /* padding-bottom: 40px; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -110,7 +124,7 @@ export const AsideNavbar = styled.aside`
       height: 3px;
       position: relative;
       transition: background 10ms 300ms ease;
-      transform: translateY(20px);
+      /* transform: translateY(20px); */
       &:before,
       &:after {
         transition: top 300ms 350ms ease, transform 300ms 50ms ease;

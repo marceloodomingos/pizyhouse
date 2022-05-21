@@ -17,6 +17,7 @@ import {
 } from "phosphor-react";
 
 export default function Aside() {
+  const currentUrl = location.pathname;
   const [toggleAside, setToggleAside] = useState(false);
   const mobileMenu = useRef(null);
 
@@ -29,37 +30,63 @@ export default function Aside() {
           </a>
           <div>
             <li>
-              <a href="/dashboard">
+              <a
+                title="Painel de Controle"
+                className={currentUrl == "/dashboard" ? "active" : ""}
+                href="/dashboard"
+              >
                 <Gauge />
                 <p>Dashboard</p>
               </a>
             </li>
             <li>
-              <a href="/dashboard/trade">
+              <a
+                title="Trocas"
+                className={currentUrl == "/dashboard/trade" ? "active" : ""}
+                href="/dashboard/trade"
+              >
                 <ArrowsClockwise />
                 <p>Trocar</p>
               </a>
             </li>
             <li>
-              <a href="/dashboard/wallet">
+              <a
+                title="Carteira"
+                className={currentUrl == "/dashboard/wallet" ? "active" : ""}
+                href="/dashboard/wallet"
+              >
                 <Wallet />
                 <p>Carteira</p>
               </a>
             </li>
             <li>
-              <a href="/dashboard/analyze">
+              <a
+                title="Analizar"
+                className={currentUrl == "/dashboard/analyze" ? "active" : ""}
+                href="/dashboard/analyze"
+              >
                 <TrendUp />
                 <p>Analizar</p>
               </a>
             </li>
             <li>
-              <a href="/dashboard/collections">
+              <a
+                title="Coleções"
+                className={
+                  currentUrl == "/dashboard/collections" ? "active" : ""
+                }
+                href="/dashboard/collections"
+              >
                 <Stack />
                 <p>Coleções</p>
               </a>
             </li>
             <li>
-              <a href="/dashboard/report">
+              <a
+                title="Reportar"
+                className={currentUrl == "/dashboard/report" ? "active" : ""}
+                href="/dashboard/report"
+              >
                 <Warning />
                 <p>Reportar</p>
               </a>

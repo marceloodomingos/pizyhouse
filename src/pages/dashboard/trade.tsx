@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "~/contexts/AuthContext";
 import Aside from "../../components/Aside";
 import FooterApp from "../../components/FooterApp";
@@ -38,7 +38,11 @@ export default function Trade({ handleLoggedChange }: ProfilePageProps) {
   const { user } = useContext(AuthContext);
   const [randomUser, setRandomUser] = useState([]);
   const [randomUserLoading, setRandomUserLoading] = useState(false);
-  const [trades, setTrades] = useState(1);
+  const [tradeTimeout, setTradeTimeout] = useState(false);
+  const [tradeTimeoutDate, setTradeTimeoutDate] = useState(0);
+
+  const PIZYTradeCookiesTimeout = localStorage.getItem("PIZY_TCTO");
+  const PIZYTradeCookiesTimeSeconds = localStorage.getItem("PIZY_TCTOS");
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -55,7 +59,13 @@ export default function Trade({ handleLoggedChange }: ProfilePageProps) {
   }, []);
 
   useEffect(() => {
-    if (trades >= 1) {
+    if (!PIZYTradeCookiesTimeout) {
+      localStorage.setItem("PIZY_TCTO", JSON.stringify(false));
+    }
+    if (!PIZYTradeCookiesTimeSeconds) {
+      localStorage.setItem("PIZY_TCTOS", JSON.stringify(0));
+    }
+    if (JSON.parse(PIZYTradeCookiesTimeout) == false) {
       const randomUserTrade = async () => {
         setRandomUserLoading(true);
         const randomUserTrade = await getRandomUser();
@@ -65,6 +75,39 @@ export default function Trade({ handleLoggedChange }: ProfilePageProps) {
       randomUserTrade();
     }
   }, []);
+
+  const handleClearProposals = () => {
+    window.scrollTo(0, 0);
+
+    const actualDate = new Date().getTime() + 10000;
+    localStorage.setItem("PIZY_TCTOS", JSON.stringify(actualDate));
+
+    if (JSON.parse(PIZYTradeCookiesTimeout) == false) {
+      setTradeTimeout(true);
+      localStorage.setItem("PIZY_TCTO", JSON.stringify(true));
+    }
+  };
+
+  var proposalsTimer = setInterval(function () {
+    const now = new Date().getTime();
+    const endTimeout = tradeTimeoutDate;
+
+    const countdown = endTimeout - now;
+
+    var days = Math.floor(countdown / (1000 * 60 * 60 * 24));
+    var hours = Math.floor(
+      (countdown % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+    );
+    var minutes = Math.floor((countdown % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((countdown % (1000 * 60)) / 1000);
+
+    if (countdown <= 0) {
+      clearInterval(proposalsTimer);
+      // setTradeTimeout(false);
+      localStorage.setItem("PIZY_TCTO", JSON.stringify(false));
+      localStorage.removeItem("PIZY_TCTOS");
+    }
+  }, 1000);
 
   interface RandomUserProps {
     picture: {
@@ -98,7 +141,7 @@ export default function Trade({ handleLoggedChange }: ProfilePageProps) {
           <DashboardNavbar handleLoggedChange={handleLoggedChange} />
           <Aside />
           <MainApp>
-            {trades ? (
+            {JSON.parse(PIZYTradeCookiesTimeout) == false ? (
               <div className="container">
                 <h1>Trocas</h1>
                 <OfferContainer>
@@ -132,7 +175,7 @@ export default function Trade({ handleLoggedChange }: ProfilePageProps) {
                         {randomUser.map(
                           ({ picture, name }: RandomUserProps) => {
                             return (
-                              <>
+                              <React.Fragment key={name.first}>
                                 <div className="avatar">
                                   <div className="user">
                                     <img src={picture.large} />
@@ -147,7 +190,7 @@ export default function Trade({ handleLoggedChange }: ProfilePageProps) {
                                     </h3>
                                   </div>
                                 </div>
-                              </>
+                              </React.Fragment>
                             );
                           }
                         )}
@@ -165,7 +208,7 @@ export default function Trade({ handleLoggedChange }: ProfilePageProps) {
                         {randomUser.map(
                           ({ picture, name }: RandomUserProps) => {
                             return (
-                              <span>
+                              <span key={name.first}>
                                 {name.first}&nbsp;
                                 {name.last}
                               </span>
@@ -176,8 +219,8 @@ export default function Trade({ handleLoggedChange }: ProfilePageProps) {
                       </h3>
                     </TradeContent>
                     <TradeActions>
-                      <button onClick={() => setTrades(0)}>Aceitar</button>
-                      <button onClick={() => setTrades(0)}>Recusar</button>
+                      <button onClick={handleClearProposals}>Aceitar</button>
+                      <button onClick={handleClearProposals}>Recusar</button>
                     </TradeActions>
                   </TradeContainer>
                 </>
