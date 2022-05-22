@@ -39,8 +39,9 @@ export default function Error404({ handleLoggedChange }: Error404Props) {
           <span>O que você está fazendo aqui?!</span>
           <div className="phrases">
             <p>
-              Que estranho! Parece que esse rumo não é tão fácil quanto os
-              propósitos da PIZY, não é? Que tal tentar voltar ao início?
+              Que estranho! Parece que acessar essa rota não é tão simples
+              quanto os propósitos da PIZY, não é? Que tal tentar voltar ao
+              início?
             </p>
           </div>
           <Link href="/">Voltar ao início</Link>

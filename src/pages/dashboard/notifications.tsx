@@ -10,11 +10,13 @@ import { useRouter } from "next/router";
 import { auth } from "~/services/firebase";
 import LoadingCircle from "~/components/Loading";
 
-interface ProfilePageProps {
+interface NotificationPageProps {
   handleLoggedChange: () => void;
 }
 
-export default function Profile({ handleLoggedChange }: ProfilePageProps) {
+export default function Notification({
+  handleLoggedChange,
+}: NotificationPageProps) {
   const router = useRouter();
   const { user } = useContext(AuthContext);
 

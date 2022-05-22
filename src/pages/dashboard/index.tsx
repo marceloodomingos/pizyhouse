@@ -18,6 +18,7 @@ import { useRouter } from "next/router";
 import LoadingCircle from "~/components/Loading";
 import AbstractHead from "~/assets/images/abstract-head.png";
 import { User } from "phosphor-react";
+import PIZYCard from "~/components/Card";
 
 interface DashboardPageProps {
   topcoins: any;
@@ -120,7 +121,9 @@ export default function Dashboard({
                     window.location.href = "/dashboard/profile";
                   }}
                 >
-                  <h3>Seu perfil</h3>
+                  <header>
+                    <h3>Seu perfil</h3>
+                  </header>
                   <div className="container">
                     <div className="content">
                       {user.avatar ? (
@@ -161,8 +164,17 @@ export default function Dashboard({
                   </footer>
                 </CardBox>
                 <CardBox>
-                  <h3>Melhores moedas do momento</h3>
-                  <div className="container">
+                  <header>
+                    <h3>Melhores moedas do momento</h3>
+                    <p
+                      onClick={() => {
+                        window.location.href = "/topday";
+                      }}
+                    >
+                      Ver mais
+                    </p>
+                  </header>
+                  <div className="container full-container">
                     <div className="coins">
                       {coins.map(
                         ({
@@ -183,7 +195,44 @@ export default function Dashboard({
                               <div>
                                 <span>{market_cap_rank}</span>
                                 <img src={image} alt={symbol} />
-                                <p>{name}</p>
+                                <p>
+                                  {name}
+                                  <b>
+                                    <svg
+                                      xmlnsXlink="http://www.w3.org/1999/xlink"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                      width="32"
+                                      height="32"
+                                      fill="#ffffff"
+                                      viewBox="0 0 256 256"
+                                    >
+                                      <rect
+                                        width="256"
+                                        height="256"
+                                        fill="none"
+                                      ></rect>
+                                      <line
+                                        x1="40"
+                                        y1="128"
+                                        x2="216"
+                                        y2="128"
+                                        fill="none"
+                                        stroke="#FFFFFF"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="16px"
+                                      ></line>
+                                      <polyline
+                                        points="144 56 216 128 144 200"
+                                        fill="none"
+                                        stroke="#FFFFFF"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="16px"
+                                      ></polyline>
+                                    </svg>
+                                  </b>
+                                </p>
                               </div>
                               {formatterToMoney.format(current_price)}
                             </CoinInfo>
@@ -195,50 +244,11 @@ export default function Dashboard({
                 </CardBox>
                 {user.name && (
                   <CardBox>
-                    <h3>Seus cartões</h3>
+                    <header>
+                      <h3>Seus cartões</h3>
+                    </header>
                     <div className="container">
-                      <div className="card">
-                        <header>
-                          <div className="title">
-                            <span>PIZY</span>Card.
-                          </div>
-                          <p>
-                            Starter
-                            {/* {(() => {
-                              switch (post) {
-                                default:
-                                  return "Starter";
-                                case "Business":
-                                  return "Business";
-                                case "CEO":
-                                  return "CEO";
-                                case "Developer":
-                                  return "Developer";
-                              }
-                            })()} */}
-                          </p>
-                        </header>
-                        <div>
-                          <img
-                            src="https://raw.githubusercontent.com/gelzinn/ph-assets/main/chip.png"
-                            alt="Card Chip"
-                          />
-                          <img
-                            src="https://raw.githubusercontent.com/gelzinn/ph-assets/main/aproximation.png"
-                            alt="Card Aproximation"
-                          />
-                        </div>
-                        <footer>
-                          <div className="name">{user.name}</div>
-                          <svg
-                            role="img"
-                            viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path d="M11.343 18.031c.058.049.12.098.181.146-1.177.783-2.59 1.238-4.107 1.238C3.32 19.416 0 16.096 0 12c0-4.095 3.32-7.416 7.416-7.416 1.518 0 2.931.456 4.105 1.238-.06.051-.12.098-.165.15C9.6 7.489 8.595 9.688 8.595 12c0 2.311 1.001 4.51 2.748 6.031zm5.241-13.447c-1.52 0-2.931.456-4.105 1.238.06.051.12.098.165.15C14.4 7.489 15.405 9.688 15.405 12c0 2.31-1.001 4.507-2.748 6.031-.058.049-.12.098-.181.146 1.177.783 2.588 1.238 4.107 1.238C20.68 19.416 24 16.096 24 12c0-4.094-3.32-7.416-7.416-7.416zM12 6.174c-.096.075-.189.15-.28.231C10.156 7.764 9.169 9.765 9.169 12c0 2.236.987 4.236 2.551 5.595.09.08.185.158.28.232.096-.074.189-.152.28-.232 1.563-1.359 2.551-3.359 2.551-5.595 0-2.235-.987-4.236-2.551-5.595-.09-.08-.184-.156-.28-.231z" />
-                          </svg>
-                        </footer>
-                      </div>
+                      <PIZYCard name={user.name} />
                     </div>
                     <footer
                       onClick={() => {
@@ -249,10 +259,20 @@ export default function Dashboard({
                     </footer>
                   </CardBox>
                 )}
-                {/* <CardBox>
-                  <h3>Crescimento da plataforma</h3>
+                <CardBox>
+                  <header>
+                    <h3>Suas moedas</h3>
+                  </header>
                   <div className="container"></div>
-                </CardBox> */}
+                </CardBox>
+                <CardBox>
+                  <header>
+                    <h3>Novidades</h3>
+                  </header>
+                  <div className="container">
+                    <span></span>
+                  </div>
+                </CardBox>
               </RecentStats>
             </div>
           </MainApp>

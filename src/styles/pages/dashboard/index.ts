@@ -52,11 +52,11 @@ export const Banner = styled.section`
   background-size: 300% 100%;
   background-image: linear-gradient(
     to bottom left,
-    var(--background) 0%,
+    var(--background) -20%,
     var(--primary) 25%,
     var(--tertiary) 50%,
     var(--primary) 75%,
-    var(--background) 100%
+    var(--background) 120%
   );
   padding: 10px;
   border-radius: 4px;
@@ -177,9 +177,20 @@ export const CardBox = styled.div<CardsProps>`
   border-radius: 4px;
   transition: var(--transition);
   overflow: hidden;
-  h3 {
+  > header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 12px 24px;
     text-transform: capitalize;
+    > p {
+      color: var(--text);
+      cursor: pointer;
+      &:hover {
+        text-decoration: underline;
+        text-underline-offset: 1px;
+      }
+    }
   }
   .container {
     display: flex;
@@ -187,76 +198,16 @@ export const CardBox = styled.div<CardsProps>`
     justify-content: center;
     align-items: center;
     height: 100%;
-    /* padding: 12px 24px; */
+    padding: 12px 0;
+    &.full-container {
+      padding: unset;
+    }
     .coins {
       display: flex;
       flex-direction: column;
       width: 100%;
       height: 100%;
       flex: 1;
-    }
-    .card {
-      width: 300px;
-      height: 150px;
-      background: linear-gradient(to right, black, var(--primary));
-      color: white;
-      border-radius: 4px;
-      padding: 8px 16px;
-      border-left: 10px solid var(--primary);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      overflow: hidden;
-      position: relative;
-      transition: var(--transition);
-      transform: scale(1.1);
-      transform-origin: top;
-      margin: 8px 0 32px;
-      .name {
-        text-transform: uppercase;
-        max-width: 180px;
-        height: 25px;
-        position: absolute;
-        left: 16px;
-        text-overflow: clip;
-        overflow: hidden;
-      }
-      > header {
-        display: flex;
-        justify-content: space-between;
-        .title {
-          gap: 4px;
-          > span {
-            font-weight: bold;
-          }
-        }
-      }
-      > div {
-        width: 100%;
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        gap: 16px;
-        > img {
-          max-width: 24px;
-          filter: invert(1);
-          &:last-child {
-            max-width: 16px;
-          }
-        }
-      }
-      > footer {
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        height: 35px;
-        > svg {
-          fill: var(--white);
-          width: 32px;
-          position: absolute;
-          right: 16px;
-        }
-      }
     }
   }
   .content {
@@ -270,6 +221,9 @@ export const CardBox = styled.div<CardsProps>`
     line-height: 120%;
     /* border-radius: 0 0 4px 4px; */
     cursor: pointer;
+    &:hover {
+      background: var(--primary);
+    }
   }
   ${({ user }) =>
     user &&
@@ -338,7 +292,9 @@ export const CardBox = styled.div<CardsProps>`
 export const CoinInfo = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
+  height: 100%;
   padding: 12px 24px;
   gap: 8px;
   transition: var(--transition);
@@ -349,12 +305,14 @@ export const CoinInfo = styled.div`
   }
   > div {
     display: flex;
-    gap: 8px;
+    gap: 16px;
     > span {
       display: flex;
-      justify-content: flex-start;
+      justify-content: flex-end;
       min-width: 24px;
+      width: 24px;
       max-width: 24px;
+      height: 24px;
       &:after {
         content: "º";
       }
@@ -362,16 +320,25 @@ export const CoinInfo = styled.div`
     > p {
       width: 100%;
       position: relative;
-      &:after {
-        content: "⇒";
+      > b {
         position: absolute;
         visibility: hidden;
-        color: var(--text);
         opacity: 0;
         top: 0;
         right: 0;
-        transform: translateX(50px);
+        transform: translateX(100px);
+        width: 100%;
+        max-width: 24px;
+        height: 100%;
+        max-height: 24px;
         transition: var(--transition-medium);
+        svg {
+          width: 100%;
+          max-width: 24px;
+          height: 100%;
+          max-height: 24px;
+          pointer-events: none;
+        }
       }
     }
   }
@@ -384,10 +351,10 @@ export const CoinInfo = styled.div`
   }
   &:hover {
     background: linear-gradient(to right, rgba(130, 87, 229, 0.5), transparent);
-    > div > p:after {
+    > div > p > b {
       opacity: 1;
       visibility: visible;
-      transform: translateX(20px);
+      transform: translateX(32px);
     }
   }
 `;
