@@ -65,8 +65,8 @@ export default function Wallet({ handleLoggedChange }: WalletPageProps) {
                 ) : (
                   <p>
                     Você não pode ter cartões PIZY. Para obter um, é necessário
-                    um <b>nome</b>, que pode ser obtido ao criar uma conta com a{" "}
-                    <i>Google</i>.
+                    um <b>nome</b>, que pode ser inserido ao criar uma conta com
+                    a<i>Google</i>.
                   </p>
                 )}
               </section>

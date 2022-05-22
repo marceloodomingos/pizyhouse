@@ -2778,6 +2778,11 @@ react-is@^16.13.1, react-is@^16.7.0:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
+react-parallax-tilt@^1.7.35:
+  version "1.7.35"
+  resolved "https://registry.yarnpkg.com/react-parallax-tilt/-/react-parallax-tilt-1.7.35.tgz#d9cb9799d149ed26820327803c43f64f00fec4d0"
+  integrity sha512-xejXrQ659IQdPsmKL8Tc3vM98Uteql0+cm47GcgldT1OL5BmAQ4zQYYq6M92LFF1Nij28JJrQHANWHXsvIdWRg==
+
 react-stockcharts@^0.7.8:
   version "0.7.8"
   resolved "https://registry.yarnpkg.com/react-stockcharts/-/react-stockcharts-0.7.8.tgz#d127a113479835be1a0ef7c37e5b5808740b9803"

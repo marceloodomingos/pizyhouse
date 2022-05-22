@@ -169,7 +169,8 @@ export const CardBox = styled.div<CardsProps>`
   justify-content: space-between;
   background: var(--shape);
   width: 100%;
-  /* height: 100%; */
+  /* height: max-content; */
+  min-height: 250px;
   flex-basis: 500px;
   flex-shrink: 1;
   flex-grow: 1;
@@ -181,14 +182,42 @@ export const CardBox = styled.div<CardsProps>`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 24px;
+    padding: 24px;
     text-transform: capitalize;
+    line-height: 100%;
+    position: relative;
     > p {
       color: var(--text);
       cursor: pointer;
-      &:hover {
+      /* &:hover {
         text-decoration: underline;
         text-underline-offset: 1px;
+      } */
+    }
+    @media (max-width: 600px) {
+      padding: 16px;
+      > p {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex: 1;
+        text-align: right;
+        color: transparent;
+        position: relative;
+        &:before {
+          position: absolute;
+          right: 4px;
+          width: 4px;
+          max-width: 4px;
+          height: 100%;
+          max-height: 4px;
+          content: "";
+          border: solid var(--primary);
+          border-width: 0 3px 3px 0;
+          display: inline-block;
+          padding: 3px;
+          transform: rotate(-45deg);
+        }
       }
     }
   }
@@ -355,6 +384,12 @@ export const CoinInfo = styled.div`
       opacity: 1;
       visibility: visible;
       transform: translateX(32px);
+    }
+  }
+  @media (max-width: 500px) {
+    padding: 12px 16px;
+    > div {
+      gap: 8px;
     }
   }
 `;

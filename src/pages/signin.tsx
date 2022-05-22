@@ -46,8 +46,14 @@ export default function SignIn({ handleLoggedChange }: SignInProps) {
   }
 
   async function loginWithGoogle() {
-    await signInWithGoogle();
-    window.location.href = "/dashboard";
+    try {
+      await signInWithGoogle();
+      window.location.href = "/dashboard";
+    } catch (error) {
+      if (error.code == "auth/popup-closed-by-user") {
+        return null;
+      }
+    }
   }
 
   return (

@@ -19,6 +19,7 @@ import LoadingCircle from "~/components/Loading";
 import AbstractHead from "~/assets/images/abstract-head.png";
 import { User } from "phosphor-react";
 import PIZYCard from "~/components/Card";
+import NothingHere from "~/components/NothingHere";
 
 interface DashboardPageProps {
   topcoins: any;
@@ -242,35 +243,49 @@ export default function Dashboard({
                     </div>
                   </div>
                 </CardBox>
-                {user.name && (
-                  <CardBox>
-                    <header>
-                      <h3>Seus cartões</h3>
-                    </header>
-                    <div className="container">
-                      <PIZYCard name={user.name} />
-                    </div>
-                    <footer
-                      onClick={() => {
-                        window.location.href = "/dashboard/wallet";
-                      }}
-                    >
-                      Veja seus cartões aqui.
-                    </footer>
-                  </CardBox>
-                )}
                 <CardBox>
                   <header>
-                    <h3>Suas moedas</h3>
+                    <h3>Seus cartões</h3>
                   </header>
-                  <div className="container"></div>
+                  <div className="container">
+                    {user.name ? (
+                      <PIZYCard name={user.name} />
+                    ) : (
+                      <p>
+                        Você não pode ter cartões PIZY. Para obter um, é
+                        necessário um <b>nome</b>, que pode ser inserido ao
+                        criar uma conta com a<i>Google</i>.
+                      </p>
+                    )}
+                  </div>
+                  <footer
+                    onClick={() => {
+                      window.location.href = "/dashboard/wallet";
+                    }}
+                  >
+                    Veja seus cartões aqui.
+                  </footer>
                 </CardBox>
                 <CardBox>
                   <header>
-                    <h3>Novidades</h3>
+                    <h3>Suas melhores moedas</h3>
                   </header>
                   <div className="container">
-                    <span></span>
+                    <NothingHere
+                      icon="Coins"
+                      text="Nenhuma moeda até o momento."
+                    />
+                  </div>
+                </CardBox>
+                <CardBox>
+                  <header>
+                    <h3>Suas melhores nfts</h3>
+                  </header>
+                  <div className="container">
+                    <NothingHere
+                      icon="Image"
+                      text="Nenhuma NFT até o momento."
+                    />
                   </div>
                 </CardBox>
               </RecentStats>

@@ -1,21 +1,35 @@
 import { useRouter } from "next/router";
-import { FileX, LinkBreak, XCircle } from "phosphor-react";
+import { Coins, FileX, Image, Link, LinkBreak } from "phosphor-react";
 import { NothingContainer } from "./styles";
 
 interface NothingProps {
   text: string;
   obs?: string;
   more?: boolean;
+  icon?: string;
 }
 
-export default function NothingHere({ text, obs, more }: NothingProps) {
+export default function NothingHere({ text, obs, more, icon }: NothingProps) {
   const router = useRouter();
 
   return (
     <>
       <NothingContainer>
         <div>
-          <FileX />
+          {(() => {
+            switch (icon) {
+              default:
+                return <FileX />;
+              case "Link":
+                return <Link />;
+              case "LinkBreak":
+                return <LinkBreak />;
+              case "Coins":
+                return <Coins />;
+              case "Image":
+                return <Image />;
+            }
+          })()}
           <p>
             <b>{text}</b>
           </p>
