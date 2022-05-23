@@ -61,6 +61,13 @@ export default function Trade({ handleLoggedChange }: ProfilePageProps) {
   useEffect(() => {
     if (!PIZYTradeCookiesTimeout) {
       localStorage.setItem("PIZY_TCTO", JSON.stringify(false));
+      const randomUserTrade = async () => {
+        setRandomUserLoading(true);
+        const randomUserTrade = await getRandomUser();
+        setRandomUser(randomUserTrade.results);
+        setRandomUserLoading(false);
+      };
+      randomUserTrade();
     }
     if (!PIZYTradeCookiesTimeSeconds) {
       localStorage.setItem("PIZY_TCTOS", JSON.stringify(0));

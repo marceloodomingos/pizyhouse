@@ -96,77 +96,83 @@ export default function TopDay({
         {coins && (
           <>
             <Coin ref={coinRef}>
-              {coins.map(
-                ({
-                  id,
-                  name,
-                  image,
-                  symbol,
-                  market_cap_rank,
-                  current_price,
-                  price_change_percentage_24h,
-                }: CoinProps) => {
-                  return (
-                    <button
-                      key={id}
-                      className={"coin " + symbol}
-                      onClick={() => {
-                        window.location.href = `/coin/${id}`;
-                      }}
-                    >
-                      <div className="about">
-                        <p id="position">{market_cap_rank}</p>
-                        <img src={image} alt={name} />
-                        <div>
-                          <span>{name}</span>
-                          <p>{symbol}</p>
+              {coins
+                .sort((a, b) => (a.coin > b.coin ? -1 : 1))
+                .map(
+                  ({
+                    id,
+                    name,
+                    image,
+                    symbol,
+                    market_cap_rank,
+                    current_price,
+                    price_change_percentage_24h,
+                  }: CoinProps) => {
+                    return (
+                      <button
+                        key={id}
+                        className={"coin " + symbol}
+                        onClick={() => {
+                          window.location.href = `/coin/${id}`;
+                        }}
+                      >
+                        <div className="about">
+                          <p id="position">{market_cap_rank}</p>
+                          <img src={image} alt={name} />
+                          <div>
+                            <span>{name}</span>
+                            <p>{symbol}</p>
+                          </div>
                         </div>
-                      </div>
-                      <div className="info">
-                        <div className="prices">
-                          <p>{formatterToMoney.format(current_price)}</p>
-                          {(() => {
-                            if (price_change_percentage_24h < 0) {
-                              return (
-                                <>
-                                  <span className="down">
-                                    <Image
-                                      src={ArrowDown}
-                                      alt="Down Arrow"
-                                      width={24}
-                                      height={24}
-                                    />{" "}
-                                    {price_change_percentage_24h.toFixed(2)}%
-                                  </span>
-                                </>
-                              );
-                            } else if (price_change_percentage_24h === 0) {
-                              return null;
-                            } else {
-                              return (
-                                <>
-                                  <span className="up">
-                                    <Image
-                                      src={ArrowUp}
-                                      alt="Up Arrow"
-                                      width={24}
-                                      height={24}
-                                    />{" "}
-                                    {price_change_percentage_24h.toFixed(2)}%
-                                  </span>
-                                </>
-                              );
-                            }
-                          })()}
+                        <div className="info">
+                          <div className="prices">
+                            <p>{formatterToMoney.format(current_price)}</p>
+                            {(() => {
+                              if (price_change_percentage_24h) {
+                                if (price_change_percentage_24h < 0) {
+                                  return (
+                                    <>
+                                      <span className="down">
+                                        <Image
+                                          src={ArrowDown}
+                                          alt="Down Arrow"
+                                          width={24}
+                                          height={24}
+                                        />{" "}
+                                        {price_change_percentage_24h.toFixed(2)}
+                                        %
+                                      </span>
+                                    </>
+                                  );
+                                } else if (price_change_percentage_24h === 0) {
+                                  return null;
+                                } else {
+                                  return (
+                                    <>
+                                      <span className="up">
+                                        <Image
+                                          src={ArrowUp}
+                                          alt="Up Arrow"
+                                          width={24}
+                                          height={24}
+                                        />{" "}
+                                        {price_change_percentage_24h.toFixed(2)}
+                                        %
+                                      </span>
+                                    </>
+                                  );
+                                }
+                              }
+                            })()}
+                          </div>
+                          <a>
+                            <i />
+                          </a>
                         </div>
-                        <a>
-                          <i />
-                        </a>
-                      </div>
-                    </button>
-                  );
-                }
-              )}
+                      </button>
+                    );
+                  }
+                )}
               {coinsPageLoading && <LoadingCircle />}
             </Coin>
           </>

@@ -41,7 +41,9 @@ const formatterToMoney = new Intl.NumberFormat("pt-BR", {
 
 interface CoinPageProps {
   coindata: {
-    image: { large: string };
+    image: {
+      large: string;
+    };
     name: string;
     symbol: string;
     market_cap_rank: number;
@@ -84,35 +86,7 @@ export default function Coin({ coindata, handleLoggedChange }: CoinPageProps) {
         setChartInfo(data);
       })
       .catch((err) => console.log(err));
-  }, [coindata.name]);
-
-  const data = () => {
-    chartInfo.map((item) => {
-      return {
-        item,
-      };
-    });
-  };
-  console.log(data);
-
-  // const data = [
-  //   ["Day", "", "", "", ""],
-  //   ["Mon", 20, 28, 38, 45],
-  //   ["Tue", 31, 38, 55, 66],
-  //   ["Wed", 50, 55, 77, 80],
-  //   ["Thu", 50, 77, 66, 77],
-  //   ["Fri", 15, 66, 22, 68],
-  // ];
-
-  const options = {
-    legend: "none",
-    // bar: { groupWidth: "100%" },
-    backgroundColor: "transparent",
-    candlestick: {
-      fallingColor: { strokeWidth: 0, fill: "#a52714" },
-      risingColor: { strokeWidth: 0, fill: "#0f9d58" },
-    },
-  };
+  }, []);
 
   return (
     <>
@@ -181,16 +155,7 @@ export default function Coin({ coindata, handleLoggedChange }: CoinPageProps) {
               </li>
             </div>
           </div>
-          <div id="candlestick-graph" className="graph">
-            {/* <Chart
-              chartType="CandlestickChart"
-              width="inherit"
-              height="500px"
-              data={data}
-              options={options}
-              loader={<LoadingCircle />}
-            /> */}
-          </div>
+          <div id="candlestick-graph" className="graph"></div>
         </CryptoInfos>
       </main>
       <Footer />
