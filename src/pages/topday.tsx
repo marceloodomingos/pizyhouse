@@ -118,7 +118,7 @@ export default function TopDay({
                       >
                         <div className="about">
                           <p id="position">{market_cap_rank}</p>
-                          <img src={image} alt={name} />
+                          <img loading="lazy" src={image} alt={name} />
                           <div>
                             <span>{name}</span>
                             <p>{symbol}</p>

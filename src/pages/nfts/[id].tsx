@@ -30,6 +30,7 @@ export default function SignIn({ handleLoggedChange }: any) {
         setNftAssetsLoading(true);
         const nftInfo = await getNftsAssets(router.query.id);
         setNftAssets(nftInfo);
+        console.log(nftInfo);
         setNftAssetsLoading(false);
       };
       loadNftsAssets();
@@ -111,83 +112,97 @@ export default function SignIn({ handleLoggedChange }: any) {
                     {collection.banner_image_url && (
                       <section className="nft-banner">
                         <img
+                          loading="lazy"
                           src={collection.banner_image_url}
                           alt={collection.name}
                         />
                       </section>
                     )}
-                    <div className="nft-assets">
-                      <img src={image_url} alt={collection.name} />
-                      <div className="about-nft">
-                        <>
-                          <div className="info">
-                            <h1>{name}</h1>
-                            <dt>Coleção</dt>
-                            <span>{collection.name}</span>
-                            {/* <dt>ID</dt>
-                            <span>{collection.slug}</span> */}
-                            <dt>Descrição</dt>
-                            <p>{collection.description}</p>
-                          </div>
-                          {(() => {
-                            if (owner.profile_img_url === null) {
-                              return null;
-                            } else {
-                              <div className="owner">
-                                <dt>Proprietário</dt>
-                                <div className="avatar">
-                                  <img
-                                    loading="lazy"
-                                    src={owner.profile_img_url}
-                                    alt={owner.user.username}
-                                  />
-                                  <p>{owner.user.username}</p>
-                                </div>
-                              </div>;
-                            }
-                          })()}
-                          {(() => {
-                            if (creator.profile_img_url === null) {
-                              return null;
-                            } else {
-                              <div className="creator">
-                                <dt>Criador</dt>
-                                <div className="avatar">
-                                  <img
-                                    loading="lazy"
-                                    src={creator.profile_img_url}
-                                    alt={creator.user.username}
-                                  />
-                                  <p>{creator.user.username}</p>
-                                </div>
-                              </div>;
-                            }
-                          })()}
-                        </>
+                    <div className="content">
+                      <div className="title">
+                        <h1>Informações</h1>
                       </div>
-                    </div>
-                    <div className="nft-traits">
-                      <>
-                        {(() => {
-                          if (traits) {
+                      <div className="nft-assets">
+                        <div className="main-info">
+                          <img src={image_url} alt={collection.name} />
+                          <div className="about-nft">
                             <>
-                              <h1>Características</h1>
-                              {traits.map((trait, index) => {
-                                return (
-                                  <div key={index}>
-                                    <p>
-                                      <b>Tipo:</b> {trait.trait_type}
-                                    </p>
-                                    <p>
-                                      <b>Valor:</b> {trait.value}
-                                    </p>
-                                  </div>
-                                );
-                              })}
-                            </>;
+                              <div className="info">
+                                <h1>{name}</h1>
+                                <dt>Coleção</dt>
+                                <span>{collection.name}</span>
+                                {/* <dt>ID</dt>
+                            <span>{collection.slug}</span> */}
+                                {description && (
+                                  <>
+                                    <dt>Descrição</dt>
+                                    <p>{description}</p>
+                                  </>
+                                )}
+                              </div>
+                              {(() => {
+                                if (
+                                  owner.profile_img_url != null &&
+                                  owner.user.username != null
+                                ) {
+                                  return (
+                                    <div className="owner">
+                                      <dt>Proprietário</dt>
+                                      <div className="avatar">
+                                        <img
+                                          loading="lazy"
+                                          src={owner.profile_img_url}
+                                          alt={owner.user.username}
+                                        />
+                                        <p>{owner.user.username}</p>
+                                      </div>
+                                    </div>
+                                  );
+                                }
+                              })()}
+                              {(() => {
+                                if (
+                                  creator.profile_img_url != null &&
+                                  creator.user.username != null
+                                ) {
+                                  return (
+                                    <div className="creator">
+                                      <dt>Criador</dt>
+                                      <div className="avatar">
+                                        <img
+                                          loading="lazy"
+                                          src={creator.profile_img_url}
+                                          alt={creator.user.username}
+                                        />
+                                        <p>{creator.user.username}</p>
+                                      </div>
+                                    </div>
+                                  );
+                                }
+                              })()}
+                            </>
+                          </div>
+                        </div>
+                        {(() => {
+                          if (traits && traits.length > 0) {
+                            return (
+                              <>
+                                <h1>Características</h1>
+                                <div className="nft-traits">
+                                  {traits.map((trait, index) => {
+                                    return (
+                                      <div key={index}>
+                                        <b>{trait.trait_type}</b>
+                                        <p>{trait.value}</p>
+                                      </div>
+                                    );
+                                  })}
+                                </div>
+                              </>
+                            );
                           }
                         })()}
-                      </>
+                      </div>
                     </div>
                   </React.Fragment>
                 );
