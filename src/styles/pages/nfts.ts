@@ -332,11 +332,21 @@ export const NFTsAssets = styled.div`
       height: 20px;
     }
   }
-  .content {
-    > .title {
-      line-height: 150%;
-      margin: 32px 0;
-      text-align: center;
+  .title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    line-height: 150%;
+    margin: 24px 0;
+    text-align: center;
+    width: 100%;
+    > h1 {
+      font-size: 24px;
+    }
+    > svg {
+      width: 24px;
+      height: 24px;
     }
   }
   .nft-assets {
@@ -364,6 +374,48 @@ export const NFTsAssets = styled.div`
       > img {
         max-height: unset;
         max-width: unset;
+      }
+    }
+  }
+  .nft-details {
+    display: flex;
+    flex-direction: column;
+    margin: 16px 0;
+    /* gap: 16px; */
+    > div {
+      background: var(--shape);
+      padding: 24px;
+      border-radius: 4px;
+      li {
+        list-style: none;
+        & + li {
+          border-image: linear-gradient(
+              to right,
+              transparent,
+              var(--primary),
+              transparent
+            )
+            1;
+          border-top: 1px solid;
+          padding-top: 16px;
+          margin-top: 16px;
+        }
+      }
+      p {
+        /* white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis; */
+        color: var(--text);
+      }
+    }
+    button {
+      background: unset;
+      color: var(--white);
+      cursor: pointer;
+      transition: var(--transition);
+      &:hover {
+        border-radius: 4px;
+        background: var(--shape-dark-lowopacity);
       }
     }
   }
@@ -444,6 +496,7 @@ export const NFTsAssets = styled.div`
     width: 100%;
     text-transform: capitalize;
     line-height: 100%;
+    margin: 16px 0;
     > div {
       background: var(--shape);
       padding: 24px;
@@ -458,12 +511,23 @@ export const NFTsAssets = styled.div`
       flex-grow: 1;
     }
   }
+  .nft-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+    align-items: center;
+    button {
+      max-width: 300px;
+    }
+  }
   .main-info {
     width: 100%;
     gap: 16px;
     display: flex;
     justify-content: space-between;
     align-items: space-between;
+    margin: 16px 0;
     > img {
       object-fit: cover;
       height: 100%;

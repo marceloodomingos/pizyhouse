@@ -248,7 +248,7 @@ export default function NFTS({ handleLoggedChange }: any) {
                           </Link> */}
                                 <button
                                   onClick={() => {
-                                    window.location.href = `/nfts/${token_id}`;
+                                    window.location.href = `/nfts/${asset_contract.address}%2F${token_id}`;
                                   }}
                                 >
                                   Ver Mais
