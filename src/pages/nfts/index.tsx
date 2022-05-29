@@ -15,6 +15,7 @@ import { Cards, PencilCircle, UserSwitch } from "phosphor-react";
 import InfiniteScroll from "../../components/InfiniteScroll";
 import { getNfts } from "~/api/getNfts";
 import LoadingCircle from "~/components/Loading";
+import Button from "~/components/Button";
 
 // type NFTs = Record<string, {}>;
 
@@ -85,21 +86,23 @@ export default function NFTS({ handleLoggedChange }: any) {
             </span>
             <p>Invista conosco, invista no nosso futuro.</p>
             <div className="actions">
-              <button
+              <Button
+                isGlowing
                 onClick={() => {
                   window.location.href = "/signup";
                 }}
               >
                 Embarcar nessa jornada
-              </button>
+              </Button>
               <div className="divider">ou</div>
-              <button
+              <Button
+                isOutlined
                 onClick={() => {
                   window.location.href = "/dashboard";
                 }}
               >
                 Entrar na sua conta
-              </button>
+              </Button>
             </div>
           </Slogan>
         </NFTsPresentation>

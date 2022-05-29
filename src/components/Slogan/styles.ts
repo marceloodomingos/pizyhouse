@@ -69,7 +69,7 @@ export const SloganContainer = styled.div<SloganAlignProps>`
       css`
         max-width: 350px;
       `}
-    button {
+    /* button {
       width: 100%;
       border-radius: 4px;
       padding: 12px 24px;
@@ -96,7 +96,7 @@ export const SloganContainer = styled.div<SloganAlignProps>`
           box-shadow: 0 0 0 1px var(--primary);
         }
       }
-    }
+    } */
     @media (max-width: 900px) {
       width: 100%;
       max-width: unset;

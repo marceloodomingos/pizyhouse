@@ -227,7 +227,7 @@ export const CardBox = styled.div<CardsProps>`
     justify-content: center;
     align-items: center;
     height: 100%;
-    padding: 12px 0;
+    padding: 24px;
     &.full-container {
       padding: unset;
     }

@@ -315,14 +315,14 @@ export const NFTsAssets = styled.div`
   dt {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: flex-start;
     gap: 4px;
     color: var(--primary);
     font-weight: bold;
     font-size: 16px;
     text-transform: capitalize;
     line-height: 100%;
-    border-image: linear-gradient(to left, var(--primary), transparent) 1;
+    border-image: linear-gradient(to right, var(--primary), transparent) 1;
     border-bottom: 1px solid;
     padding-bottom: 4px;
     margin: 8px 0;
@@ -335,19 +335,17 @@ export const NFTsAssets = styled.div`
   .nft-assets {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
     gap: 16px;
     width: 100%;
-    margin: 64px 0;
+    margin-top: 64px;
     > img {
-      height: 500px;
+      /* height: 500px; */
+      height: 100%;
+      max-height: 550px;
+      width: 100%;
+      max-width: 550px;
       border-radius: 4px;
-      @media (max-width: 1058px) {
-        height: 100%;
-        max-height: 500px;
-        width: 100%;
-        max-width: 500px;
-      }
     }
   }
   .nft-banner {
@@ -367,6 +365,8 @@ export const NFTsAssets = styled.div`
       rgba(0, 0, 0, 0)
     );
     img {
+      position: absolute;
+      top: 0;
       width: 100%;
       object-fit: cover;
       filter: invert(41%) sepia(71%) saturate(4076%) hue-rotate(239deg)
@@ -381,7 +381,7 @@ export const NFTsAssets = styled.div`
     gap: 16px;
     width: 100%;
     justify-content: flex-start;
-    align-items: flex-end;
+    align-items: flex-start;
     @media (max-width: 1058px) {
       justify-content: center;
       align-items: center;
@@ -398,7 +398,7 @@ export const NFTsAssets = styled.div`
       }
       .owner {
         .avatar {
-          flex-direction: row-reverse;
+          flex-direction: row;
         }
       }
     }
@@ -407,25 +407,47 @@ export const NFTsAssets = styled.div`
       padding: 24px;
       border-radius: 4px;
       width: 100%;
-      text-align: right;
+      text-align: left;
+    }
+  }
+  .nft-traits {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+    width: 100%;
+    > div {
+      background: var(--shape);
+      padding: 24px;
+      border-radius: 4px;
+      width: 100%;
+      text-align: left;
     }
   }
   .info {
     width: 100%;
+    height: max-content;
+    max-height: 500px;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     h1 {
       line-height: 100%;
+      margin-bottom: 16px;
     }
     p {
-      text-align: right;
+      text-align: justify;
       color: var(--text);
+      display: -webkit-box;
+      -webkit-line-clamp: 10;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
   .avatar {
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
     align-items: center;
     gap: 8px;
     img {

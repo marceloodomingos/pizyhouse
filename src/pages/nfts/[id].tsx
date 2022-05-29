@@ -2,6 +2,7 @@
 import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 import React, { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/router";
 
 // import Header from "../components/Header";
 import Navbar from "../../components/Navbar";
@@ -12,23 +13,28 @@ import LoadingCircle from "~/components/Loading";
 import { NFTsAssets } from "~/styles/pages/nfts";
 
 export default function SignIn({ handleLoggedChange }: any) {
+  const router = useRouter();
+  const { type } = router.query;
   const nftAssetsRef = useRef(null);
   const [nftAssets, setNftAssets] = useState<[] | any>([]);
   const [nftAssetsLoading, setNftAssetsLoading] = useState(false);
   const assetsNft = nftAssets.assets;
 
   useEffect(() => {
-    const loadNftsAssets = async () => {
-      setNftAssetsLoading(true);
-      const nftInfo = await getNftsAssets(
-        "1470458287109684028356284762360621888459186479768557181417937033998012252161"
-      );
-      setNftAssets(nftInfo);
-      setNftAssetsLoading(false);
-    };
-    console.log(assetsNft);
-    loadNftsAssets();
-  }, []);
+    if (typeof window === "undefined") {
+      return null;
+    }
+
+    if (router.asPath !== router.route) {
+      const loadNftsAssets = async () => {
+        setNftAssetsLoading(true);
+        const nftInfo = await getNftsAssets(router.query.id);
+        setNftAssets(nftInfo);
+        setNftAssetsLoading(false);
+      };
+      loadNftsAssets();
+    }
+  }, [router]);
 
   interface NftsAssetsProps {
     id: number;
@@ -44,19 +50,22 @@ export default function SignIn({ handleLoggedChange }: any) {
       address: string;
       profile_img_url: string;
       user: {
-        username?: string;
+        username: string | null;
       };
     };
+    description: string;
+    name: string;
     owner: {
       profile_img_url: string;
       user: {
-        username?: string;
+        username: string | null;
       };
     };
     image_preview_url: string;
     image_thumbnail_url: string;
     image_url: string;
     token_id: string;
+    traits: [trait_type: any, value: any];
   }
 
   return (
@@ -86,61 +95,99 @@ export default function SignIn({ handleLoggedChange }: any) {
                   id,
                   collection,
                   creator,
+                  description,
                   owner,
+                  name,
                   image_preview_url,
                   image_thumbnail_url,
                   image_url,
                   token_id,
+                  traits,
                 }: NftsAssetsProps,
                 index: number
               ) => {
                 return (
                   <React.Fragment key={index}>
-                    <section className="nft-banner">
-                      <img
-                        src={collection.banner_image_url}
-                        alt={collection.name}
-                      />
-                    </section>
+                    {collection.banner_image_url && (
+                      <section className="nft-banner">
+                        <img
+                          src={collection.banner_image_url}
+                          alt={collection.name}
+                        />
+                      </section>
+                    )}
                     <div className="nft-assets">
                       <img src={image_url} alt={collection.name} />
                       <div className="about-nft">
-                        <div className="info">
-                          <h1>{collection.name}</h1>
-                          <dt>ID</dt>
-                          <span>{collection.slug}</span>
-                          <dt>Descrição</dt>
-                          <p>{collection.description}</p>
-                        </div>
-                        {owner.user.username && owner.profile_img_url && (
-                          <>
-                            <div className="owner">
-                              <dt>Proprietário</dt>
-                              <div className="avatar">
-                                <p>{owner.user.username}</p>
-                                <img
-                                  src={owner.profile_img_url}
-                                  alt={owner.user.username}
-                                />
-                              </div>
-                            </div>
-                          </>
-                        )}
-                        {creator.user.username && creator.profile_img_url && (
-                          <>
-                            <div className="creator">
-                              <dt>Criador</dt>
-                              <div className="avatar">
-                                <p>{creator.user.username}</p>
-                                <img
-                                  src={creator.profile_img_url}
-                                  alt={creator.user.username}
-                                />
-                              </div>
-                            </div>
-                          </>
-                        )}
+                        <>
+                          <div className="info">
+                            <h1>{name}</h1>
+                            <dt>Coleção</dt>
+                            <span>{collection.name}</span>
+                            {/* <dt>ID</dt>
+                            <span>{collection.slug}</span> */}
+                            <dt>Descrição</dt>
+                            <p>{collection.description}</p>
+                          </div>
+                          {(() => {
+                            if (owner.profile_img_url === null) {
+                              return null;
+                            } else {
+                              <div className="owner">
+                                <dt>Proprietário</dt>
+                                <div className="avatar">
+                                  <img
+                                    loading="lazy"
+                                    src={owner.profile_img_url}
+                                    alt={owner.user.username}
+                                  />
+                                  <p>{owner.user.username}</p>
+                                </div>
+                              </div>;
+                            }
+                          })()}
+                          {(() => {
+                            if (creator.profile_img_url === null) {
+                              return null;
+                            } else {
+                              <div className="creator">
+                                <dt>Criador</dt>
+                                <div className="avatar">
+                                  <img
+                                    loading="lazy"
+                                    src={creator.profile_img_url}
+                                    alt={creator.user.username}
+                                  />
+                                  <p>{creator.user.username}</p>
+                                </div>
+                              </div>;
+                            }
+                          })()}
+                        </>
                       </div>
+                    </div>
+                    <div className="nft-traits">
+                      <>
+                        {(() => {
+                          if (traits) {
+                            <>
+                              <h1>Características</h1>
+                              {traits.map((trait, index) => {
+                                return (
+                                  <div key={index}>
+                                    <p>
+                                      <b>Tipo:</b> {trait.trait_type}
+                                    </p>
+                                    <p>
+                                      <b>Valor:</b> {trait.value}
+                                    </p>
+                                  </div>
+                                );
+                              })}
+                            </>;
+                          }
+                        })()}
+                      </>
                     </div>
                   </React.Fragment>
                 );
@@ -153,3 +200,21 @@ export default function SignIn({ handleLoggedChange }: any) {
     </>
   );
 }
+
+// export const getStaticPaths: GetStaticPaths = async () => {
+//   return {
+//     paths: [],
+//     fallback: true,
+//   };
+// };
+
+// export const getStaticProps: GetStaticProps = async () => {
+//   const { query } = useRouter();
+//   const routerParams: any = query.id;
+
+//   return {
+//     props: {
+//       nftAssetsParams: routerParams,
+//     },
+//   };
+// };

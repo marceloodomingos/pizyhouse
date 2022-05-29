@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
-export const AboutUS = styled.section`
+export const AboutContainer = styled.section`
   max-width: 1120px;
   width: 100%;
   margin: 32px auto;
   padding: 0 24px;
+  text-align: justify;
   p {
     margin: 8px 0;
-    text-align: justify;
   }
   b,
   a,
@@ -54,5 +54,22 @@ export const AboutUS = styled.section`
         }
       }
     }
+  }
+`;
+
+export const SloganForCreateAccount = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 650px;
+  margin: 32px auto;
+  > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 24px;
+    text-align: left;
+    line-height: 100%;
   }
 `;

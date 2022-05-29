@@ -8,7 +8,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 import PHLemon from "../assets/pizy/logo.svg";
-import { AboutUS } from "../styles/pages/about-us";
+import { AboutContainer } from "../styles/pages/about";
 import Link from "next/link";
 import { BGContent } from "~/components/BGContent/styles";
 
@@ -35,7 +35,7 @@ export default function AboutUs({ handleLoggedChange }: AboutUsProps) {
       <Navbar handleLoggedChange={handleLoggedChange} />
       <main>
         <h1>Sobre a PIZY</h1>
-        <AboutUS>
+        <AboutContainer>
           <p>
             A <b>PIZY House</b> nasceu na FATEC de Jahu - uma faculdade de
             tecnologia - a partir de uma conversa entre cinco amigos. De início
@@ -92,7 +92,7 @@ export default function AboutUs({ handleLoggedChange }: AboutUsProps) {
             quer aprender algo sobre esse novo mundo digital, de criptomoedas e
             NFTs, <Link href="/">clique aqui</Link>.
           </p>
-        </AboutUS>
+        </AboutContainer>
       </main>
       <Footer />
       <BGContent />
