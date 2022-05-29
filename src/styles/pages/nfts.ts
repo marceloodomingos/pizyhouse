@@ -509,6 +509,9 @@ export const NFTsAssets = styled.div`
       gap: 8px;
       flex-basis: 200px;
       flex-grow: 1;
+      > p {
+        text-align: right;
+      }
     }
   }
   .nft-actions {
