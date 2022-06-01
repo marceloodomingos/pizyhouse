@@ -8,7 +8,7 @@ interface PIZYCardProps {
 
 export default function PIZYCard({ name, tier }: PIZYCardProps) {
   return (
-    <Tilt>
+    <Tilt style={{ width: "300px", height: "150px" }}>
       <CardContainer>
         <header>
           <div className="title">

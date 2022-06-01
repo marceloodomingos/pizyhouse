@@ -13,6 +13,5 @@ export const getNftsAssetsByContract = async (contract: any) => {
       `https://api.opensea.io/api/v1/asset/${contract}?format=json&include_orders=false`
     )
   ).json();
-
   return nftsAssets;
 };

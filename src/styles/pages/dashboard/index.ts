@@ -231,6 +231,12 @@ export const CardBox = styled.div<CardsProps>`
     &.full-container {
       padding: unset;
     }
+    .row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 32px;
+    }
     .coins {
       display: flex;
       flex-direction: column;

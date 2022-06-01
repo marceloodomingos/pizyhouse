@@ -4,12 +4,20 @@ import { useContext, useEffect, useState } from "react";
 import AuthContext from "~/contexts/AuthContext";
 import Aside from "../../components/Aside";
 import FooterApp from "../../components/FooterApp";
-import { MainApp } from "../../styles/pages/dashboard";
+import { CardBox, MainApp, RecentStats } from "../../styles/pages/dashboard";
 import DashboardNavbar from "../../components/DashboardNavbar";
 import { auth } from "~/services/firebase";
 import { useRouter } from "next/router";
 import LoadingCircle from "~/components/Loading";
 import PIZYCard from "~/components/Card";
+import NothingHere from "~/components/NothingHere";
+import {
+  ActionCard,
+  ProfileCard,
+  ProfileItems,
+  QuickActions,
+} from "~/styles/pages/dashboard/wallet";
+import { CurrencyDollar, Shield } from "phosphor-react";
 
 interface WalletPageProps {
   handleLoggedChange: () => void;
@@ -55,21 +63,116 @@ export default function Wallet({ handleLoggedChange }: WalletPageProps) {
           <MainApp>
             <div className="container">
               <h1>Carteira</h1>
-              <section>
-                <h3>Seu saldo</h3>
-              </section>
-              <section>
-                <h3>Seus cartões</h3>
-                {user.name ? (
-                  <PIZYCard name={user.name} />
-                ) : (
-                  <p>
-                    Você não pode ter cartões PIZY. Para obter um, é necessário
-                    um <b>nome</b>, que pode ser inserido ao criar uma conta com
-                    a <i>Google</i>.
-                  </p>
-                )}
-              </section>
+              <RecentStats>
+                <CardBox>
+                  <header>
+                    <h3>Seu saldo</h3>
+                  </header>
+                  <div className="container">
+                    <NothingHere
+                      icon="Money"
+                      text="Saldo zerado até o momento."
+                    />
+                  </div>
+                </CardBox>
+                <CardBox>
+                  <header>
+                    <h3>Seus cartões</h3>
+                  </header>
+                  <div className="container">
+                    {user.name ? (
+                      <div className="row">
+                        <PIZYCard name={user.name} />
+                      </div>
+                    ) : (
+                      <p>
+                        Você não pode ter cartões PIZY. Para obter um, é
+                        necessário um <b>nome</b>, que pode ser inserido ao
+                        criar uma conta com a <i>Google</i>.
+                      </p>
+                    )}
+                  </div>
+                </CardBox>
+              </RecentStats>
+              <ProfileItems>
+                <ProfileCard>
+                  <header>
+                    <div className="title">
+                      <p>Suas</p>
+                      <span>Moedas</span>
+                    </div>
+                    <img src="https://raw.githubusercontent.com/gelzinn/ph-assets/main/bitcoin.png" />
+                  </header>
+                  <div className="container">
+                    <p>
+                      Confira todas as suas <b>criptomoedas</b> e todas suas
+                      respectivas informações.
+                    </p>
+                  </div>
+                </ProfileCard>
+                <ProfileCard>
+                  <header>
+                    <div className="title">
+                      <p>Suas</p>
+                      <span>Nfts</span>
+                    </div>
+                    <img src="https://raw.githubusercontent.com/gelzinn/ph-assets/main/nft-example.png" />
+                  </header>
+                  <div className="container">
+                    <p>
+                      Confira todas as suas <b>NFTs</b> e todas suas respectivas
+                      informações.
+                    </p>
+                  </div>
+                </ProfileCard>
+              </ProfileItems>
+              <QuickActions>
+                <ActionCard>
+                  <div className="container">
+                    <Shield />
+                    <p>Seguros</p>
+                  </div>
+                  <div className="bg">
+                    <img src="https://raw.githubusercontent.com/gelzinn/ph-assets/0325fe7e33c7b3da523a4e05681a91bff8d06bf7/gradient/shield.svg" />
+                  </div>
+                </ActionCard>
+                <ActionCard>
+                  <div className="container">
+                    <CurrencyDollar />
+                    <p>Sacar</p>
+                  </div>
+                  <div className="bg">
+                    <img src="https://raw.githubusercontent.com/gelzinn/ph-assets/0325fe7e33c7b3da523a4e05681a91bff8d06bf7/gradient/currencydollar.svg" />
+                  </div>
+                </ActionCard>
+                <ActionCard>
+                  <div className="container">
+                    <CurrencyDollar />
+                    <p>Extrato</p>
+                  </div>
+                  <div className="bg">
+                    <img src="https://raw.githubusercontent.com/gelzinn/ph-assets/0325fe7e33c7b3da523a4e05681a91bff8d06bf7/gradient/receipt.svg" />
+                  </div>
+                </ActionCard>
+                <ActionCard>
+                  <div className="container">
+                    <CurrencyDollar />
+                    <p>Adicionar Dinheiro</p>
+                  </div>
+                  <div className="bg">
+                    <img src="https://raw.githubusercontent.com/gelzinn/ph-assets/0325fe7e33c7b3da523a4e05681a91bff8d06bf7/gradient/bank.svg" />
+                  </div>
+                </ActionCard>
+                <ActionCard>
+                  <div className="container">
+                    <CurrencyDollar />
+                    <p>Transferir</p>
+                  </div>
+                  <div className="bg">
+                    <img src="https://raw.githubusercontent.com/gelzinn/ph-assets/0325fe7e33c7b3da523a4e05681a91bff8d06bf7/gradient/handshake.svg" />
+                  </div>
+                </ActionCard>
+              </QuickActions>
             </div>
           </MainApp>
           <FooterApp />

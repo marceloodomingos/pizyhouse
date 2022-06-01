@@ -38,6 +38,7 @@ export const CryptoInfos = styled.div`
     min-width: 300px;
     max-width: 300px;
     height: 100%;
+    min-height: 700px;
     background: var(--shape);
     border-radius: 4px;
     padding: 16px 8px;
@@ -170,9 +171,66 @@ export const CryptoInfos = styled.div`
     background: var(--shape);
     border-radius: 4px;
     padding: 8px;
-    g {
+    > div {
       width: 100%;
       height: 100%;
+      > svg {
+        width: 100%;
+        height: 100%;
+        stroke: var(--primary);
+      }
+      .apexcharts-toolbar {
+        /* display: none; */
+        .apexcharts-zoom-icon,
+        .apexcharts-zoomin-icon,
+        .apexcharts-zoomout-icon,
+        .apexcharts-reset-icon,
+        .apexcharts-pan-icon,
+        .apexcharts-selection-icon,
+        .apexcharts-menu-icon,
+        .apexcharts-toolbar-custom-icon {
+          svg {
+            fill: var(--primary);
+            color: var(--primary);
+            stroke: unset;
+            transition: var(--transition);
+            &:hover {
+              fill: var(--tertiary);
+              color: var(--tertiary);
+            }
+          }
+          &.apexcharts-selected {
+          }
+        }
+        .apexcharts-menu-icon {
+          display: none;
+        }
+      }
+      .apexcharts-line {
+        path {
+          color: var(--primary);
+        }
+      }
+      .apexcharts-title-text {
+        font-weight: bold;
+      }
+      .apexcharts-gridlines-horizontal line {
+        stroke: var(--text);
+        opacity: 0.25;
+      }
+      .apexcharts-tooltip.apexcharts-theme-light {
+        color: #fff;
+        background: rgba(18, 18, 20, 0.8);
+      }
+      text {
+        fill: var(--text);
+        > tspan {
+          width: 15px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+      }
     }
     @media (max-width: 1200px) {
       max-width: unset;

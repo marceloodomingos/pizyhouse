@@ -520,9 +520,15 @@ export const NFTsAssets = styled.div`
     gap: 16px;
     justify-content: center;
     align-items: center;
+    margin: 16px 0;
     button {
       max-width: 300px;
     }
+  }
+  .more-from-collection {
+    background: var(--shape);
+    padding: 24px;
+    border-radius: 4px;
   }
   .main-info {
     width: 100%;
@@ -539,6 +545,7 @@ export const NFTsAssets = styled.div`
     }
     @media (max-width: 950px) {
       flex-direction: column;
+      padding: 24px;
     }
   }
   .info {

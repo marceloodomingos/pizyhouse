@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { Coins, FileX, Image, Link, LinkBreak } from "phosphor-react";
+import { Coins, FileX, Image, Link, LinkBreak, Money } from "phosphor-react";
 import { NothingContainer } from "./styles";
 
 interface NothingProps {
@@ -28,6 +28,8 @@ export default function NothingHere({ text, obs, more, icon }: NothingProps) {
                 return <Coins />;
               case "Image":
                 return <Image />;
+              case "Money":
+                return <Money />;
             }
           })()}
           <p>

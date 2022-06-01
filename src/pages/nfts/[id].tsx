@@ -13,12 +13,17 @@ import LoadingCircle from "~/components/Loading";
 import { NFTsAssets } from "~/styles/pages/nfts";
 import { CaretDown, CaretUp } from "phosphor-react";
 import Button from "~/components/Button";
+import { getNftCollection } from "~/api/getNftCollection";
 
 export default function SignIn({ handleLoggedChange }: any) {
   const router = useRouter();
   const { type } = router.query;
+  const [nftMore, setNftMore] = useState(false);
   const [nftDetailsOpen, setNftDetailsOpen] = useState(true);
   const [nftAssets, setNftAssets] = useState<AssetsProps[] | any>([]);
+  const [nftMoreFromCollection, setNftMoreFromCollection] = useState<[] | any>(
+    []
+  );
   const [nftAssetsLoading, setNftAssetsLoading] = useState(false);
 
   useEffect(() => {
@@ -36,6 +41,12 @@ export default function SignIn({ handleLoggedChange }: any) {
       };
       loadNftsAssets();
     }
+
+    setNftMore(true);
+
+    setTimeout(() => {
+      setNftMore(false);
+    }, 500);
   }, [router]);
 
   type AssetsProps = {
@@ -147,6 +158,16 @@ export default function SignIn({ handleLoggedChange }: any) {
                 }: NftsAssetsProps,
                 index
               ) => {
+                const loadNftsCollection = async () => {
+                  const moreNfts = await getNftCollection(collection.slug);
+                  setNftMoreFromCollection(moreNfts.collection.editors);
+                  console.log(moreNfts.collection);
+                };
+
+                if (nftMore === true) {
+                  loadNftsCollection();
+                }
+
                 return (
                   <React.Fragment key={index}>
                     {collection != undefined && collection.banner_image_url && (
@@ -195,8 +216,13 @@ export default function SignIn({ handleLoggedChange }: any) {
                                 {(() => {
                                   if (
                                     owner != undefined &&
+                                    owner != null &&
                                     owner.profile_img_url != undefined &&
-                                    owner.user.username != undefined
+                                    owner.profile_img_url != null &&
+                                    owner.user != undefined &&
+                                    owner.user != null &&
+                                    owner.user.username != undefined &&
+                                    owner.user.username != null
                                   ) {
                                     return (
                                       <div className="owner">
@@ -216,8 +242,13 @@ export default function SignIn({ handleLoggedChange }: any) {
                                 {(() => {
                                   if (
                                     creator != undefined &&
+                                    creator != null &&
                                     creator.profile_img_url != undefined &&
-                                    creator.user.username != undefined
+                                    creator.profile_img_url != null &&
+                                    creator.user != undefined &&
+                                    creator.user != null &&
+                                    creator.user.username != undefined &&
+                                    creator.user.username != null
                                   ) {
                                     return (
                                       <div className="creator">
@@ -276,9 +307,9 @@ export default function SignIn({ handleLoggedChange }: any) {
                           <>
                             <div>
                               <li
-                              // onClick={() => {
-                              //   window.location.href = `https://bscscan.com/address/${asset_contract.address}`;
-                              // }}
+                                onClick={() => {
+                                  window.location.href = `https://bscscan.com/address/${asset_contract.address}`;
+                                }}
                               >
                                 <b>Endereço do Contrato</b>
                                 <p title={asset_contract?.address}>
@@ -304,6 +335,13 @@ export default function SignIn({ handleLoggedChange }: any) {
                           Retornar
                         </Button>
                       </div>
+                      {nftMoreFromCollection && (
+                        <div className="more-from-collection">
+                          {nftMoreFromCollection.map((item, index) => {
+                            return <p key={index}>{item}</p>;
+                          })}
+                        </div>
+                      )}
                     </div>
                   </React.Fragment>
                 );
