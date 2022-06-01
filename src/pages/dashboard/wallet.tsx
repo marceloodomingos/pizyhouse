@@ -17,7 +17,13 @@ import {
   ProfileItems,
   QuickActions,
 } from "~/styles/pages/dashboard/wallet";
-import { CurrencyDollar, Shield } from "phosphor-react";
+import {
+  Bank,
+  CurrencyDollar,
+  Handshake,
+  Receipt,
+  Shield,
+} from "phosphor-react";
 
 interface WalletPageProps {
   handleLoggedChange: () => void;
@@ -147,7 +153,7 @@ export default function Wallet({ handleLoggedChange }: WalletPageProps) {
                 </ActionCard>
                 <ActionCard>
                   <div className="container">
-                    <CurrencyDollar />
+                    <Receipt />
                     <p>Extrato</p>
                   </div>
                   <div className="bg">
@@ -156,7 +162,7 @@ export default function Wallet({ handleLoggedChange }: WalletPageProps) {
                 </ActionCard>
                 <ActionCard>
                   <div className="container">
-                    <CurrencyDollar />
+                    <Bank />
                     <p>Adicionar Dinheiro</p>
                   </div>
                   <div className="bg">
@@ -165,7 +171,7 @@ export default function Wallet({ handleLoggedChange }: WalletPageProps) {
                 </ActionCard>
                 <ActionCard>
                   <div className="container">
-                    <CurrencyDollar />
+                    <Handshake />
                     <p>Transferir</p>
                   </div>
                   <div className="bg">

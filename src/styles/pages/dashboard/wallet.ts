@@ -48,9 +48,9 @@ export const ProfileCard = styled.div`
       );
     }
     &:hover {
-      span {
+      /* span {
         color: var(--text);
-      }
+      } */
       > img {
         transform: scale(1.15);
       }
@@ -76,7 +76,8 @@ export const ActionCard = styled.div`
   width: 100%;
   border-radius: 4px;
   /* background: var(--shape); */
-  border: 1px solid var(--shape);
+  background: transparent;
+  border: 1px solid var(--primary);
   flex-basis: 200px;
   width: 100%;
   height: 200px;
@@ -104,6 +105,7 @@ export const ActionCard = styled.div`
     position: absolute;
     bottom: -5px;
     right: -35%;
+    transition: var(--transition);
     img {
       width: 100%;
       height: 100%;
@@ -112,7 +114,9 @@ export const ActionCard = styled.div`
   }
   &:hover {
     background: linear-gradient(to left, transparent, var(--primary-hover));
-    border: 1px solid var(--primary);
+    > .bg {
+      right: -30%;
+    }
   }
   @media (max-width: 700px) {
     flex-basis: 100%;

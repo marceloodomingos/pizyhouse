@@ -117,7 +117,7 @@ export const SignForm = styled.form`
     flex-direction: column;
     width: 100%;
     gap: 8px;
-    > div {
+    > label {
       width: 100%;
       height: 50px;
       display: flex;
@@ -129,6 +129,9 @@ export const SignForm = styled.form`
         width: 24px;
         height: 24px;
         margin: 0 16px;
+        & + input + svg {
+          cursor: pointer;
+        }
       }
     }
   }

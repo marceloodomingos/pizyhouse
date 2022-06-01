@@ -29,7 +29,8 @@
     "react-stockcharts": "^0.7.8",
     "sharp": "^0.30.4",
     "shortid": "^2.2.16",
-    "styled-components": "^5.3.5"
+    "styled-components": "^5.3.5",
+    "zxcvbn": "^4.4.2"
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",

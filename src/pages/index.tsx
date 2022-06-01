@@ -8,7 +8,7 @@ import Footer from "../components/Footer";
 
 import { Banner, Features, Advertising, Partners } from "../styles/pages/home";
 
-import World from "../assets/images/world.png";
+import World from "../assets/images/worldTiny.png";
 import PartnersOne from "../assets/brand/partners.png";
 
 import Link from "next/link";

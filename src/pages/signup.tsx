@@ -25,6 +25,7 @@ import { Sign, SignForm } from "~/styles/pages/sign";
 import { auth } from "~/services/firebase";
 import AuthContext from "~/contexts/AuthContext";
 import Link from "next/link";
+import PasswordStrengthMeter from "~/components/PasswordStrengthMeter";
 
 interface SignUpProps {
   handleLoggedChange: () => void;
@@ -32,8 +33,8 @@ interface SignUpProps {
 
 export default function SignUp({ handleLoggedChange }: SignUpProps) {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [password, setPassword] = useState<string>("");
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [viewPassword, setViewPassword] = useState(false);
   const value = useContext(AuthContext);
 
@@ -116,7 +117,7 @@ export default function SignUp({ handleLoggedChange }: SignUpProps) {
           <SignForm onSubmit={handleSubmit}>
             <UserCirclePlus />
             <div className="inputs">
-              <div>
+              <label>
                 <EnvelopeSimple />
                 <input
                   type="email"
@@ -125,8 +126,8 @@ export default function SignUp({ handleLoggedChange }: SignUpProps) {
                   onChange={(e) => setEmail(e.target.value)}
                   value={email}
                 />
-              </div>
-              <div>
+              </label>
+              <label>
                 <Lock />
                 {!viewPassword ? (
                   <>
@@ -134,6 +135,7 @@ export default function SignUp({ handleLoggedChange }: SignUpProps) {
                       type="password"
                       placeholder="Senha"
                       autoComplete="on"
+                      required
                       onChange={(e) => setPassword(e.target.value)}
                       value={password}
                     />
@@ -149,6 +151,7 @@ export default function SignUp({ handleLoggedChange }: SignUpProps) {
                       type="text"
                       placeholder="Senha"
                       autoComplete="on"
+                      required
                       onChange={(e) => setPassword(e.target.value)}
                       value={password}
                     />
@@ -159,8 +162,8 @@ export default function SignUp({ handleLoggedChange }: SignUpProps) {
                     />
                   </>
                 )}
-              </div>
-              <div>
+              </label>
+              <label>
                 <Lock />
                 {!viewPassword ? (
                   <>
@@ -195,7 +198,12 @@ export default function SignUp({ handleLoggedChange }: SignUpProps) {
                     />
                   </>
                 )}
-              </div>
+              </label>
+              {(() => {
+                if (password || confirmPassword) {
+                  return <PasswordStrengthMeter password={password} />;
+                }
+              })()}
               <button type="submit">Criar Conta</button>
             </div>
             <section className="options">
