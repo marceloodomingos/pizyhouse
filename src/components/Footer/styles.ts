@@ -3,10 +3,10 @@ import styled from "styled-components";
 export const FooterContainer = styled.footer`
   background: var(--shape);
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   flex-shrink: 0;
   width: 100%;
-  padding: 0 24px;
+  padding: 24px;
   z-index: 100;
   > h3 {
     text-align: center;
@@ -55,6 +55,7 @@ export const FooterContainer = styled.footer`
       cursor: default;
     }
     li {
+      text-transform: capitalize;
       list-style-type: none;
       line-height: 125%;
       width: 100%;
@@ -82,38 +83,31 @@ export const FooterContainer = styled.footer`
       justify-content: center;
     }
   }
-  .social {
+`;
+
+export const BottomContent = styled.div`
+  display: flex;
+  width: 100%;
+  background: var(--shape);
+  color: var(--text);
+  text-align: center;
+  padding: 24px;
+  .container {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
+    height: 100%;
     max-width: 1120px;
-    padding: 0 24px;
-    margin: 16px auto;
-    svg {
-      width: 100%;
-      max-width: 42px;
-      padding: 8px;
-      fill: var(--white);
-      transition: var(--transition);
-      border-radius: 4px;
-      cursor: pointer;
-      &:hover {
-        background: var(--shape-dark);
+    margin: 0 auto;
+    @media (max-width: 850px) {
+      flex-direction: column-reverse;
+      justify-content: center;
+      .follow-us > p {
+        display: none;
       }
     }
   }
-`;
-
-export const WarnAbout = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 24px;
-  color: var(--text);
-  background: var(--shape-hover);
-  text-align: center;
   a {
     transition: var(--transition);
     color: var(--text);
@@ -129,6 +123,60 @@ export const WarnAbout = styled.div`
     cursor: help;
     &:hover {
       color: var(--primary);
+    }
+  }
+  .follow-us {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+  }
+  .social {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    svg {
+      width: 42px;
+      height: 42px;
+      padding: 8px;
+      fill: var(--white);
+      transition: var(--transition);
+      border-radius: 4px;
+      cursor: pointer;
+      &:hover {
+        background: var(--shape-dark);
+      }
+    }
+    a {
+      width: 100%;
+      height: 100%;
+      max-height: 42px;
+      position: relative;
+      & + a {
+        display: flex;
+        &:before {
+          content: "";
+          display: inline-flex;
+          border-image: linear-gradient(
+              to top,
+              transparent 0%,
+              var(--shape-dark) 25%,
+              var(--shape-dark) 75%,
+              transparent 100%
+            )
+            1;
+          border-left: 1px solid;
+          box-sizing: border-box;
+          line-height: 0;
+          cursor: default;
+          pointer-events: none;
+          position: absolute;
+          left: -8px;
+          width: 2px;
+          height: 100%;
+        }
+      }
     }
   }
 `;
