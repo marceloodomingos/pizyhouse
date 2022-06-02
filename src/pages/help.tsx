@@ -43,20 +43,6 @@ export default function Help({ handleLoggedChange }: ConfigurationsPageProps) {
     setQuestionSelected(i);
   };
 
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (user) {
-        const { displayName, photoURL, uid, email } = user;
-      } else {
-        router.push("/signin");
-      }
-    });
-
-    return () => {
-      unsubscribe();
-    };
-  }, []);
-
   return (
     <>
       <Head>
