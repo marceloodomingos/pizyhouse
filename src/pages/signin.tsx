@@ -78,7 +78,7 @@ export default function SignIn({ handleLoggedChange }: SignInProps) {
           <SignForm onSubmit={(e) => e.preventDefault()}>
             <UserSwitch />
             <div className="inputs">
-              <div>
+              <label>
                 <EnvelopeSimple />
                 <input
                   type="email"
@@ -86,8 +86,8 @@ export default function SignIn({ handleLoggedChange }: SignInProps) {
                   onChange={(e) => setEmail(e.target.value)}
                   value={email}
                 />
-              </div>
-              <div>
+              </label>
+              <label>
                 <Lock />
                 {!viewPassword ? (
                   <>
@@ -120,7 +120,7 @@ export default function SignIn({ handleLoggedChange }: SignInProps) {
                     />
                   </>
                 )}
-              </div>
+              </label>
               <button onClick={() => loginWithEmail()}>Entrar</button>
             </div>
             <section className="options">
