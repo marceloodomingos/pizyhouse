@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-html-link-for-pages */
 import React, { useContext, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
@@ -43,6 +42,20 @@ export default function Navbar({ handleLoggedChange }: NavbarProps) {
         console.log(error);
       });
   }
+
+  const clickedOutside = (e) => {
+    if (dropdownUL.current && !dropdownUL.current.contains(e.target)) {
+      dropdownUL.current.classList.remove("dropdown-open");
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", clickedOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", clickedOutside);
+    };
+  }, []);
 
   return (
     <>
@@ -89,11 +102,16 @@ export default function Navbar({ handleLoggedChange }: NavbarProps) {
               </button>
               <ul ref={dropdownUL} className="dropdown">
                 <Link href="/about-us">Sobre a PIZY</Link>
-                <Link href="/about-market">Sobre o Mercado</Link>
+                <Link href="/about-market">Sobre o mercado</Link>
+                <Link href="/our-team">Nossa equipe</Link>
               </ul>
             </li>
           </ul>
-          <div className="account-actions">
+          <div
+            className={
+              user ? "account-actions" : "account-actions account-buttons"
+            }
+          >
             <>
               {!user ? (
                 <>
@@ -117,7 +135,7 @@ export default function Navbar({ handleLoggedChange }: NavbarProps) {
               ) : (
                 <>
                   <li>
-                    <Link href="/dashboard/help" passHref>
+                    <Link href="/help" passHref>
                       <Question />
                     </Link>
                   </li>
@@ -209,34 +227,33 @@ export default function Navbar({ handleLoggedChange }: NavbarProps) {
                 </>
               ) : (
                 <>
-                  <li
-                    id="user"
-                    onClick={() => {
-                      window.location.href = "/dashboard";
-                    }}
-                  >
-                    {user.avatar ? <img src={user.avatar} /> : <User />}
-                    {/* <ul className="dropdown">
+                  <div className="user-actions">
+                    <li
+                      id="user"
+                      onClick={() => {
+                        window.location.href = "/dashboard";
+                      }}
+                    >
+                      {user.avatar ? <img src={user.avatar} /> : <User />}
+                    </li>
+                    <div>
                       <li>
-                        <Gauge weight="bold" />
-                        <Link href="/dashboard">Dashboard</Link>
+                        <Link href="/help" passHref>
+                          <Question />
+                        </Link>
                       </li>
                       <li>
-                        <PencilSimple weight="bold" />
-                        <Link href="/dashboard/profile">Perfil</Link>
+                        <Link href="/dashboard/configurations" passHref>
+                          <Gear />
+                        </Link>
                       </li>
                       <li>
-                        <SignOut weight="bold" />
-                        <button
-                          onClick={() => {
-                            logOutFirebase();
-                          }}
-                        >
-                          Sair
-                        </button>
+                        <Link href="/dashboard/notifications" passHref>
+                          <Bell />
+                        </Link>
                       </li>
-                    </ul> */}
-                  </li>
+                    </div>
+                  </div>
                 </>
               )}
             </UserLinks>

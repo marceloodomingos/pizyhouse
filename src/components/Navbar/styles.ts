@@ -94,6 +94,7 @@ export const NavbarContainer = styled.nav`
         max-width: 200px;
         line-height: 100%;
         background: var(--black);
+        box-shadow: 0 3px 5px rgba(18, 18, 20, 0.3);
         justify-content: center;
         padding: 0;
         border-radius: 0 0 4px 4px;
@@ -142,7 +143,7 @@ export const NavbarContainer = styled.nav`
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 12px;
+      /* gap: 12px; */
       z-index: 2;
       > a,
       button {
@@ -185,9 +186,6 @@ export const NavbarContainer = styled.nav`
         cursor: pointer;
         color: var(--text);
         transition: var(--transition);
-        &:hover {
-          color: var(--white);
-        }
       }
       #user {
         background: var(--primary);
@@ -196,14 +194,22 @@ export const NavbarContainer = styled.nav`
         width: 48px;
         height: 48px;
         padding: 8px;
+        margin-left: 16px;
       }
       > li {
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 4px;
+        padding: 8px;
         position: relative;
         cursor: pointer;
+        &:hover {
+          background: var(--shape-dark-lowopacity);
+          border-radius: 4px;
+          svg {
+            color: var(--white);
+          }
+        }
         > .dropdown {
           display: none;
           position: absolute;
@@ -281,6 +287,9 @@ export const NavbarContainer = styled.nav`
         &:last-child {
           padding: 0;
         }
+      }
+      &.account-buttons {
+        gap: 12px;
       }
       @media (max-width: 900px) {
         display: none;
@@ -491,6 +500,24 @@ export const UserLinks = styled.div`
       color: var(--white);
       width: 100%;
       max-width: 200px;
+    }
+  }
+  .user-actions {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    > div {
+      display: flex;
+      li {
+        width: 48px;
+        height: 48px;
+        svg {
+          width: 24px;
+          height: 24px;
+        }
+      }
     }
   }
 `;

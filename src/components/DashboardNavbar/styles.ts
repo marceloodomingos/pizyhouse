@@ -113,7 +113,6 @@ export const NavbarContainer = styled.nav`
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 12px;
       height: 50px;
       > a,
       button {
@@ -165,6 +164,12 @@ export const NavbarContainer = styled.nav`
           display: none;
         }
       }
+      #user-name {
+        margin: 0 16px;
+        cursor: default;
+        pointer-events: none;
+        user-select: none;
+      }
       #user {
         display: flex;
         justify-content: center;
@@ -185,15 +190,15 @@ export const NavbarContainer = styled.nav`
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 4px;
+        padding: 8px;
         position: relative;
         cursor: pointer;
-        > button {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          background: unset;
-          padding: 0;
+        &:hover {
+          background: var(--shape-dark-lowopacity);
+          border-radius: 4px;
+          svg {
+            color: var(--white);
+          }
         }
         > .dropdown {
           display: none;
@@ -201,7 +206,7 @@ export const NavbarContainer = styled.nav`
           top: 55px;
           right: 0;
           width: 100%;
-          min-width: 150px;
+          min-width: 200px;
           line-height: 100%;
           background: var(--primary);
           justify-content: center;
@@ -211,6 +216,7 @@ export const NavbarContainer = styled.nav`
           flex-direction: column;
           z-index: 1000;
           transition: var(--transition);
+          /* overflow: hidden auto; */
           li {
             width: 100%;
             height: 100%;
@@ -261,6 +267,13 @@ export const NavbarContainer = styled.nav`
               }
             }
           }
+          .for-mobile {
+            width: 100%;
+            display: none;
+            @media (max-width: 500px) {
+              display: block;
+            }
+          }
         }
         &:hover {
           ul {
@@ -274,6 +287,33 @@ export const NavbarContainer = styled.nav`
         @media (max-width: 500px) {
           display: none;
         }
+      }
+      .for-mobile-shortcut {
+        width: 100%;
+        display: none;
+        li {
+          width: 40px;
+          height: 40px;
+          padding: 8px;
+          cursor: pointer;
+          svg {
+            width: 100%;
+            height: 100%;
+          }
+          &:hover {
+            background: var(--shape-dark-lowopacity);
+            border-radius: 4px;
+            svg {
+              color: var(--white);
+            }
+          }
+        }
+        @media (max-width: 500px) {
+          display: flex;
+        }
+      }
+      @media (max-width: 500px) {
+        gap: 8px;
       }
     }
   }

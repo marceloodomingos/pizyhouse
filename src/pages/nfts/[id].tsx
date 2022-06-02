@@ -335,13 +335,13 @@ export default function SignIn({ handleLoggedChange }: any) {
                           Retornar
                         </Button>
                       </div>
-                      {nftMoreFromCollection && (
+                      {/* {nftMoreFromCollection && (
                         <div className="more-from-collection">
                           {nftMoreFromCollection.map((item, index) => {
                             return <p key={index}>{item}</p>;
                           })}
                         </div>
-                      )}
+                      )} */}
                     </div>
                   </React.Fragment>
                 );

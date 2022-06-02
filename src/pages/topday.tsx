@@ -18,6 +18,7 @@ import { SkeletonWrapperElement, SkeletonCoin } from "../skeletons/coinTopDay";
 import { BGContent } from "~/components/BGContent/styles";
 import { getCrypto } from "~/api/getCrypto";
 import LoadingCircle from "~/components/Loading";
+import BackToTop from "~/components/BackToTop";
 
 interface TopDayPageProps {
   topcoins: any;
@@ -36,14 +37,17 @@ export default function TopDay({
   const coinRef = useRef(null);
 
   useEffect(() => {
-    const loadNfts = async () => {
-      setCoinsPageLoading(true);
-      const newCoins = await getCrypto(page);
-      setCoins((oldCoins) => [...oldCoins, ...newCoins]);
-      setCoinsPageLoading(false);
-    };
     loadNfts();
   }, [page]);
+
+  const loadNfts = async () => {
+    setCoinsPageLoading(true);
+
+    const newCoins = await getCrypto(page);
+    setCoins([...coins, ...newCoins]);
+
+    setCoinsPageLoading(false);
+  };
 
   const handleScroll = (e: any) => {
     if (!coinRef.current) {
@@ -90,6 +94,7 @@ export default function TopDay({
       </Head>
 
       <Navbar handleLoggedChange={handleLoggedChange} />
+      <BackToTop />
       <main>
         <h1>Melhores Criptomoedas do Dia</h1>
         <Today>{day.dmy}</Today>

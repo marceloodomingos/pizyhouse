@@ -37,6 +37,7 @@ export default function SignUp({ handleLoggedChange }: SignUpProps) {
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [viewPassword, setViewPassword] = useState(false);
   const value = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   async function createUserFirebase() {
     auth
@@ -94,6 +95,12 @@ export default function SignUp({ handleLoggedChange }: SignUpProps) {
       alert("Preencha o email.");
     }
   }
+
+  useEffect(() => {
+    if (user) {
+      window.location.href = "/dashboard";
+    }
+  }, [user]);
 
   return (
     <>

@@ -32,7 +32,7 @@ export default function SignIn({ handleLoggedChange }: SignInProps) {
     if (user) {
       window.location.href = "/dashboard";
     }
-  }, []);
+  }, [user]);
 
   async function loginWithEmail() {
     await auth

@@ -308,7 +308,7 @@ export const NFTsAssets = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  max-width: 1120px;
+  /* max-width: 1120px; */
   margin: 0 auto;
   padding: 20px;
   gap: 16px;
@@ -331,6 +331,15 @@ export const NFTsAssets = styled.div`
       width: 20px;
       height: 20px;
     }
+  }
+  .content {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1120px;
+    margin: 0 auto;
+    gap: 16px;
   }
   .title {
     display: flex;
@@ -381,6 +390,7 @@ export const NFTsAssets = styled.div`
     display: flex;
     flex-direction: column;
     margin: 16px 0;
+    width: 100%;
     /* gap: 16px; */
     > div {
       background: var(--shape);
@@ -406,6 +416,7 @@ export const NFTsAssets = styled.div`
         overflow: hidden;
         text-overflow: ellipsis; */
         color: var(--text);
+        word-wrap: break-word;
       }
     }
     button {
@@ -426,19 +437,21 @@ export const NFTsAssets = styled.div`
     align-items: center;
     height: 100%;
     max-height: 350px;
-    width: 100vw;
+    width: 100%;
     overflow: hidden;
     top: 0;
     z-index: -1;
     mask-image: linear-gradient(
       to bottom,
-      rgba(0, 0, 0, 0.1),
+      rgba(0, 0, 0, 0.2),
       rgba(0, 0, 0, 0)
     );
+    height: 100%;
     img {
       position: absolute;
       top: 0;
       width: 100%;
+      height: 100%;
       object-fit: cover;
       filter: invert(41%) sepia(71%) saturate(4076%) hue-rotate(239deg)
         brightness(94%) contrast(90%);
@@ -536,7 +549,7 @@ export const NFTsAssets = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: space-between;
-    margin: 16px 0;
+    /* margin: 16px 0; */
     > img {
       object-fit: cover;
       height: 100%;
@@ -545,7 +558,7 @@ export const NFTsAssets = styled.div`
     }
     @media (max-width: 950px) {
       flex-direction: column;
-      padding: 24px;
+      /* padding: 24px; */
     }
   }
   .info {
