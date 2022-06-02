@@ -77,6 +77,9 @@ export const SingleDoubt = styled.div`
         width: 30%;
       }
     }
+    a {
+      color: var(--primary);
+    }
     .step {
       display: flex;
       justify-content: flex-start;
@@ -92,6 +95,54 @@ export const SingleDoubt = styled.div`
         span {
           font-weight: bold;
           text-transform: uppercase;
+        }
+        p {
+          & + p {
+            margin-top: 8px;
+          }
+        }
+        ul {
+          padding-left: 24px;
+          margin: 16px 0;
+          text-align: justify;
+          li {
+            list-style-type: disc;
+            margin: 8px 0;
+          }
+        }
+        .with-icons {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          svg {
+            width: 100%;
+            max-width: 16px;
+            fill: var(--white);
+            pointer-events: none;
+            &:last-child {
+              max-width: 24px;
+            }
+          }
+        }
+        blockquote {
+          margin-top: 16px;
+          font-size: 12px;
+          &:before {
+            content: "Fonte:";
+            font-weight: bold;
+            margin-right: 4px;
+            color: var(--pizy-yellow);
+          }
+          &:after {
+            content: ".";
+          }
+          > a {
+            color: var(--text);
+            text-decoration: none;
+            &:hover {
+              text-decoration: underline;
+            }
+          }
         }
       }
       > li {
@@ -128,8 +179,50 @@ export const FAQ = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 32px;
+  gap: 16px;
   width: 100%;
   max-width: 1120px;
-  margin: 32px auto;
+  padding: 20px;
+  margin: 0 auto;
+`;
+
+export const FAQQuestion = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: var(--shape);
+  border-radius: 4px;
+  overflow: hidden;
+  text-align: justify;
+  > header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    font-weight: bold;
+    text-transform: capitalize;
+    padding: 24px;
+    background-color: var(--shape-dark);
+    cursor: pointer;
+    p {
+      width: 80%;
+      line-height: 125%;
+      text-align: left;
+    }
+    svg {
+      margin: 0 8px;
+    }
+  }
+  > p {
+    width: 100%;
+    height: 100%;
+    padding: 24px;
+    color: var(--text);
+  }
+  > span {
+    width: 100%;
+    height: 100%;
+    padding: 0 24px 24px;
+  }
 `;

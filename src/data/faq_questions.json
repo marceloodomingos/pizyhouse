@@ -1,0 +1,63 @@
+[
+  {
+   "open": false,
+   "question": "Quanto eu pago para criar uma conta na PIZY House? ",
+   "answer": "Você não paga nada para criar uma conta no site e nem precisa de algum tipo de assinatura especial. O registro é gratuito."
+  },
+  {
+    "open": false,
+    "question": "Posso comprar ações com a PIZY House? ",
+    "answer": "No momento estamos focados somente em criptomoedas e NFTs. "
+  },
+  {
+    "open": false,
+    "question": "Sou menor de 18 anos, posso criar uma conta? ",
+    "answer": "De acordo com as leis, infelizmente não podemos autorizar a criação de uma conta para menores de idade."
+  },
+  {
+    "open": false,
+    "question": "Qual a taxa por compra que vocês cobram?",
+    "answer": "Ao comprar uma criptomoeda ou NFT, a PIZY House fica com 2,67% do valor total."
+  },
+  {
+    "open": false,
+    "question": "Qual o tempo do saque do dinheiro na minha carteira?",
+    "answer": "Você pode sacar de três maneiras possiveis, Pix é instântaneo, ou seja, cai na sua conta no mesmo momento. TED pode levar até 2 dias úteis para ser realizado. Banco24Horas* tem o saque instântaneo a qualquer hora do dia.",
+    "obs": "*Cobramos uma pequena taxa de 6,1% para o saque Banco24Horas "
+  },
+  {
+    "open": false,
+    "question": "Posso transferir meus bens para outra carteira?",
+    "answer": "Sim, temos parceria com as criptocarteiras mais populares do mercado."
+  },
+  {
+    "open": false,
+    "question": "Esse é um site de apostas?",
+    "answer": "Não, somos focados na compra e venda de criptomoedas e NFTs."
+  },
+  {
+    "open": false,
+    "question": "Quem são vocês?",
+    "answer": "Somos uma empresa formada por 5 especialistas no mercado, com cerca de 10 anos de experiência, trazendo a facilidade e simplicidade para seus investimentos."
+  },
+  {
+    "open": false,
+    "question": "Quando recebo minha criptomoeda?",
+    "answer": "Ela é depositada na hora na sua carteira PIZY."
+  },
+  {
+    "open": false,
+    "question": "Posso usar meu cartão PIZY para compras internacionais?",
+    "answer": "No momento apenas temos parcerias com empresas brasileiras."
+  },
+  {
+    "open": false,
+    "question": "Como aumento o limite do meu cartão?",
+    "answer": "O limite é aumentado conforme pontualidade no pagamento das faturas e uso do cartão."
+  },
+  {
+    "open": false,
+    "question": "Posso deletar minha conta?",
+    "answer": "Sim, após isso, todos os seus dados são deletados dos servidores e banco de dados da PIZY House em até 48 horas."
+  }
+ ]
