@@ -54,7 +54,7 @@ export const GlobalStyles = createGlobalStyle`
     position: relative;
     z-index: 1;
     overflow-x: hidden;
-    > h1, h2, h3, h4 {
+    > h1, > h2, > h3, > h4 {
       text-align: center;
       text-transform: capitalize;
       line-height: 100%;

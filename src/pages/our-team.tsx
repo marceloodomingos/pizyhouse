@@ -38,7 +38,7 @@ export default function OurTeam({ handleLoggedChange }: OurTeamProps) {
             <div className="info">
               <img
                 style={{ objectPosition: "60% 60%" }}
-                src="https://lh3.googleusercontent.com/oQb2ReQcXH_6Swp5W9drEsXItViz_TkrXph5uXVy68_JgVv1xdLH_wJuyUqPZtWfx4pB6PB5DmYGUiSAhMI7Qo9dXVfhk9JTUW_AZ-ds0QCbgYejEjuZs47B_wV5AJbboqMd4qYj7MbLEY4_Gqw9j5EyOuayuoByhmNaHPughKrSoPU4qEQUMgPyVEDKx-x-Zru9RxJKNdwHtQ9nj4fbU3iWPHrmlCxPP23nfFOqx2Tp-hptGBYih_x_GRjQWrFONimPLUbZTwr-XZhLtKmTu6lVbceGef8aqPlMs7U0GspoXZtFLWzwwyJXGL64GF1PUFSBzN5pBba0SpuRY8FfB4SI7NTa99xguQG_cFQ9_yC8HsXioIC5bkAK58liNgW0vK-iLJOUarh5m5QtN61wdRIq35WETfwjlB2BjW9phC9PYIEjimiBXrCdz7iXx_LYT-ANUEwcaJytdkyuz7MBNeZCl_MyZ2QFaPvSNDWJHeUewrIvSLPEixfVZEI5Tc260uzjOm6vd8c41pBm8RWLMY6tkbg_bTNspyyH2efDHy5bzJAhM2P2Ki57trydaf0F9rj2BSXwHhm66gPKJibNSH2MYHbUwKFEWzYDRFRukuxsr6p7drxMfmg4fXoBFPhwE4IGy-wGWjQfcPrxGbGfoCRmBgysvYajgx7_M6b3At6GGIz0SBPKVFJE_Yu1HhvsUFkNf0-0v3nO1-or7ERaBIleAX7CHesDjL1DsaTMDLquktmQY8kW5GY22z7VdSrbhVsyW9EUrzuGON8zVa-Yy--qyYVfwDApm6QPzvLZ52Ew3liHOBSmxhiOCGUog9y57VO1eIiCm3EQ3tmexQaX4A20ENjqREBozSI1PXsaekiTKnopvUnqLPWbT7VfFMZAnvLz38KII5NTdG4=w450-h949-no?authuser=0"
+                src="https://lh3.googleusercontent.com/oQb2ReQcXH_6Swp5W9drEsXItViz_TkrXph5uXVy68_JgVv1xdLH_wJuyUqPZtWfx4pB6PB5DmYGUiSAhMI7Qo9dXVfhk9JTUW_AZ-ds0QCbgYejEjuZs47B_wV5AJbboqMd4qYj7MbLEY4_Gqw9j5EyOuayuoByhmNaHPughKrSoPU4qEQUMgPyVEDKx-x-Zru9RxJKNdwHtQ9nj4fbU3iWPHrmlCxPP23nfFOqx2Tp-hptGBYih_x_GRjQWrFONimPLUbZTwr-XZhLtKmTu6lVbceGef8aqPlMs7U0GspoXZtFLWzwwyJXGL64GF1PUFSBzN5pBba0SpuRY8FfB4SI7NTa99xguQG_cFQ9_yC8HsXioIC5bkAK58liNgW0vK-iLJOUarh5m5QtN61wdRIq35WETfwjlB2BjW9phC9PYIEjimiBXrCdz7iXx_LYT-ANUEwcaJytdkyuz7MBNeZCl_MyZ2QFaPvSNDWJHeUewrIvSLPEixfVZEI5Tc260uzjOm6vd8c41pBm8RWLMY6tkbg_bTNspyyH2efDHy5bzJAhM2P2Ki57trydaf0F9rj2BSXwHhm66gPKJibNSH2MYHbUwKFEWzYDRFRukuxsr6p7drxMfmg4fXoBFPhwE4IGy-wGWjQfcPrxGbGfoCRmBgysvYajgx7_M6b3At6GGIz0SBPKVFJE_Yu1HhvsUFkNf0-0v3nO1-or7ERaBIleAX7CHesDjL1DsaTMDLquktmQY8kW5GY22z7VdSrbhVsyW9EUrzuGON8zVa-Yy--qyYVfwDApm6QPzvLZ52Ew3liHOBSmxhiOCGUog9y57VO1eIiCm3EQ3tmexQaX4A20ENjqREBozSI1PXsaekiTKnopvUnqLPWbT7VfFMZAnvLz38KII5NTdG4=w450-h949"
                 alt="Marcelo Augusto Domingos"
               />
               <span>Marcelo Augusto Domingos</span>
@@ -125,7 +125,7 @@ export default function OurTeam({ handleLoggedChange }: OurTeamProps) {
             <div className="info">
               <img
                 style={{ objectPosition: "30% 30%" }}
-                src="https://lh3.googleusercontent.com/rfi1oreNZETqea7nc5y4w4sje0EYbXipRRZhaKbjMMDhjBOLzdbs3eTiuKktnqs5UqHYQyzDXae9XOS_i0TDtbVZTA2BJljLs0b4xqByWCIiYUYDjDn9h8O9HDB7ytBUNYkVRT3o-tGsxgGA1iIjk5R8Ield8ujnGVaGCaqZ4IhO0OwfoQb2wmKkX321wUCEClYLss26mO161IwZuSz-hS34-3triSXhYN443KXAfUvRXjBuEbWw_e4nnDn9soob_pYV6fvISfKdCN-FBiWnvdNMgILOj3RqgCHffRomR76JApGP5a_NVzTnSWTZw1HaXpst60rk2ReBV_QhMDowaltPG1ig-7LBNLSFTRdiG7Se93XGuXn50yFiMDTTDnlZcVA6gvTVL1p-_r-COyDNIl_Ub8ZC18ag_RmSVhRqTctenS5RAoNMNZPXQf0F2oP077M3qVh8H0Let0Gvniaue7Xi_42R7kl1jDK6C6qn-G58VjHsBR0auzZeIy1nSjBnTEskkzd-SCk0uoc5KNvnlvobpim5klxiMOI-JCr8Bdi1dveI-nF_Vcp8USsgFela1D3-usfLoEanuAj4BAM6yuZ1wGkzMeTKYdiv-y9V8m7L_SziKmy5ozTbU9uZ1zp7ADfcfO0PEEvewu91jD6fisAzvzrOeJvBBExgRoo3Yrh3ttnDr_-F8n4NAbcLlb9giO80kri9DkWayXdFSzMr735YjQdToIuOJJVvBSCdsQ3dJMZW6729WWmjHLJWWUdqoOCpRjBzGoDqvrAQ8CevU1vdA1gWS3ocPnllZiCOJ_pJCDvfOpFfXjr4ro0mdpffKGG91rgK_HVXrXup0KHS1L8CFGtrDiY9XIstJBpgD_40fxRWE2Cjvd3dWe3tS2zMgrL-h7yQ5_428Nw=w450-h949-no?authuser=0"
+                src="https://lh3.googleusercontent.com/rfi1oreNZETqea7nc5y4w4sje0EYbXipRRZhaKbjMMDhjBOLzdbs3eTiuKktnqs5UqHYQyzDXae9XOS_i0TDtbVZTA2BJljLs0b4xqByWCIiYUYDjDn9h8O9HDB7ytBUNYkVRT3o-tGsxgGA1iIjk5R8Ield8ujnGVaGCaqZ4IhO0OwfoQb2wmKkX321wUCEClYLss26mO161IwZuSz-hS34-3triSXhYN443KXAfUvRXjBuEbWw_e4nnDn9soob_pYV6fvISfKdCN-FBiWnvdNMgILOj3RqgCHffRomR76JApGP5a_NVzTnSWTZw1HaXpst60rk2ReBV_QhMDowaltPG1ig-7LBNLSFTRdiG7Se93XGuXn50yFiMDTTDnlZcVA6gvTVL1p-_r-COyDNIl_Ub8ZC18ag_RmSVhRqTctenS5RAoNMNZPXQf0F2oP077M3qVh8H0Let0Gvniaue7Xi_42R7kl1jDK6C6qn-G58VjHsBR0auzZeIy1nSjBnTEskkzd-SCk0uoc5KNvnlvobpim5klxiMOI-JCr8Bdi1dveI-nF_Vcp8USsgFela1D3-usfLoEanuAj4BAM6yuZ1wGkzMeTKYdiv-y9V8m7L_SziKmy5ozTbU9uZ1zp7ADfcfO0PEEvewu91jD6fisAzvzrOeJvBBExgRoo3Yrh3ttnDr_-F8n4NAbcLlb9giO80kri9DkWayXdFSzMr735YjQdToIuOJJVvBSCdsQ3dJMZW6729WWmjHLJWWUdqoOCpRjBzGoDqvrAQ8CevU1vdA1gWS3ocPnllZiCOJ_pJCDvfOpFfXjr4ro0mdpffKGG91rgK_HVXrXup0KHS1L8CFGtrDiY9XIstJBpgD_40fxRWE2Cjvd3dWe3tS2zMgrL-h7yQ5_428Nw=w450-h949"
                 alt="Daniel Lima de Souza"
               />
               <span>Leonardo Antônio de Araújo</span>
@@ -147,7 +147,7 @@ export default function OurTeam({ handleLoggedChange }: OurTeamProps) {
             <div className="info">
               <img
                 src="https://scontent.fbau3-2.fna.fbcdn.net/v/t39.30808-6/279114781_1925238544337832_2606718771378387631_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeGIGNG240Qig9IqtXJH-mJn7uJqnYbjtxLu4mqdhuO3EnJ-lxCrXP19lTCSq2SH0DruaHM1MpTji3mYAvqH_8Ce&_nc_ohc=4icgR_lhsAgAX_aKJcY&_nc_ht=scontent.fbau3-2.fna&oh=00_AT-sadfsDwH6qm-D4LvMCfd23cHQ0NHkJqRqvKrvEOdJKg&oe=629F2372"
-                alt="Marcelo Augusto Domingos"
+                alt="Luan Daniel da Silva Fabri"
               />
               <span>Luan Daniel da Silva Fabri</span>
             </div>
@@ -168,7 +168,7 @@ export default function OurTeam({ handleLoggedChange }: OurTeamProps) {
             <div className="info">
               <img
                 src="https://scontent.fbau3-2.fna.fbcdn.net/v/t1.6435-9/71182376_804345259962665_7339978136815140864_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=174925&_nc_eui2=AeEUt4xjD623CPGu4FDefdBKTsbU7xFlOsJOxtTvEWU6wi9GhJSKyUOnrpbmqLnLgg2gGTlxjFdAMgalhtP7tVyF&_nc_ohc=xdkn-ZuHRjAAX_NdR8C&_nc_ht=scontent.fbau3-2.fna&oh=00_AT-Kc43mN7_wuurxAILo8xvMO1PvTfnPuFCVm3jFD7YdwA&oe=62C00B84"
-                alt="Marcelo Augusto Domingos"
+                alt="Fabrício Silva Cabral"
               />
               <span>Fabrício Silva Cabral</span>
             </div>
