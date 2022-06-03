@@ -116,7 +116,7 @@ export default function OurTeam({ handleLoggedChange }: OurTeamProps) {
                 </svg>
               </a>
             </div>
-            <footer>CEO&nbsp;&#38;&nbsp;CTO</footer>
+            <footer>COO&nbsp;&#38;&nbsp;CBO</footer>
           </TeamMember>
         </TeamWrapper>
         <h2>Criadores de Conteúdo</h2>
