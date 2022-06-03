@@ -1,13 +1,17 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-export const CardContainer = styled.div`
+interface PIZYCardProps {
+  business?: boolean;
+  ceo?: boolean;
+  developer?: boolean;
+}
+
+export const CardContainer = styled.div<PIZYCardProps>`
   width: 300px;
   height: 150px;
-  background: linear-gradient(to right, black, var(--primary));
   color: white;
   border-radius: 4px;
   padding: 8px 16px;
-  border-left: 10px solid var(--primary);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -16,6 +20,20 @@ export const CardContainer = styled.div`
   transition: var(--transition);
   transform-origin: top;
   cursor: default;
+  background: linear-gradient(to right, black, var(--primary));
+  border-left: 10px solid var(--primary);
+  &.business {
+    background: linear-gradient(to right, black, var(--rare));
+    border-left: 10px solid var(--rare);
+  }
+  &.developer {
+    background: linear-gradient(to right, black, var(--epic));
+    border-left: 10px solid var(--epic);
+  }
+  &.ceo {
+    background: linear-gradient(to right, black, var(--legendary));
+    border-left: 10px solid var(--legendary);
+  }
   .name {
     text-transform: uppercase;
     max-width: 180px;

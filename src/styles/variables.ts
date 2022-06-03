@@ -56,6 +56,11 @@ export const Variables = css`
     --pizy-yellow: #f6f884;
     --pizy-yellow-lowopacity: #f6f88450;
 
+    // Rarity
+    --legendary: #b5a44b;
+    --epic: #a725e4;
+    --rare: #3f52fc;
+
     // Other Values
     --max-width: 900px;
     --transition: 0.2s ease;

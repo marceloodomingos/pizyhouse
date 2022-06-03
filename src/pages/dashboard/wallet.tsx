@@ -88,7 +88,24 @@ export default function Wallet({ handleLoggedChange }: WalletPageProps) {
                   <div className="container">
                     {user.name ? (
                       <div className="row">
-                        <PIZYCard name={user.name} />
+                        <>
+                          {(() => {
+                            if (user.email === "mcnoobend@gmail.com") {
+                              return <PIZYCard name={user.name} tier="ceo" />;
+                            }
+                            if (user.email === "danielsouza_ioio@outlook.com") {
+                              return (
+                                <PIZYCard name={user.name} tier="developer" />
+                              );
+                            }
+                            if (user.email === "leotric@gmail.com") {
+                              return (
+                                <PIZYCard name={user.name} tier="developer" />
+                              );
+                            }
+                            return <PIZYCard name={user.name} />;
+                          })()}
+                        </>
                       </div>
                     ) : (
                       <p>

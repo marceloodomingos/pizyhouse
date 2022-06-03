@@ -1,5 +1,6 @@
 import { CardContainer } from "./styles";
 import Tilt from "react-parallax-tilt";
+import { useEffect, useState } from "react";
 
 interface PIZYCardProps {
   name: string;
@@ -7,16 +8,50 @@ interface PIZYCardProps {
 }
 
 export default function PIZYCard({ name, tier }: PIZYCardProps) {
+  const [cardLevel, setCardLevel] = useState<null | string>(null);
+
+  useEffect(() => {
+    if (tier) {
+      if (tier === "Starter" || tier === "" || tier === null) {
+        setCardLevel(null);
+      }
+      if (tier === "Business" || tier === "business") {
+        setCardLevel("business");
+      }
+      if (tier === "CEO" || tier === "ceo") {
+        setCardLevel("ceo");
+      }
+      if (tier === "Developer" || tier === "developer") {
+        setCardLevel("developer");
+      }
+    }
+  }, [tier]);
+
   return (
     <Tilt style={{ width: "300px", height: "150px" }}>
-      <CardContainer>
+      <CardContainer className={cardLevel}>
         <header>
           <div className="title">
             <span>PIZY</span>Card.
           </div>
           <p>
             {(() => {
-              switch (tier) {
+              if (cardLevel) {
+                console.log(cardLevel);
+                if (cardLevel === "" || cardLevel === null) {
+                  return "Starter";
+                }
+                if (cardLevel === "business") {
+                  return "Business";
+                }
+                if (cardLevel === "developer") {
+                  return "Developer";
+                }
+                if (cardLevel === "ceo") {
+                  return "CEO";
+                }
+              }
+              switch (cardLevel) {
                 default:
                   return "Starter";
                 case "Business":
