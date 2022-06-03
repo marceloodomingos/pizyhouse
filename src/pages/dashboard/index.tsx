@@ -249,7 +249,26 @@ export default function Dashboard({
                   </header>
                   <div className="container">
                     {user.name ? (
-                      <PIZYCard name={user.name} />
+                      <div className="row">
+                        <>
+                          {(() => {
+                            if (user.email === "mcnoobend@gmail.com") {
+                              return <PIZYCard name={user.name} tier="ceo" />;
+                            }
+                            if (user.email === "danielsouza_ioio@outlook.com") {
+                              return (
+                                <PIZYCard name={user.name} tier="developer" />
+                              );
+                            }
+                            if (user.email === "leotric@gmail.com") {
+                              return (
+                                <PIZYCard name={user.name} tier="developer" />
+                              );
+                            }
+                            return <PIZYCard name={user.name} />;
+                          })()}
+                        </>
+                      </div>
                     ) : (
                       <p>
                         Você não pode ter cartões PIZY. Para obter um, é
