@@ -184,6 +184,11 @@ export const FAQ = styled.div`
   max-width: 1120px;
   padding: 20px;
   margin: 0 auto;
+  > h4 {
+    text-align: center;
+    line-height: 125%;
+    margin: 32px 0;
+  }
 `;
 
 export const FAQQuestion = styled.div`

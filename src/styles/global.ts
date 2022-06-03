@@ -21,6 +21,11 @@ export const GlobalStyles = createGlobalStyle`
     padding: 0;
     font-family: 'Poppins', sans-serif;
   }
+  html, body {
+    position:relative;
+    margin: 0 auto;
+    overflow-x: hidden;
+  }
   html {
     scroll-behavior: smooth;
     box-sizing: inherit;
@@ -49,7 +54,7 @@ export const GlobalStyles = createGlobalStyle`
     position: relative;
     z-index: 1;
     overflow-x: hidden;
-    > h1 {
+    > h1, h2, h3, h4 {
       text-align: center;
       text-transform: capitalize;
       line-height: 100%;

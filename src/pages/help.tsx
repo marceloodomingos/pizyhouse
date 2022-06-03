@@ -32,7 +32,6 @@ interface FAQData {
 
 export default function Help({ handleLoggedChange }: ConfigurationsPageProps) {
   const router = useRouter();
-  const { user } = useContext(AuthContext);
   const [questionSelected, setQuestionSelected] = useState(null);
   // const [opennedFAQQuestion, setOpennedFAQQuestion] = useState(false);
 
