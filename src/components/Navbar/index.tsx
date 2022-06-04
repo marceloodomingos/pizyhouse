@@ -189,19 +189,22 @@ export default function Navbar({ handleLoggedChange }: NavbarProps) {
         <MobileMenu className={toggleMenu ? "open" : ""}>
           <ul>
             <li>
-              <Link href="/">Início</Link>
+              <a href="/">Início</a>
             </li>
             <li>
-              <Link href="/topday">Melhores do dia</Link>
+              <a href="/topday">Melhores do dia</a>
             </li>
             <li>
-              <Link href="/nfts/">NFTs</Link>
+              <a href="/nfts/">NFTs</a>
             </li>
             <li>
-              <Link href="/about-us">Sobre a PIZY</Link>
+              <a href="/about-us">Sobre a PIZY</a>
             </li>
             <li>
-              <Link href="/about-market">Sobre o Mercado</Link>
+              <a href="/about-market">Sobre o Mercado</a>
+            </li>
+            <li>
+              <a href="/our-team">Nossa Equipe</a>
             </li>
             <div className="divider" />
             <UserLinks>
