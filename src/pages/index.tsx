@@ -26,12 +26,30 @@ import {
 } from "phosphor-react";
 import { BGContent } from "~/components/BGContent/styles";
 import Button from "~/components/Button";
+import AuthContext from "~/contexts/AuthContext";
+import { firebase, auth } from "~/services/firebase";
+import { useContext } from "react";
 
 interface HomePageProps {
   handleLoggedChange: () => void;
 }
 
 export default function Home({ handleLoggedChange }: HomePageProps) {
+  const { user } = useContext(AuthContext);
+
+  function logOutFirebase() {
+    firebase
+      .auth()
+      .signOut()
+      .then(function () {
+        confirm("Deslogado com sucesso.");
+        window.location.reload();
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
   return (
     <>
       <Head>
@@ -56,23 +74,47 @@ export default function Home({ handleLoggedChange }: HomePageProps) {
             </span>
             <p>Invista conosco, invista no nosso futuro.</p>
             <div className="actions">
-              <Button
-                isGlowing
-                onClick={() => {
-                  window.location.href = "/signup";
-                }}
-              >
-                Embarcar nessa jornada
-              </Button>
-              <div className="divider">ou</div>
-              <Button
-                isOutlined
-                onClick={() => {
-                  window.location.href = "/dashboard";
-                }}
-              >
-                Entrar na sua conta
-              </Button>
+              {user ? (
+                <>
+                  <Button
+                    isGlowing
+                    onClick={() => {
+                      window.location.href = "/dashboard";
+                    }}
+                  >
+                    Acessar o painel de controle
+                  </Button>
+                  <div className="divider">ou</div>
+                  <Button
+                    isOutlined
+                    onClick={() => {
+                      logOutFirebase();
+                    }}
+                  >
+                    Sair da conta
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Button
+                    isGlowing
+                    onClick={() => {
+                      window.location.href = "/signup";
+                    }}
+                  >
+                    Embarcar nessa jornada
+                  </Button>
+                  <div className="divider">ou</div>
+                  <Button
+                    isOutlined
+                    onClick={() => {
+                      window.location.href = "/dashboard";
+                    }}
+                  >
+                    Entrar na sua conta
+                  </Button>
+                </>
+              )}
             </div>
           </Slogan>
           <div className="content">

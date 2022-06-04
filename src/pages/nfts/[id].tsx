@@ -161,7 +161,6 @@ export default function SignIn({ handleLoggedChange }: any) {
                 const loadNftsCollection = async () => {
                   const moreNfts = await getNftCollection(collection.slug);
                   setNftMoreFromCollection(moreNfts.collection.editors);
-                  console.log(moreNfts.collection);
                 };
 
                 if (nftMore === true) {
@@ -307,9 +306,9 @@ export default function SignIn({ handleLoggedChange }: any) {
                           <>
                             <div>
                               <li
-                                onClick={() => {
-                                  window.location.href = `https://bscscan.com/address/${asset_contract.address}`;
-                                }}
+                              // onClick={() => {
+                              //   window.location.href = `https://bscscan.com/address/${asset_contract.address}`;
+                              // }}
                               >
                                 <b>Endereço do Contrato</b>
                                 <p title={asset_contract?.address}>

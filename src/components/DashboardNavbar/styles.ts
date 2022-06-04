@@ -116,7 +116,7 @@ export const NavbarContainer = styled.nav`
       height: 50px;
       > a,
       button {
-        padding: 8px 16px;
+        padding: 26px 0 26px 12px;
         border-radius: 4px;
         cursor: pointer;
         text-transform: uppercase;
@@ -324,7 +324,7 @@ export const NavbarContainer = styled.nav`
       text-decoration: none;
       text-transform: capitalize;
       color: var(--support);
-      padding: 26px 12px;
+      padding: 26px 0 26px 12px;
       cursor: pointer;
       transition: var(--transition);
       &:hover {

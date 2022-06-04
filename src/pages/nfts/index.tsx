@@ -1,21 +1,19 @@
-import type { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
-import React, { useEffect, useRef, useState } from "react";
-import useInfiniteScroll from "react-infinite-scroll-hook";
+import React, { useContext, useEffect, useRef, useState } from "react";
 
 // import Header from "../components/Header";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 
-import Monkey from "../../assets/heroes/monkey-ellipse.svg";
 import { NFTCard, NFTs, NFTsPresentation } from "../../styles/pages/nfts";
 import Slogan from "../../components/Slogan";
 import { BGContent } from "../../components/BGContent/styles";
 import { Cards, PencilCircle, UserSwitch } from "phosphor-react";
-import InfiniteScroll from "../../components/InfiniteScroll";
 import { getNfts } from "~/api/getNfts";
 import LoadingCircle from "~/components/Loading";
+import { firebase, auth } from "~/services/firebase";
 import Button from "~/components/Button";
+import AuthContext from "~/contexts/AuthContext";
 
 // type NFTs = Record<string, {}>;
 
@@ -23,6 +21,21 @@ export default function NFTS({ handleLoggedChange }: any) {
   const [page, setPage] = useState(1);
   const [nfts, setNfts] = useState([]);
   const [nftsPageLoading, setNftsPageLoading] = useState(false);
+
+  const { user } = useContext(AuthContext);
+
+  function logOutFirebase() {
+    firebase
+      .auth()
+      .signOut()
+      .then(function () {
+        confirm("Deslogado com sucesso.");
+        window.location.reload();
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
 
   const nftRef = useRef(null);
 
@@ -86,23 +99,47 @@ export default function NFTS({ handleLoggedChange }: any) {
             </span>
             <p>Invista conosco, invista no nosso futuro.</p>
             <div className="actions">
-              <Button
-                isGlowing
-                onClick={() => {
-                  window.location.href = "/signup";
-                }}
-              >
-                Embarcar nessa jornada
-              </Button>
-              <div className="divider">ou</div>
-              <Button
-                isOutlined
-                onClick={() => {
-                  window.location.href = "/dashboard";
-                }}
-              >
-                Entrar na sua conta
-              </Button>
+              {user ? (
+                <>
+                  <Button
+                    isGlowing
+                    onClick={() => {
+                      window.location.href = "/dashboard";
+                    }}
+                  >
+                    Acessar o painel de controle
+                  </Button>
+                  <div className="divider">ou</div>
+                  <Button
+                    isOutlined
+                    onClick={() => {
+                      logOutFirebase();
+                    }}
+                  >
+                    Sair da conta
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Button
+                    isGlowing
+                    onClick={() => {
+                      window.location.href = "/signup";
+                    }}
+                  >
+                    Embarcar nessa jornada
+                  </Button>
+                  <div className="divider">ou</div>
+                  <Button
+                    isOutlined
+                    onClick={() => {
+                      window.location.href = "/dashboard";
+                    }}
+                  >
+                    Entrar na sua conta
+                  </Button>
+                </>
+              )}
             </div>
           </Slogan>
         </NFTsPresentation>
@@ -130,7 +167,11 @@ export default function NFTS({ handleLoggedChange }: any) {
                           return (
                             <NFTCard>
                               <div className="picture">
-                                <img src={image_url} alt={name} />
+                                <img
+                                  src={image_url}
+                                  alt={name}
+                                  loading="lazy"
+                                />
                               </div>
                               <div className="info">
                                 <>
@@ -243,9 +284,6 @@ export default function NFTS({ handleLoggedChange }: any) {
                                     }
                                   })()}
                                 </>
-                                {/* <Link href={nft.permalink} passHref>
-                            Adquirir
-                          </Link> */}
                                 <button
                                   onClick={() => {
                                     window.location.href = `/nfts/${asset_contract.address}%2F${token_id}`;

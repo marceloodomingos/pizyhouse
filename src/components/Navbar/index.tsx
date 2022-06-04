@@ -162,13 +162,13 @@ export default function Navbar({ handleLoggedChange }: NavbarProps) {
                       </li>
                       <li>
                         <SignOut weight="bold" />
-                        <button
+                        <a
                           onClick={() => {
                             logOutFirebase();
                           }}
                         >
                           Sair
-                        </button>
+                        </a>
                       </li>
                     </ul>
                   </li>

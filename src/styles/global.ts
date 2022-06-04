@@ -21,11 +21,6 @@ export const GlobalStyles = createGlobalStyle`
     padding: 0;
     font-family: 'Poppins', sans-serif;
   }
-  html, body {
-    position:relative;
-    margin: 0 auto;
-    overflow-x: hidden;
-  }
   html {
     scroll-behavior: smooth;
     box-sizing: inherit;
@@ -35,16 +30,17 @@ export const GlobalStyles = createGlobalStyle`
     background: var(--background);
     color: var(--white);
     &::-webkit-scrollbar {
-      width: 6px;
+      width: 8px;
     }
     &::-webkit-scrollbar-track {
       background: rgba(130, 87, 229, 0.1);
     }
     &::-webkit-scrollbar-thumb {
-      background: #8257e5;
+      background: var(--primary);
+      transition: var(--transition);
     }
     &::-webkit-scrollbar-thumb:hover {
-      background: #996dff;
+      background: var(--tertiary);
     }
   }
   main {

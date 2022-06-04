@@ -145,8 +145,18 @@ export const NavbarContainer = styled.nav`
       align-items: center;
       /* gap: 12px; */
       z-index: 2;
-      > a,
-      button {
+      > a {
+        padding: 26px 0 26px 12px;
+        border-radius: 4px;
+        cursor: pointer;
+        text-transform: uppercase;
+        text-align: center;
+        text-decoration: none;
+        font-size: 12px;
+        font-weight: bold;
+        transition: var(--transition);
+      }
+      > button {
         padding: 8px 16px;
         border-radius: 4px;
         cursor: pointer;
@@ -242,6 +252,7 @@ export const NavbarContainer = styled.nav`
             button {
               width: 100%;
               height: 100%;
+              padding: 26px 0 26px 12px;
               color: var(--white);
               transition: var(--transition);
               border: unset;

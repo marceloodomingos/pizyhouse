@@ -4,12 +4,18 @@ export const TeamWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
+  align-items: stretch;
   gap: 32px;
-  margin: 32px auto;
+  margin: 0 auto;
   padding: 24px;
   width: 100%;
   max-width: 1120px;
+  @media (max-width: 1010px) {
+    margin-top: -64px;
+  }
+  @media (max-width: 679px) {
+    margin: 0 auto;
+  }
 `;
 
 export const TeamMember = styled.div`
@@ -19,11 +25,16 @@ export const TeamMember = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  min-width: 300px;
-  border-radius: 4px;
   flex-basis: 300px;
-  background: var(--shape);
-  overflow: hidden;
+  height: 100%;
+  overflow: visible;
+  padding-top: 4%;
+  @media (max-width: 1010px) {
+    padding-top: 14%;
+  }
+  @media (max-width: 500px) {
+    padding-top: 16%;
+  }
   .info {
     display: flex;
     flex-direction: column;
@@ -31,24 +42,31 @@ export const TeamMember = styled.div`
     align-items: center;
     gap: 16px;
     font-weight: bold;
-    padding: 16px;
+    position: relative;
+    width: 100%;
+    padding-top: 100%;
+    height: 100%;
+    /* max-height: 320px; */
+    overflow: visible;
+    background: var(--shape);
+    border-radius: 4px 4px 0 0;
+    background: radial-gradient(
+      circle at right top,
+      var(--primary),
+      var(--secondary),
+      var(--tertiary),
+      var(--shape)
+    );
     img {
-      position: relative;
-      min-width: 250px;
+      height: max-content;
+      /* max-height: 650px; */
+      padding-top: 0.5rem;
       width: 100%;
-      max-width: 250px;
-      min-height: 250px;
-      height: 100%;
-      max-height: 250px;
-      border-radius: 50%;
-      background: linear-gradient(
-        to top right,
-        var(--primary),
-        var(--background)
-      );
-      padding: 8px;
       object-fit: cover;
       pointer-events: none;
+      user-select: none;
+      position: absolute;
+      bottom: 0;
     }
   }
   .social {
@@ -56,10 +74,9 @@ export const TeamMember = styled.div`
     justify-content: center;
     align-items: center;
     gap: 16px;
-    margin: 16px 0;
     svg {
-      width: 42px;
-      height: 42px;
+      width: 36px;
+      height: 36px;
       padding: 8px;
       fill: var(--white);
       color: var(--white);
@@ -72,8 +89,9 @@ export const TeamMember = styled.div`
     }
     a {
       width: 100%;
+      max-width: 36px;
       height: 100%;
-      max-height: 42px;
+      max-height: 36px;
       position: relative;
       & + a {
         display: flex;
@@ -103,14 +121,38 @@ export const TeamMember = styled.div`
   }
   footer {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    background: var(--shape-dark);
-    padding: 24px;
+    border-top: 1px solid var(--shape-dark);
+    background: var(--shape-light);
+    padding: 16px;
     width: 100%;
-    > span {
-      font-weight: bold;
-      text-transform: capitalize;
+    height: 100%;
+    /* gap: 8px; */
+    border-radius: 0 0 4px 4px;
+    .about {
+      line-height: 125%;
+      > span {
+        font-weight: bold;
+        text-transform: capitalize;
+      }
     }
+    @media (max-width: 500px) {
+      flex-direction: column;
+      justify-content: center;
+      .about {
+        text-align: center;
+        margin-bottom: 16px;
+      }
+    }
+  }
+  &:nth-child(2n + 1) .info {
+    background: radial-gradient(
+      circle at right top,
+      var(--primary),
+      var(--secondary),
+      var(--quartenary),
+      var(--shape)
+    );
   }
 `;

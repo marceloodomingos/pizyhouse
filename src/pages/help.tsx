@@ -77,6 +77,7 @@ export default function Help({ handleLoggedChange }: ConfigurationsPageProps) {
                 <img
                   src="https://raw.githubusercontent.com/gelzinn/ph-assets/main/illustrations/finance-management.png"
                   alt="Finance Management"
+                  loading="lazy"
                 />
               </div>
               <ol className="steps">
@@ -177,6 +178,7 @@ export default function Help({ handleLoggedChange }: ConfigurationsPageProps) {
                 <img
                   src="https://raw.githubusercontent.com/gelzinn/ph-assets/main/illustrations/finance-management-discussion.png"
                   alt="Finance Management"
+                  loading="lazy"
                 />
               </div>
               <ol className="steps">

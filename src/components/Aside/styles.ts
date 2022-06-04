@@ -70,7 +70,14 @@ export const AsideNavbar = styled.aside`
           min-height: 32px;
           max-height: 32px;
         }
-        &:hover,
+        &.disabled {
+          background: var(--shape-light);
+          cursor: not-allowed;
+          > svg {
+            opacity: 0.5;
+          }
+        }
+        &:not(.disabled):hover,
         &.active {
           border-left: 2px solid var(--primary);
           color: var(--white);

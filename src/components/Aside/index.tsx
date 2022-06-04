@@ -70,25 +70,9 @@ export default function Aside() {
               </a>
             </li>
             <li>
-              <a
-                title="Coleções"
-                className={
-                  currentUrl == "/dashboard/collections" ? "active" : ""
-                }
-                href="/dashboard/collections"
-              >
+              <a title="Coleções" className="disabled">
                 <Stack />
                 <p>Coleções</p>
-              </a>
-            </li>
-            <li>
-              <a
-                title="Reportar"
-                className={currentUrl == "/dashboard/report" ? "active" : ""}
-                href="/dashboard/report"
-              >
-                <Warning />
-                <p>Reportar</p>
               </a>
             </li>
           </div>
