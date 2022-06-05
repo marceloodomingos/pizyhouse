@@ -81,6 +81,7 @@ interface ChartProps {
 export default function Coin({ coindata, handleLoggedChange }: CoinPageProps) {
   const [ohlc, setOhlc] = useState<any>([]);
   const [dataOhlc, setDataOhlc] = useState([]);
+  const [sparklineLoading, setSparklineLoading] = useState(false);
 
   const [options, setOptions] = useState({
     chart: {
@@ -342,10 +343,8 @@ export default function Coin({ coindata, handleLoggedChange }: CoinPageProps) {
 
   useEffect(() => {
     const loadSparkline = async () => {
+      setSparklineLoading(true);
       const getSparkline = await getCryptoSparkline(coindata.id);
-
-      console.log(coindata);
-
       getSparkline.slice(0, 100).forEach((coinInfo: any) => {
         const ohlcToDate = new Date(coinInfo[0]);
         const ohlcArray = [...ohlc];
@@ -375,12 +374,12 @@ export default function Coin({ coindata, handleLoggedChange }: CoinPageProps) {
             ],
           },
         ]);
+
+        setSparklineLoading(false);
       });
     };
 
-    setTimeout(() => {
-      loadSparkline();
-    }, 1000);
+    loadSparkline();
   }, []);
 
   return (
@@ -450,15 +449,21 @@ export default function Coin({ coindata, handleLoggedChange }: CoinPageProps) {
               </li>
             </div>
           </div>
-          <div id="candlestick-graph" className="graph">
-            <ReactApexChart
-              options={options}
-              series={series}
-              type="candlestick"
-              width="100%"
-              height="650"
-            />
-          </div>
+          {sparklineLoading ? (
+            <div>
+              <LoadingCircle />
+            </div>
+          ) : (
+            <div id="candlestick-graph" className="graph">
+              <ReactApexChart
+                options={options}
+                series={series}
+                type="candlestick"
+                width="100%"
+                height="650"
+              />
+            </div>
+          )}
         </CryptoInfos>
       </main>
       <Footer />

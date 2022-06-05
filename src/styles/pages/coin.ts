@@ -160,6 +160,18 @@ export const CryptoInfos = styled.div`
       min-height: unset;
     }
   }
+  > div {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: calc(100% - 328px);
+    /* height: 100%; */
+    background: var(--shape);
+    border-radius: 4px;
+  }
   .graph {
     display: flex;
     flex-wrap: wrap;
@@ -266,6 +278,10 @@ export const CryptoInfos = styled.div`
       }
       .apexcharts-legend {
         display: none;
+      }
+      .apexcharts-candlestick-series {
+        transform: translateX(-25%) scaleX(1.25);
+        transform-origin: middle center;
       }
       .apexcharts-gridlines-horizontal {
         line:nth-child(1) {
