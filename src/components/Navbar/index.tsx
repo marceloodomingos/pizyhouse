@@ -134,17 +134,29 @@ export default function Navbar({ handleLoggedChange }: NavbarProps) {
                 </>
               ) : (
                 <>
-                  <li>
+                  <li
+                    onClick={() => {
+                      window.location.href = "/help";
+                    }}
+                  >
                     <Link href="/help" passHref>
                       <Question />
                     </Link>
                   </li>
-                  <li>
+                  <li
+                    onClick={() => {
+                      window.location.href = "/dashboard/configurations";
+                    }}
+                  >
                     <Link href="/dashboard/configurations" passHref>
                       <Gear />
                     </Link>
                   </li>
-                  <li>
+                  <li
+                    onClick={() => {
+                      window.location.href = "/dashboard/notifications";
+                    }}
+                  >
                     <Link href="/dashboard/notifications" passHref>
                       <Bell />
                     </Link>
@@ -152,15 +164,27 @@ export default function Navbar({ handleLoggedChange }: NavbarProps) {
                   <li id="user">
                     {user.avatar ? <img src={user.avatar} /> : <User />}
                     <ul className="dropdown">
-                      <li>
+                      <li
+                        onClick={() => {
+                          window.location.href = "/dashboard";
+                        }}
+                      >
                         <Gauge weight="bold" />
                         <Link href="/dashboard">Dashboard</Link>
                       </li>
-                      <li>
+                      <li
+                        onClick={() => {
+                          window.location.href = "/dashboard/profile";
+                        }}
+                      >
                         <PencilSimple weight="bold" />
                         <Link href="/dashboard/profile">Perfil</Link>
                       </li>
-                      <li>
+                      <li
+                        onClick={() => {
+                          logOutFirebase();
+                        }}
+                      >
                         <SignOut weight="bold" />
                         <a
                           onClick={() => {
@@ -188,22 +212,46 @@ export default function Navbar({ handleLoggedChange }: NavbarProps) {
         </div>
         <MobileMenu className={toggleMenu ? "open" : ""}>
           <ul>
-            <li>
+            <li
+              onClick={() => {
+                window.location.href = "/";
+              }}
+            >
               <a href="/">Início</a>
             </li>
-            <li>
+            <li
+              onClick={() => {
+                window.location.href = "/topday";
+              }}
+            >
               <a href="/topday">Melhores do dia</a>
             </li>
-            <li>
+            <li
+              onClick={() => {
+                window.location.href = "/nfts/";
+              }}
+            >
               <a href="/nfts/">NFTs</a>
             </li>
-            <li>
+            <li
+              onClick={() => {
+                window.location.href = "/about-us";
+              }}
+            >
               <a href="/about-us">Sobre a PIZY</a>
             </li>
-            <li>
+            <li
+              onClick={() => {
+                window.location.href = "/about-market";
+              }}
+            >
               <a href="/about-market">Sobre o Mercado</a>
             </li>
-            <li>
+            <li
+              onClick={() => {
+                window.location.href = "/our-team";
+              }}
+            >
               <a href="/our-team">Nossa Equipe</a>
             </li>
             <div className="divider" />
@@ -240,17 +288,29 @@ export default function Navbar({ handleLoggedChange }: NavbarProps) {
                       {user.avatar ? <img src={user.avatar} /> : <User />}
                     </li>
                     <div>
-                      <li>
+                      <li
+                        onClick={() => {
+                          window.location.href = "/help";
+                        }}
+                      >
                         <Link href="/help" passHref>
                           <Question />
                         </Link>
                       </li>
-                      <li>
+                      <li
+                        onClick={() => {
+                          window.location.href = "/dashboard/configurations";
+                        }}
+                      >
                         <Link href="/dashboard/configurations" passHref>
                           <Gear />
                         </Link>
                       </li>
-                      <li>
+                      <li
+                        onClick={() => {
+                          window.location.href = "/dashboard/notifications";
+                        }}
+                      >
                         <Link href="/dashboard/notifications" passHref>
                           <Bell />
                         </Link>

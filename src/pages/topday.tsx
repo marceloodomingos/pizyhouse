@@ -52,7 +52,8 @@ export default function TopDay({
   const handleScroll = (e: any) => {
     if (!coinRef.current) {
       return null;
-    } else if (endReached(coinRef.current)) {
+    }
+    if (endReached(coinRef.current)) {
       setPage(page + 1);
     }
   };

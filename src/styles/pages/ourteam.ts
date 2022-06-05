@@ -62,11 +62,17 @@ export const TeamMember = styled.div`
       /* max-height: 650px; */
       padding-top: 0.5rem;
       width: 100%;
-      object-fit: cover;
+      /* object-fit: cover; */
       pointer-events: none;
       user-select: none;
       position: absolute;
       bottom: 0;
+      mask-image: linear-gradient(
+        rgba(0, 0, 0, 1),
+        rgba(0, 0, 0, 1),
+        rgba(0, 0, 0, 1),
+        rgba(0, 0, 0, 0.75)
+      );
     }
   }
   .social {
@@ -152,7 +158,7 @@ export const TeamMember = styled.div`
       var(--primary),
       var(--secondary),
       var(--quartenary),
-      var(--shape)
+      var(--background)
     );
   }
 `;

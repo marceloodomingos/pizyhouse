@@ -49,6 +49,8 @@ export default function SignIn({ handleLoggedChange }: any) {
     }, 500);
   }, [router]);
 
+  console.log(nftMoreFromCollection);
+
   type AssetsProps = {
     id: number;
     asset_contract: {

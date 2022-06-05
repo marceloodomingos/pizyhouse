@@ -551,6 +551,8 @@ export const NFTsAssets = styled.div`
     align-items: space-between;
     /* margin: 16px 0; */
     > img {
+      pointer-events: none;
+      user-select: none;
       object-fit: cover;
       height: 100%;
       width: 100%;

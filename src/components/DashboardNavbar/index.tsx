@@ -21,6 +21,7 @@ interface NavbarProps {
 
 export default function DashboardNavbar({ handleLoggedChange }: NavbarProps) {
   const { user } = useContext(AuthContext);
+  const currentUrl = location.pathname;
 
   function logOutFirebase() {
     firebase
@@ -40,17 +41,32 @@ export default function DashboardNavbar({ handleLoggedChange }: NavbarProps) {
         <div className="header">
           <div className="account-actions">
             <>
-              <li>
+              <li
+                onClick={() => {
+                  window.location.href = "/help";
+                }}
+              >
                 <Link href="/help" passHref>
                   <Question />
                 </Link>
               </li>
-              <li>
+              <li
+                onClick={() => {
+                  window.location.href = "/dashboard/configurations";
+                }}
+              >
                 <Link href="/dashboard/configurations" passHref>
                   <Gear />
                 </Link>
               </li>
-              <li>
+              <li
+                className={
+                  currentUrl == "/dashboard/notifications" ? "" : "warn"
+                }
+                onClick={() => {
+                  window.location.href = "/dashboard/notifications";
+                }}
+              >
                 <Link href="/dashboard/notifications" passHref>
                   <Bell />
                 </Link>
@@ -61,12 +77,23 @@ export default function DashboardNavbar({ handleLoggedChange }: NavbarProps) {
                 </p>
               )}
               <div className="for-mobile-shortcut">
-                <li>
+                <li
+                  onClick={() => {
+                    window.location.href = "/dashboard/configurations";
+                  }}
+                >
                   <Link href="/dashboard/configurations" passHref>
                     <Gear />
                   </Link>
                 </li>
-                <li>
+                <li
+                  className={
+                    currentUrl == "/dashboard/notifications" ? "" : "warn"
+                  }
+                  onClick={() => {
+                    window.location.href = "/dashboard/notifications";
+                  }}
+                >
                   <Link href="/dashboard/notifications" passHref>
                     <Bell />
                   </Link>
@@ -75,21 +102,38 @@ export default function DashboardNavbar({ handleLoggedChange }: NavbarProps) {
               <li id="user">
                 {user.avatar ? <img src={user.avatar} /> : <User />}
                 <ul className="dropdown">
-                  <li>
+                  <li
+                    onClick={() => {
+                      window.location.href = "/";
+                    }}
+                  >
                     <House weight="bold" />
                     <Link href="/">Início</Link>
                   </li>
-                  <li>
+                  <li
+                    onClick={() => {
+                      window.location.href = "/dashboard/profile";
+                    }}
+                  >
                     <PencilSimple weight="bold" />
                     <Link href="/dashboard/profile">Perfil</Link>
                   </li>
                   <div className="for-mobile">
-                    <li>
+                    <li
+                      onClick={() => {
+                        window.location.href = "/help";
+                      }}
+                    >
                       <Question weight="bold" />
                       <Link href="/help">Ajuda</Link>
                     </li>
                   </div>
-                  <li>
+                  <li
+                    onClick={() => {
+                      logOutFirebase();
+                      window.location.href = "/";
+                    }}
+                  >
                     <SignOut weight="bold" />
                     <button
                       onClick={() => {

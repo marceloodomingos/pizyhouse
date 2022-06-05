@@ -57,6 +57,17 @@ export const GlobalStyles = createGlobalStyle`
       padding: 16px;
       margin: 16px 0;
     }
+    > .title {
+      text-align: center;
+      margin-bottom: 64px;
+      padding: 0 32px;
+      @media (max-width: 500px) {
+        margin-bottom: 32px;
+      }
+      &:nth-child(2n) {
+        margin: 32px 0;
+      }
+    }
     &.modelOpenned {
       position: fixed;
       top: 0;

@@ -9,6 +9,11 @@ import { MainApp } from "../../styles/pages/dashboard";
 import { useRouter } from "next/router";
 import { auth } from "~/services/firebase";
 import LoadingCircle from "~/components/Loading";
+import {
+  NotificationItem,
+  NotificationsWrapper,
+} from "~/styles/pages/notifications";
+import { ArrowUp } from "phosphor-react";
 
 interface NotificationPageProps {
   handleLoggedChange: () => void;
@@ -56,6 +61,152 @@ export default function Notification({
           <MainApp>
             <div className="container">
               <h1>Notificações</h1>
+              <NotificationsWrapper>
+                <NotificationItem className="up">
+                  <span>Alta</span>
+                  <p>
+                    A moeda <b>Bitcoin</b> está em alta! Aproveite enquanto
+                    pode. Caso queira saber mais, vá na aba de{" "}
+                    <a href="/topday">Melhores do dia</a> e clique na respectiva
+                    moeda. Todas as informações estarão lá, detalhadamente.
+                  </p>
+                  <i>
+                    <img src="https://raw.githubusercontent.com/gelzinn/ph-assets/da27cd11c79e16c96b9755e06d8a5ef19660a930/icons/up-arrow.svg" />
+                  </i>
+                </NotificationItem>
+                <NotificationItem className="down">
+                  <span>Queda</span>
+                  <p>
+                    A moeda <b>Bitcoin</b> está em alta! Aproveite enquanto
+                    pode. Caso queira saber mais, vá na aba de{" "}
+                    <a href="/topday">Melhores do dia</a> e clique na respectiva
+                    moeda. Todas as informações estarão lá, detalhadamente.
+                  </p>
+                  <i>
+                    <img src="https://raw.githubusercontent.com/gelzinn/ph-assets/da27cd11c79e16c96b9755e06d8a5ef19660a930/icons/down-arrow.svg" />
+                  </i>
+                </NotificationItem>
+                <NotificationItem className="up">
+                  <span>Alta</span>
+                  <p>
+                    A moeda <b>Bitcoin</b> está em alta! Aproveite enquanto
+                    pode. Caso queira saber mais, vá na aba de{" "}
+                    <a href="/topday">Melhores do dia</a> e clique na respectiva
+                    moeda. Todas as informações estarão lá, detalhadamente.
+                  </p>
+                  <i>
+                    <img src="https://raw.githubusercontent.com/gelzinn/ph-assets/da27cd11c79e16c96b9755e06d8a5ef19660a930/icons/up-arrow.svg" />
+                  </i>
+                </NotificationItem>
+                <NotificationItem className="up">
+                  <span>Alta</span>
+                  <p>
+                    A moeda <b>Bitcoin</b> está em alta! Aproveite enquanto
+                    pode. Caso queira saber mais, vá na aba de{" "}
+                    <a href="/topday">Melhores do dia</a> e clique na respectiva
+                    moeda. Todas as informações estarão lá, detalhadamente.
+                  </p>
+                  <i>
+                    <img src="https://raw.githubusercontent.com/gelzinn/ph-assets/da27cd11c79e16c96b9755e06d8a5ef19660a930/icons/up-arrow.svg" />
+                  </i>
+                </NotificationItem>
+                <NotificationItem className="down">
+                  <span>Queda</span>
+                  <p>
+                    A moeda <b>Bitcoin</b> está em alta! Aproveite enquanto
+                    pode. Caso queira saber mais, vá na aba de{" "}
+                    <a href="/topday">Melhores do dia</a> e clique na respectiva
+                    moeda. Todas as informações estarão lá, detalhadamente.
+                  </p>
+                  <i>
+                    <img src="https://raw.githubusercontent.com/gelzinn/ph-assets/da27cd11c79e16c96b9755e06d8a5ef19660a930/icons/down-arrow.svg" />
+                  </i>
+                </NotificationItem>
+                <NotificationItem className="down">
+                  <span>Queda</span>
+                  <p>
+                    A moeda <b>Bitcoin</b> está em alta! Aproveite enquanto
+                    pode. Caso queira saber mais, vá na aba de{" "}
+                    <a href="/topday">Melhores do dia</a> e clique na respectiva
+                    moeda. Todas as informações estarão lá, detalhadamente.
+                  </p>
+                  <i>
+                    <img src="https://raw.githubusercontent.com/gelzinn/ph-assets/da27cd11c79e16c96b9755e06d8a5ef19660a930/icons/down-arrow.svg" />
+                  </i>
+                </NotificationItem>
+                <NotificationItem className="up">
+                  <span>Alta</span>
+                  <p>
+                    A moeda <b>Bitcoin</b> está em alta! Aproveite enquanto
+                    pode. Caso queira saber mais, vá na aba de{" "}
+                    <a href="/topday">Melhores do dia</a> e clique na respectiva
+                    moeda. Todas as informações estarão lá, detalhadamente.
+                  </p>
+                  <i>
+                    <img src="https://raw.githubusercontent.com/gelzinn/ph-assets/da27cd11c79e16c96b9755e06d8a5ef19660a930/icons/up-arrow.svg" />
+                  </i>
+                </NotificationItem>
+                <NotificationItem className="up">
+                  <span>Alta</span>
+                  <p>
+                    A moeda <b>Bitcoin</b> está em alta! Aproveite enquanto
+                    pode. Caso queira saber mais, vá na aba de{" "}
+                    <a href="/topday">Melhores do dia</a> e clique na respectiva
+                    moeda. Todas as informações estarão lá, detalhadamente.
+                  </p>
+                  <i>
+                    <img src="https://raw.githubusercontent.com/gelzinn/ph-assets/da27cd11c79e16c96b9755e06d8a5ef19660a930/icons/up-arrow.svg" />
+                  </i>
+                </NotificationItem>
+                <NotificationItem className="down">
+                  <span>Queda</span>
+                  <p>
+                    A moeda <b>Bitcoin</b> está em alta! Aproveite enquanto
+                    pode. Caso queira saber mais, vá na aba de{" "}
+                    <a href="/topday">Melhores do dia</a> e clique na respectiva
+                    moeda. Todas as informações estarão lá, detalhadamente.
+                  </p>
+                  <i>
+                    <img src="https://raw.githubusercontent.com/gelzinn/ph-assets/da27cd11c79e16c96b9755e06d8a5ef19660a930/icons/down-arrow.svg" />
+                  </i>
+                </NotificationItem>
+                <NotificationItem className="up">
+                  <span>Alta</span>
+                  <p>
+                    A moeda <b>Bitcoin</b> está em alta! Aproveite enquanto
+                    pode. Caso queira saber mais, vá na aba de{" "}
+                    <a href="/topday">Melhores do dia</a> e clique na respectiva
+                    moeda. Todas as informações estarão lá, detalhadamente.
+                  </p>
+                  <i>
+                    <img src="https://raw.githubusercontent.com/gelzinn/ph-assets/da27cd11c79e16c96b9755e06d8a5ef19660a930/icons/up-arrow.svg" />
+                  </i>
+                </NotificationItem>
+                <NotificationItem className="up">
+                  <span>Alta</span>
+                  <p>
+                    A moeda <b>Bitcoin</b> está em alta! Aproveite enquanto
+                    pode. Caso queira saber mais, vá na aba de{" "}
+                    <a href="/topday">Melhores do dia</a> e clique na respectiva
+                    moeda. Todas as informações estarão lá, detalhadamente.
+                  </p>
+                  <i>
+                    <img src="https://raw.githubusercontent.com/gelzinn/ph-assets/da27cd11c79e16c96b9755e06d8a5ef19660a930/icons/up-arrow.svg" />
+                  </i>
+                </NotificationItem>
+                <NotificationItem className="down">
+                  <span>Queda</span>
+                  <p>
+                    A moeda <b>Bitcoin</b> está em alta! Aproveite enquanto
+                    pode. Caso queira saber mais, vá na aba de{" "}
+                    <a href="/topday">Melhores do dia</a> e clique na respectiva
+                    moeda. Todas as informações estarão lá, detalhadamente.
+                  </p>
+                  <i>
+                    <img src="https://raw.githubusercontent.com/gelzinn/ph-assets/da27cd11c79e16c96b9755e06d8a5ef19660a930/icons/down-arrow.svg" />
+                  </i>
+                </NotificationItem>
+              </NotificationsWrapper>
             </div>
           </MainApp>
           <FooterApp />

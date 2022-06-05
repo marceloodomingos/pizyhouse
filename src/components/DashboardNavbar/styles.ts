@@ -199,6 +199,10 @@ export const NavbarContainer = styled.nav`
           svg {
             color: var(--white);
           }
+          ul {
+            display: flex;
+            align-items: space-between;
+          }
         }
         > .dropdown {
           display: none;
@@ -275,14 +279,25 @@ export const NavbarContainer = styled.nav`
             }
           }
         }
-        &:hover {
-          ul {
-            display: flex;
-            align-items: space-between;
-          }
-        }
         &:last-child {
           padding: 0;
+        }
+        &.warn {
+          position: relative;
+          &:after {
+            content: "";
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--primary);
+            top: 16%;
+            right: 16%;
+            transition: var(--transition);
+          }
+          &:hover:after {
+            background: var(--pizy-yellow);
+          }
         }
         @media (max-width: 500px) {
           display: none;

@@ -40,7 +40,7 @@ export const MainApp = styled.main`
   @media (max-width: 500px) {
     padding-left: 0;
     > .container {
-      padding: 0 30px 60px 30px;
+      padding: 0 16px 60px 16px;
       margin-top: 100px;
     }
   }
