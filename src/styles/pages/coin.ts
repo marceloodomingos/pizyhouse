@@ -286,10 +286,14 @@ export const CryptoInfos = styled.div`
       max-width: unset;
       .apexcharts-inner,
       .apexcharts-graphical {
-        transform: translateX(-25%) scale(1.4);
+        transform: translateX(-10%) translateY(-15%) scale(1.5);
         transform-origin: middle center;
         width: 100%;
         height: 100%;
+      }
+      .apexcharts-candlestick-series {
+        transform: translateX(-75%) scaleX(2);
+        transform-origin: middle center;
       }
       tspan {
         display: none;
