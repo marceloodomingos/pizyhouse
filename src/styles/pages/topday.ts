@@ -201,6 +201,12 @@ export const Coin = styled.div`
   }
 `;
 
+export const ResetCoins = styled.div`
+  width: 100%;
+  max-width: 300px;
+  margin: 32px auto 0;
+`;
+
 export const CryptoCoinsActions = styled.div`
   display: flex;
   justify-content: center;

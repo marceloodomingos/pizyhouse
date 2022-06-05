@@ -14,6 +14,7 @@ import LoadingCircle from "~/components/Loading";
 import { firebase, auth } from "~/services/firebase";
 import Button from "~/components/Button";
 import AuthContext from "~/contexts/AuthContext";
+import BackToTop from "~/components/BackToTop";
 
 // type NFTs = Record<string, {}>;
 
@@ -21,6 +22,7 @@ export default function NFTS({ handleLoggedChange }: any) {
   const [page, setPage] = useState(1);
   const [nfts, setNfts] = useState([]);
   const [nftsPageLoading, setNftsPageLoading] = useState(false);
+  const scrollObserve = useRef();
 
   const { user } = useContext(AuthContext);
 
@@ -37,31 +39,34 @@ export default function NFTS({ handleLoggedChange }: any) {
       });
   }
 
-  const nftRef = useRef(null);
-
   useEffect(() => {
     const loadNfts = async () => {
       setNftsPageLoading(true);
+
       const newNfts = await getNfts(page);
       setNfts((oldNfts) => [...oldNfts, ...newNfts]);
+
       setNftsPageLoading(false);
     };
     loadNfts();
   }, [page]);
 
-  const handleScroll = (e: any) => {
-    if (!nftRef.current) {
-      return null;
-    } else if (endReached(nftRef.current)) {
-      setPage(page + 1);
-    }
-  };
+  useEffect(() => {
+    const intersectionObserver = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setPage((currentPage) => currentPage + 1);
+        }
+      },
+      { threshold: 1 }
+    );
 
-  function endReached(props?: any) {
-    return props.getBoundingClientRect().bottom < window.innerHeight;
-  }
+    intersectionObserver.observe(scrollObserve.current);
 
-  window.addEventListener("scroll", handleScroll);
+    return () => {
+      intersectionObserver.disconnect();
+    };
+  }, []);
 
   interface NftsProps {
     id: number;
@@ -90,6 +95,7 @@ export default function NFTS({ handleLoggedChange }: any) {
       </Head>
 
       <Navbar handleLoggedChange={handleLoggedChange} />
+      <BackToTop />
       <main>
         <NFTsPresentation>
           <h1>NFTs</h1>
@@ -143,7 +149,7 @@ export default function NFTS({ handleLoggedChange }: any) {
             </div>
           </Slogan>
         </NFTsPresentation>
-        <NFTs ref={nftRef}>
+        <NFTs>
           {nfts &&
             nfts.map(
               (
@@ -305,6 +311,7 @@ export default function NFTS({ handleLoggedChange }: any) {
             )}
           {nftsPageLoading && <LoadingCircle />}
         </NFTs>
+        <div ref={scrollObserve} />
       </main>
       <Footer />
       <BGContent />

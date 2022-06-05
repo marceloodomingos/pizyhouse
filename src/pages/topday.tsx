@@ -5,20 +5,20 @@ import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 import moment from "moment";
 
-// import Header from "../components/Header";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 import ArrowUp from "../assets/images/arrow-up.svg";
 import ArrowDown from "../assets/images/arrow-down.svg";
 
-import { Coin, Today } from "../styles/pages/topday";
+import { Coin, ResetCoins, Today } from "../styles/pages/topday";
 import useGetDay from "../hooks/useGetDay";
 import { SkeletonWrapperElement, SkeletonCoin } from "../skeletons/coinTopDay";
 import { BGContent } from "~/components/BGContent/styles";
 import { getCrypto } from "~/api/getCrypto";
 import LoadingCircle from "~/components/Loading";
 import BackToTop from "~/components/BackToTop";
+import Button from "~/components/Button";
 
 interface TopDayPageProps {
   topcoins: any;
@@ -32,37 +32,37 @@ export default function TopDay({
   const [page, setPage] = useState(1);
   const [coins, setCoins] = useState([]);
   const [coinsPageLoading, setCoinsPageLoading] = useState(false);
+  const scrollObserve = useRef();
   const day = useGetDay();
 
-  const coinRef = useRef(null);
-
   useEffect(() => {
-    loadNfts();
+    const loadCoins = async () => {
+      setCoinsPageLoading(true);
+
+      const newCoins = await getCrypto(page);
+      setCoins((prevCoins) => [...prevCoins, ...newCoins]);
+
+      setCoinsPageLoading(false);
+    };
+    loadCoins();
   }, [page]);
 
-  const loadNfts = async () => {
-    setCoinsPageLoading(true);
+  useEffect(() => {
+    const intersectionObserver = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setPage((currentPage) => currentPage + 1);
+        }
+      },
+      { threshold: 1 }
+    );
 
-    const newCoins = await getCrypto(page);
-    setCoins([...coins, ...newCoins]);
+    intersectionObserver.observe(scrollObserve.current);
 
-    setCoinsPageLoading(false);
-  };
-
-  const handleScroll = (e: any) => {
-    if (!coinRef.current) {
-      return null;
-    }
-    if (endReached(coinRef.current)) {
-      setPage(page + 1);
-    }
-  };
-
-  function endReached(props?: any) {
-    return props.getBoundingClientRect().bottom < window.innerHeight;
-  }
-
-  window.addEventListener("scroll", handleScroll);
+    return () => {
+      intersectionObserver.disconnect();
+    };
+  }, []);
 
   const formatterToMoney = new Intl.NumberFormat("pt-BR", {
     style: "currency",
@@ -99,90 +99,118 @@ export default function TopDay({
       <main>
         <h1>Melhores Criptomoedas do Dia</h1>
         <Today>{day.dmy}</Today>
-        {coins && (
-          <>
-            <Coin ref={coinRef}>
-              {coins
-                .sort((a, b) => (a.coin > b.coin ? -1 : 1))
-                .map(
-                  ({
-                    id,
-                    name,
-                    image,
-                    symbol,
-                    market_cap_rank,
-                    current_price,
-                    price_change_percentage_24h,
-                  }: CoinProps) => {
-                    return (
-                      <button
-                        key={id}
-                        className={"coin " + symbol}
-                        onClick={() => {
-                          window.location.href = `/coin/${id}`;
-                        }}
-                      >
-                        <div className="about">
-                          <p id="position">{market_cap_rank}</p>
-                          <img loading="lazy" src={image} alt={name} />
-                          <div>
-                            <span>{name}</span>
-                            <p>{symbol}</p>
+        <>
+          {(() => {
+            if (page > 2) {
+              return (
+                <ResetCoins>
+                  <Button
+                    isOutlined
+                    onClick={() => {
+                      location.reload();
+                    }}
+                  >
+                    Limpar
+                  </Button>
+                </ResetCoins>
+              );
+            }
+          })()}
+          {coins && (
+            <>
+              <Coin>
+                {coins
+                  .sort((a, b) => (a.coin > b.coin ? -1 : 1))
+                  .map(
+                    (
+                      {
+                        id,
+                        name,
+                        image,
+                        symbol,
+                        market_cap_rank,
+                        current_price,
+                        price_change_percentage_24h,
+                      }: CoinProps,
+                      index: number
+                    ) => {
+                      return (
+                        <button
+                          key={index}
+                          className={"coin " + symbol}
+                          onClick={() => {
+                            window.location.href = `/coin/${id}`;
+                          }}
+                        >
+                          <div className="about">
+                            <p id="position">{market_cap_rank}</p>
+                            <img loading="lazy" src={image} alt={name} />
+                            <div>
+                              <span>{name}</span>
+                              <p>{symbol}</p>
+                            </div>
                           </div>
-                        </div>
-                        <div className="info">
-                          <div className="prices">
-                            <p>{formatterToMoney.format(current_price)}</p>
-                            {(() => {
-                              if (price_change_percentage_24h) {
-                                if (price_change_percentage_24h < 0) {
-                                  return (
-                                    <>
-                                      <span className="down">
-                                        <Image
-                                          src={ArrowDown}
-                                          alt="Down Arrow"
-                                          width={24}
-                                          height={24}
-                                        />{" "}
-                                        {price_change_percentage_24h.toFixed(2)}
-                                        %
-                                      </span>
-                                    </>
-                                  );
-                                } else if (price_change_percentage_24h === 0) {
-                                  return null;
-                                } else {
-                                  return (
-                                    <>
-                                      <span className="up">
-                                        <Image
-                                          src={ArrowUp}
-                                          alt="Up Arrow"
-                                          width={24}
-                                          height={24}
-                                        />{" "}
-                                        {price_change_percentage_24h.toFixed(2)}
-                                        %
-                                      </span>
-                                    </>
-                                  );
+                          <div className="info">
+                            <div className="prices">
+                              <p>{formatterToMoney.format(current_price)}</p>
+                              {(() => {
+                                if (price_change_percentage_24h) {
+                                  if (price_change_percentage_24h < 0) {
+                                    return (
+                                      <>
+                                        <span className="down">
+                                          <Image
+                                            src={ArrowDown}
+                                            alt="Down Arrow"
+                                            width={24}
+                                            height={24}
+                                          />{" "}
+                                          {price_change_percentage_24h.toFixed(
+                                            2
+                                          )}
+                                          %
+                                        </span>
+                                      </>
+                                    );
+                                  } else if (
+                                    price_change_percentage_24h === 0
+                                  ) {
+                                    return null;
+                                  } else {
+                                    return (
+                                      <>
+                                        <span className="up">
+                                          <Image
+                                            src={ArrowUp}
+                                            alt="Up Arrow"
+                                            width={24}
+                                            height={24}
+                                          />{" "}
+                                          {price_change_percentage_24h.toFixed(
+                                            2
+                                          )}
+                                          %
+                                        </span>
+                                      </>
+                                    );
+                                  }
                                 }
-                              }
-                            })()}
+                              })()}
+                            </div>
+                            <a>
+                              <i />
+                            </a>
                           </div>
-                          <a>
-                            <i />
-                          </a>
-                        </div>
-                      </button>
-                    );
-                  }
-                )}
-              {coinsPageLoading && <LoadingCircle />}
-            </Coin>
-          </>
-        )}
+                        </button>
+                      );
+                    }
+                  )}
+                {coinsPageLoading && <LoadingCircle />}
+              </Coin>
+              <div ref={scrollObserve} />
+            </>
+          )}
+        </>
       </main>
       <Footer />
       <BGContent />

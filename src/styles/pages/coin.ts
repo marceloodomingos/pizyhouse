@@ -182,6 +182,11 @@ export const CryptoInfos = styled.div`
         stroke: var(--primary);
       }
       .apexcharts-toolbar {
+        justify-content: flex-end;
+        align-items: center;
+        align-content: center;
+        width: 100%;
+        padding: unset;
         /* display: none; */
         .apexcharts-zoom-icon,
         .apexcharts-zoomin-icon,
@@ -191,17 +196,34 @@ export const CryptoInfos = styled.div`
         .apexcharts-selection-icon,
         .apexcharts-menu-icon,
         .apexcharts-toolbar-custom-icon {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          transform: scale(1);
+          width: 100%;
+          max-width: 24px;
+          height: 100%;
+          max-height: 24px;
+          border-radius: 4px;
+          transition: var(--transition);
+          padding: 4px;
           svg {
+            width: 100%;
+            height: 100%;
             fill: var(--primary);
             color: var(--primary);
             stroke: unset;
             transition: var(--transition);
-            &:hover {
+          }
+          &:hover {
+            background: var(--shape-light);
+            svg {
               fill: var(--tertiary);
               color: var(--tertiary);
             }
           }
           &.apexcharts-selected {
+            background: var(--shape-dark);
           }
         }
         .apexcharts-menu-icon {
@@ -227,12 +249,23 @@ export const CryptoInfos = styled.div`
         color: #fff;
         background: rgba(18, 18, 20, 0.8);
       }
-      .apexcharts-inner,
-      .apexcharts-graphical {
-        transform: translateX(5%) scale(1.2);
-        transform-origin: top left;
-        width: 100%;
-        height: 100%;
+      @media (min-width: 1200px) {
+        .apexcharts-inner,
+        .apexcharts-graphical {
+          transform: translateX(-50%) translateY(-15%) scale(1.75);
+          transform-origin: top left;
+          width: 100%;
+          height: 100%;
+        }
+      }
+      .apexcharts-active,
+      .apexcharts-tooltip,
+      .apexcharts-xaxistooltip,
+      .apexcharts-yaxistooltip {
+        display: none;
+      }
+      .apexcharts-legend {
+        display: none;
       }
       .apexcharts-gridlines-horizontal {
         line:nth-child(1) {
@@ -253,7 +286,7 @@ export const CryptoInfos = styled.div`
       max-width: unset;
       .apexcharts-inner,
       .apexcharts-graphical {
-        transform: translate(0) scale(1.4);
+        transform: translateX(-25%) scale(1.4);
         transform-origin: middle center;
         width: 100%;
         height: 100%;

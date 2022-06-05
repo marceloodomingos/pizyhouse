@@ -143,6 +143,10 @@ export const SingleDoubt = styled.div`
               text-decoration: underline;
             }
           }
+          @media (max-width: 920px) {
+            text-align: right;
+            width: 100%;
+          }
         }
       }
       > li {
