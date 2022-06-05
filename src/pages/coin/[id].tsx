@@ -43,6 +43,7 @@ const formatterToMoney = new Intl.NumberFormat("pt-BR", {
 
 interface CoinPageProps {
   coindata: {
+    id: string;
     image: {
       large: string;
     };
@@ -340,10 +341,10 @@ export default function Coin({ coindata, handleLoggedChange }: CoinPageProps) {
   ]);
 
   useEffect(() => {
-    const coinNameToFetch = coindata.name.toLowerCase();
-
     const loadSparkline = async () => {
-      const getSparkline = await getCryptoSparkline(coinNameToFetch);
+      const getSparkline = await getCryptoSparkline(coindata.id);
+
+      console.log(coindata);
 
       getSparkline.slice(0, 100).forEach((coinInfo: any) => {
         const ohlcToDate = new Date(coinInfo[0]);
@@ -377,7 +378,9 @@ export default function Coin({ coindata, handleLoggedChange }: CoinPageProps) {
       });
     };
 
-    loadSparkline();
+    setTimeout(() => {
+      loadSparkline();
+    }, 1000);
   }, []);
 
   return (
