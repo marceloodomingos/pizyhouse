@@ -178,11 +178,18 @@ export const NavbarContainer = styled.nav`
         height: 48px;
         padding: 8px;
         margin-left: 16px;
+        &.user-name {
+          margin-left: unset;
+        }
         img {
           width: 50px;
           height: 50px;
           border-radius: 50%;
           padding: 2px;
+        }
+        @media (max-width: 500px) {
+          display: flex;
+          margin-left: unset;
         }
       }
       > li {
@@ -313,6 +320,23 @@ export const NavbarContainer = styled.nav`
           svg {
             width: 100%;
             height: 100%;
+          }
+          &.warn {
+            position: relative;
+            &:after {
+              content: "";
+              position: absolute;
+              width: 10px;
+              height: 10px;
+              border-radius: 50%;
+              background: var(--primary);
+              top: 16%;
+              right: 16%;
+              transition: var(--transition);
+            }
+            &:hover:after {
+              background: var(--pizy-yellow);
+            }
           }
           &:hover {
             background: var(--shape-dark-lowopacity);

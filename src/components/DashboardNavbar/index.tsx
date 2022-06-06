@@ -99,7 +99,7 @@ export default function DashboardNavbar({ handleLoggedChange }: NavbarProps) {
                   </Link>
                 </li>
               </div>
-              <li id="user">
+              <li id="user" className={user.name ? "user-name" : ""}>
                 {user.avatar ? <img src={user.avatar} /> : <User />}
                 <ul className="dropdown">
                   <li
