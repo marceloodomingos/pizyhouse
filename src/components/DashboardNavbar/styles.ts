@@ -171,14 +171,13 @@ export const NavbarContainer = styled.nav`
         user-select: none;
       }
       #user {
-        display: flex;
-        justify-content: center;
-        align-items: center;
         background: var(--primary);
-        border: 2px solid var(--secondary);
+        border: 2.5px solid var(--secondary);
         border-radius: 50%;
-        width: 50px;
-        height: 50px;
+        width: 48px;
+        height: 48px;
+        padding: 8px;
+        margin-left: 16px;
         img {
           width: 50px;
           height: 50px;

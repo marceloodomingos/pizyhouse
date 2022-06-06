@@ -90,7 +90,10 @@ export default function Wallet({ handleLoggedChange }: WalletPageProps) {
                       <div className="row">
                         <>
                           {(() => {
-                            if (user.email === "mcnoobend@gmail.com") {
+                            if (
+                              user.email === "mcnoobend@gmail.com" ||
+                              user.email === "mcnoobend@hotmail.com"
+                            ) {
                               return <PIZYCard name={user.name} tier="ceo" />;
                             }
                             if (user.email === "danielsouza_ioio@outlook.com") {

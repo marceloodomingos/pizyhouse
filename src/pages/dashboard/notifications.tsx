@@ -12,8 +12,7 @@ import LoadingCircle from "~/components/Loading";
 import {
   NotificationItem,
   NotificationsWrapper,
-} from "~/styles/pages/notifications";
-import { ArrowUp } from "phosphor-react";
+} from "~/styles/pages/dashboard/notifications";
 
 interface NotificationPageProps {
   handleLoggedChange: () => void;

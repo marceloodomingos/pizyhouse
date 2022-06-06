@@ -29,6 +29,7 @@ export default function Navbar({ handleLoggedChange }: NavbarProps) {
   const router = useRouter();
   const [toggleMenu, setToggleMenu] = useState(false);
   const mobileMenu = useRef(null);
+  const currentUrl = location.pathname;
 
   function logOutFirebase() {
     firebase
@@ -153,6 +154,9 @@ export default function Navbar({ handleLoggedChange }: NavbarProps) {
                     </Link>
                   </li>
                   <li
+                    className={
+                      currentUrl == "/dashboard/notifications" ? "" : "warn"
+                    }
                     onClick={() => {
                       window.location.href = "/dashboard/notifications";
                     }}

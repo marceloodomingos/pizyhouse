@@ -52,14 +52,22 @@ export default function NFTS({ handleLoggedChange }: any) {
   }, [page]);
 
   useEffect(() => {
-    const intersectionObserver = new IntersectionObserver(
-      (entries) => {
-        if (entries.some((entry) => entry.isIntersecting)) {
-          setPage((currentPage) => currentPage + 1);
-        }
-      },
-      { threshold: 1 }
-    );
+    const optionsIO = {
+      threshold: 1.0,
+    };
+
+    const intersectionObserver = new IntersectionObserver((entries) => {
+      if (
+        entries.some(
+          (entry) =>
+            entry &&
+            entry.isIntersecting &&
+            entry.intersectionRatio >= optionsIO.threshold
+        )
+      ) {
+        setPage((currentPage) => currentPage + 1);
+      }
+    }, optionsIO);
 
     intersectionObserver.observe(scrollObserve.current);
 

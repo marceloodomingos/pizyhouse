@@ -67,6 +67,10 @@ export const GlobalStyles = createGlobalStyle`
       &:nth-child(2n) {
         margin: 32px 0;
       }
+      &.no-spacing {
+        margin-bottom: unset;
+        margin: 32px 0;
+      }
     }
     &.modelOpenned {
       position: fixed;
