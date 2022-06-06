@@ -1,13 +1,22 @@
 import styled from "styled-components";
 
-export const AboutContainer = styled.section`
-  max-width: 1120px;
+export const AboutContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
   width: 100%;
-  margin: 32px auto;
-  padding: 0 24px;
+  max-width: 1120px;
+  padding: 20px;
+  margin: 16px auto;
+  border-radius: 4px;
   text-align: justify;
   p {
-    margin: 8px 0;
+    background: var(--shape);
+    padding: 20px;
+    border-radius: 4px;
+    & + p {
+      margin-top: 16px;
+    }
   }
   b,
   a,
@@ -32,8 +41,9 @@ export const AboutContainer = styled.section`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
     p {
-      width: 80%;
+      /* width: 80%; */
       &:nth-child(2n) {
         padding-left: 24px;
       }
@@ -55,21 +65,53 @@ export const AboutContainer = styled.section`
       }
     }
   }
+  .merchant {
+    text-align: center;
+    margin: 16px auto;
+    width: 100%;
+    border-radius: 4px;
+    padding: 24px;
+    font-weight: bold;
+    background: radial-gradient(
+      circle at right top,
+      var(--primary),
+      var(--secondary),
+      var(--quartenary),
+      var(--background)
+    );
+  }
 `;
 
 export const SloganForCreateAccount = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  max-width: 650px;
   margin: 32px auto;
+  border-radius: 4px;
+  background: radial-gradient(
+    circle at right top,
+    var(--background),
+    var(--primary),
+    var(--secondary),
+    var(--background)
+  );
+  padding: 32px 16px;
+  gap: 32px;
   > div {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    font-size: 24px;
-    text-align: left;
+    text-align: center;
     line-height: 100%;
+    font-size: 24px;
+    max-width: 650px;
+    gap: 16px;
+  }
+  button {
+    width: 100%;
+    max-width: 300px;
   }
 `;

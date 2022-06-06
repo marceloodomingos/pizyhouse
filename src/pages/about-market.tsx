@@ -10,6 +10,7 @@ import PHLemon from "../assets/pizy/logo.svg";
 import { BGContent } from "~/components/BGContent/styles";
 import { AboutContainer, SloganForCreateAccount } from "~/styles/pages/about";
 import Link from "next/link";
+import Button from "~/components/Button";
 
 interface AboutMarketProps {
   handleLoggedChange: () => void;
@@ -55,10 +56,10 @@ export default function AboutMarket({ handleLoggedChange }: AboutMarketProps) {
             internet ou como uma forma de investimento. A compra e venda de
             criptomoedas é tão simples quanto espremer um limão.
           </p>
-          <div className="merchant">
+          <p className="merchant">
             Você acessa a PIZY House, cria uma conta e compra a moeda desejada,
             simples né?
-          </div>
+          </p>
           <p>
             Diversos lugares estão aceitando essas moedas como forma de
             pagamento, por isso seu valor está em constante crescimento.
@@ -74,7 +75,14 @@ export default function AboutMarket({ handleLoggedChange }: AboutMarketProps) {
                 height={46 * 3}
               />
             </div>
-            <button></button>
+            <Button
+              isGlowing
+              onClick={() => {
+                window.location.href = `/signup`;
+              }}
+            >
+              Embarcar nessa jornada
+            </Button>
           </SloganForCreateAccount>
         </AboutContainer>
       </main>
