@@ -54,20 +54,9 @@ https://www.figma.com/file/1ouyDal7NoIdtdxt72amEC/PIZY-HOUSE?node-id=0%3A1
 
 # Tecnologias Utilizadas :man_technologist:
 
-* Vite (React)
+* NextJS
 * Typescript
 * Styled-components
-
-## Progresso :hammer_and_wrench:
-
-* 0.2.0 - 10 de abril (18:10pm)
-    * Início do código do aplicativo
-* 0.1.1 - 09 de abril (14:23pm)
-    * Layout base pronto
-* 0.1.0 - 05 de abril (18:35pm)
-    * Criação do projeto no figma
-* 0.0.1 - 05 de abril (11:59am)
-    * Início do trabalho e da produção de ideias
 
 ## Equipe :family_man_man_boy_boy:
 
