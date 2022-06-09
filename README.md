@@ -27,9 +27,9 @@ Juntamente ao nome, o limão da expressão virou nosso “aliado” e mascote, c
 
 Inúmeras variantes de nomes passaram por nossas ideias, tais como: *PZY*, *PEEZY*, *PEASY*, *πzy* e entre outras. Mas a que melhor se encaixou na leitura proposital que tínhamos como intuito foi *PIZY*. Então, como seríamos uma casa de investimentos, usamos *HOUSE* para a continuação do nome.
 
-# Visitar o projetp :call_me_hand:
+# Visitar o projeto :call_me_hand:
 
-https://pizyhouse.vercel.app
+<a href="https://pizyhouse.vercel.app" target="_blank"><img src="https://img.shields.io/badge/-pizyhouse-purple?&style=for-the-badge" alt="pizyhouse.vercel.app"></a>
 
 # Projeto no Figma :artist:
 
