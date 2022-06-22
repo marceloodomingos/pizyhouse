@@ -9,6 +9,8 @@ import { MainApp } from "../../styles/pages/dashboard";
 import { firebase, auth } from "~/services/firebase";
 import { useRouter } from "next/router";
 import { AboutUser, ProfileContainer } from "~/styles/pages/dashboard/profile";
+import { format } from "date-fns";
+import ptBR from "date-fns/locale/pt-BR";
 import {
   Clock,
   Envelope,
@@ -48,31 +50,31 @@ export default function Profile({ handleLoggedChange }: ProfilePageProps) {
     }
   }
 
-  function formatDays(props: any) {
-    const convertedString = props
-      .replace("Mon", "Segunda-feira")
-      .replace("Tue", "Terça-feira")
-      .replace("Wed", "Quarta-feira")
-      .replace("Thu", "Quinta-feira")
-      .replace("Fri", "Sexta-feira")
-      .replace("Sat", "Sábado")
-      .replace("Sun", "Domingo")
-      .replace("Jan", "Janeiro")
-      .replace("Feb", "Fevereiro")
-      .replace("Mar", "Março")
-      .replace("Apr", "Abril")
-      .replace("May", "Maio")
-      .replace("Jun", "Junho")
-      .replace("Jul", "Julho")
-      .replace("Aug", "Agosto")
-      .replace("Sep", "Setembro")
-      .replace("Oct", "Outubro")
-      .replace("Nov", "Novembro")
-      .replace("Dec", "Dez")
-      .replace(/,/g, " -");
+  // function formatDays(props: any) {
+  //   const convertedString = props
+  //     .replace("Mon", "Segunda-feira")
+  //     .replace("Tue", "Terça-feira")
+  //     .replace("Wed", "Quarta-feira")
+  //     .replace("Thu", "Quinta-feira")
+  //     .replace("Fri", "Sexta-feira")
+  //     .replace("Sat", "Sábado")
+  //     .replace("Sun", "Domingo")
+  //     .replace("Jan", "Janeiro")
+  //     .replace("Feb", "Fevereiro")
+  //     .replace("Mar", "Março")
+  //     .replace("Apr", "Abril")
+  //     .replace("May", "Maio")
+  //     .replace("Jun", "Junho")
+  //     .replace("Jul", "Julho")
+  //     .replace("Aug", "Agosto")
+  //     .replace("Sep", "Setembro")
+  //     .replace("Oct", "Outubro")
+  //     .replace("Nov", "Novembro")
+  //     .replace("Dec", "Dez")
+  //     .replace(/,/g, " -");
 
-    return convertedString;
-  }
+  //   return convertedString;
+  // }
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -159,12 +161,28 @@ export default function Profile({ handleLoggedChange }: ProfilePageProps) {
                             <Clock />
                             Data de criação da conta
                           </dt>
-                          <p>{formatDays(user.metadata.creationTime)}</p>
+                          <p className="date">
+                            {format(
+                              new Date(user.metadata.creationTime),
+                              "EEEE' • 'd' de 'MMMM' às 'k':'mm':'ss.",
+                              {
+                                locale: ptBR,
+                              }
+                            )}
+                          </p>
                           <dt>
                             <LockKeyOpen />
                             Último login realizado
                           </dt>
-                          <p>{formatDays(user.metadata.lastSignInTime)}</p>
+                          <p className="date">
+                            {format(
+                              new Date(user.metadata.lastSignInTime),
+                              "EEEE' • 'd' de 'MMMM' às 'k':'mm':'ss.",
+                              {
+                                locale: ptBR,
+                              }
+                            )}
+                          </p>
                           <dt>
                             <IdentificationCard />
                             Seu ID

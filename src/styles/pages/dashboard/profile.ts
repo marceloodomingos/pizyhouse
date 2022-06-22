@@ -89,6 +89,9 @@ export const ProfileContainer = styled.div<ContainerProps>`
       /* line-height: 125%; */
       word-wrap: break-word;
       text-align: justify;
+      &.date::first-letter {
+        text-transform: capitalize;
+      }
       &.warn {
         color: var(--white);
         background: var(--attention);
