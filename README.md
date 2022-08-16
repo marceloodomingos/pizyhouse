@@ -67,6 +67,7 @@ https://www.figma.com/file/1ouyDal7NoIdtdxt72amEC/PIZY-HOUSE?node-id=0%3A1
 <i>Marcelo Augusto Domingos</i><br>
 
 <a href="https://gelzin.com" target="_blank"><img src="https://img.shields.io/badge/-gelzin.com-black?&style=for-the-badge" alt="gelzin.com"></a>
+<a href="https://www.github.com/gelzinn" target="_blank"><img src="https://img.shields.io/badge/GitHub-%23333333.svg?&style=for-the-badge&logo=github&logoColor=white" alt="@gelzinn on GitHub"></a>
 <a href="https://www.youtube.com/c/gelzinn_" target="_blank"><img src="https://img.shields.io/badge/Youtube-%23FF0000.svg?&style=for-the-badge&logo=youtube&logoColor=white" alt="gelzinn_ on YouTube"></a>
 <a href="https://www.instagram.com/marceloodomingos" target="_blank"><img src="https://img.shields.io/badge/Instagram-%23E4405F.svg?&style=for-the-badge&logo=instagram&logoColor=white" alt="@marceloodomingos on Instagram"></a>
 <a href="https://www.twiiter.com/marceload_" target="_blank"><img src="https://img.shields.io/badge/Twitter-%231877F2.svg?&style=for-the-badge&logo=twitter&logoColor=white" alt="@marceload_ on Twitter"></a>
@@ -74,11 +75,13 @@ https://www.figma.com/file/1ouyDal7NoIdtdxt72amEC/PIZY-HOUSE?node-id=0%3A1
 
 <i>Daniel Lima de Souza</i><br>
 
+<a href="https://www.github.com/danielspng" target="_blank"><img src="https://img.shields.io/badge/GitHub-%23333333.svg?&style=for-the-badge&logo=github&logoColor=white" alt="@danielspng on GitHub"></a>
 <a href="https://www.instagram.com/daniells.png" target="_blank"><img src="https://img.shields.io/badge/Instagram-%23E4405F.svg?&style=for-the-badge&logo=instagram&logoColor=white" alt="@daniells.png on Instagram"></a>
 <a href="https://www.twiiter.com/danielsann0" target="_blank"><img src="https://img.shields.io/badge/Twitter-%231877F2.svg?&style=for-the-badge&logo=twitter&logoColor=white" alt="@danielsann0 on Twitter"></a>
 
 <i>Leonardo Antônio de Araújo</i><br>
 
+<a href="https://www.github.com/leleleoo" target="_blank"><img src="https://img.shields.io/badge/GitHub-%23333333.svg?&style=for-the-badge&logo=github&logoColor=white" alt="@leleleoo on GitHub"></a>
 <a href="https://www.instagram.com/leo_antoonio" target="_blank"><img src="https://img.shields.io/badge/Instagram-%23E4405F.svg?&style=for-the-badge&logo=instagram&logoColor=white" alt="@leo_antoonio on Instagram"></a>
 <a href="https://www.twiiter.com/leo_antonio07" target="_blank"><img src="https://img.shields.io/badge/Twitter-%231877F2.svg?&style=for-the-badge&logo=twitter&logoColor=white" alt="@leo_antonio07 on Twitter"></a>
 
