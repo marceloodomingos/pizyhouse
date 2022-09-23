@@ -128,7 +128,7 @@ export default function TopDay({
             <>
               <Coin>
                 {coins
-                  .sort((a, b) => a.index - b.index)
+                  .sort((a, b) => a - b)
                   .map(
                     (
                       {
