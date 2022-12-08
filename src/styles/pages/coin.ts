@@ -185,6 +185,16 @@ export const CryptoInfos = styled.div`
     border-radius: 4px;
     padding: 8px;
     overflow: hidden;
+
+    > iframe {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+
+      user-select: none;
+    }
+
     > div {
       width: 100%;
       height: 100%;
@@ -300,6 +310,15 @@ export const CryptoInfos = styled.div`
     }
     @media (max-width: 1200px) {
       max-width: unset;
+
+      > iframe {
+        width: 100%;
+        min-height: 650px;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
       .apexcharts-inner,
       .apexcharts-graphical {
         transform: translateX(-10%) translateY(-15%) scale(1.5);
