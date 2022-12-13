@@ -100,9 +100,12 @@ export const BottomContent = styled.div`
     height: 100%;
     max-width: 1120px;
     margin: 0 auto;
-    @media (max-width: 850px) {
+    @media (max-width: 1100px) {
       flex-direction: column-reverse;
       justify-content: center;
+
+      gap: 1rem;
+
       .follow-us > p {
         display: none;
       }

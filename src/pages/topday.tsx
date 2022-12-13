@@ -128,7 +128,9 @@ export default function TopDay({
             <>
               <Coin>
                 {coins
-                  .sort((a, b) => a - b)
+                  .sort(function (a, b) {
+                    return a.market_cap_rank - b.market_cap_rank;
+                  })
                   .map(
                     (
                       {

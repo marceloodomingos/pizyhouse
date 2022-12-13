@@ -98,7 +98,9 @@ export default function Footer() {
       <BottomContent>
         <div className="container">
           <p>
-            © {today} <b>PIZY House</b>. Todos os direitos reservados.
+            © {today} <a href="https://pizy.vercel.app">PIZY Group</a>. Todos os
+            direitos reservados. PIZY e PIZY House são marcas reservadas à{" "}
+            <a href="https://pizy.vercel.app">PIZY Group</a>.
           </p>
           <div className="follow-us">
             <p>Redes Sociais</p>
