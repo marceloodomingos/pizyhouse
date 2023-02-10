@@ -124,8 +124,14 @@ https://www.figma.com/file/1ouyDal7NoIdtdxt72amEC/PIZY-HOUSE?node-id=0%3A1
   </tr>
   
   <tr>
+    <td valign="top">
+      <img src="https://github.com/fabzdv.png?size=120" width=120>
+    </td>
     <td valign="center">
-      <p><b>Fabrício Silva Cabral</b><br>Content creator</p>
+      <p><b>@fabzdv</b><br>Content creator</p>
+    </td>
+    <td valign="center">
+        <a href="https://www.github.com/fabzdv" target="_blank"><img src="https://img.shields.io/badge/GitHub-%23333333.svg?&style=for-the-badge&logo=github&logoColor=white" alt="@fabzdv on GitHub"></a>
     </td>
   </tr>
 </table>
